@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+import tree;
+import ctree;
+
+set = tree.ParseSettings();
+set.ignoreHiddenFiles = True;
+
+t = tree.FileTree(settings=set);
+ctree.shape_tree(t);
+ctree.print_latex(t);
