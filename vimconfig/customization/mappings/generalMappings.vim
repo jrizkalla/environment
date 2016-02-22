@@ -148,3 +148,9 @@ inoremap <BS> <bs><c-c>: call SmartBackspace(4)<cr>
 " Add a new mapping to move things from the delete register to the yank
 " register
 nnoremap <leader>m let @0=@"<cr>
+
+" Copy and paste between session (via a temp file)
+vmap <C-c> :w! ~/.vbuf<CR>
+nnoremap <C-c> :.w! ~/.vbuf<CR>
+nnoremap <C-p> :r ~/.vbuf<CR>
+ 

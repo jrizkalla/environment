@@ -68,3 +68,7 @@ source csconfig cs
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
 export PATH
+
+# Appended by .config
+export PATH="$PATH:/Users/johnrizkalla/environment/bin"
+export PYTHONPATH="$PYTHONPATH:/Users/johnrizkalla/environment/python"
