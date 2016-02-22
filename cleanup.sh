@@ -21,3 +21,6 @@ for file in $(ls "$env/bin"); do
         rm -f "$env/bin/$file"
     fi
 done
+
+echo "Removing $env/bash/env_bash_profile.sh"
+rm -f "$env/bash/env_bash_profile.sh"

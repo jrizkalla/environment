@@ -57,9 +57,6 @@ if [ $USER == 'johnrizkalla' ]; then
     alias folders='echo -e icloud; echo -e "\tdocuments"; echo -e "\t\tterm"; echo home; echo -e "\tdownloads"; echo -e "\tdesktop"'
 fi
 
-# The cs command
-source csconfig cs
-
 ##
 # Your previous /Users/johnrizkalla/.bash_profile file was backed up as /Users/johnrizkalla/.bash_profile.macports-saved_2015-05-05_at_17:43:35
 ##
@@ -69,6 +66,4 @@ source csconfig cs
 PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
 export PATH
 
-# Appended by .config
-export PATH="$PATH:/Users/johnrizkalla/environment/bin"
-export PYTHONPATH="$PYTHONPATH:/Users/johnrizkalla/environment/python"
+source "$HOME/.env_bash_profile"

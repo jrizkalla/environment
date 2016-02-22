@@ -11,9 +11,13 @@ echo "Settings up environment in $env"
 ln -s "$env/bash/bash_profile.sh" "$HOME/.bash_profile"
 ln -s "$env/vimconfig/vimrc" "$HOME/.vimrc"
 ln -s "$env/vimconfig" "$HOME/.vim"
+ln -s "$env/bash/tmux.conf.sh" "$HOME/.tmux.conf"
 
 # Change .bash_profile
-echo -e "\n# Appended by .config\nexport PATH=\"\$PATH:$env/bin\"\nexport PYTHONPATH=\"\$PYTHONPATH:$env/python\"" >> "$env/bash/bash_profile.sh"
+echo -e "\n# Created by .config\nexport PATH=\"\$PATH:$env/bin\"\nexport PYTHONPATH=\"\$PYTHONPATH:$env/python\"" > "$env/bash/env_bash_profile.sh"
+echo -e "export ENV=\"$env\"\nsource csconfig cs" >> "$env/bash/env_bash_profile.sh"
+
+ln -s "$env/bash/env_bash_profile.sh" "$HOME/.env_bash_profile"
 
 echo "Settings up links in $env/bin"
 
