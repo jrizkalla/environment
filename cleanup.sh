@@ -13,6 +13,12 @@ fi
 if [ -L "$HOME/.vim" ]; then
     rm -f "$HOME/.vim"
 fi
+if [ -L "$HOME/.env_bash_profile" ]; then
+    rm -f "$HOME/.env_bash_profile"
+fi
+if [ -L "$HOME/.tmux.conf" ]; then
+    rm -f "$HOME/.tmux.conf"
+fi
 
 
 echo "Removing all links in $env/bin"
