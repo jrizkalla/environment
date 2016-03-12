@@ -8,5 +8,5 @@ done
 
 if [ -n "$str" ]; then
     progName=$(basename $(ps -o comm=$PPID))
-    echo "[$(date +%T)] $(ps -o comm= $PPID): $str" >> "$HOME/.log_file"
+    echo -e "[$(date +%T)] $(ps -o comm= $PPID): $str" >> "$HOME/.log_file"
 fi

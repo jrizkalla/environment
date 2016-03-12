@@ -69,4 +69,8 @@ fi
 PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
 export PATH
 
+# Set the log file (for scripts running in the background)
+export LOG_FILE="$HOME/.log_file"
+# flog can be used to print to a log file
+
 source "$HOME/.env_bash_profile"

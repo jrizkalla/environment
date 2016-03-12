@@ -6,13 +6,18 @@ autoload -U colors && colors
 # Customize the prompt
 setopt prompt_subst
 
-BASE_PROMPT1="%{$fg[yellow]%}%!. [%{$fg[cyan]%}%t%{$fg[yellow]%}]" # 1. [time]
+BASE_PROMPT1="%{$fg[yellow]%}%!. [%{$fg[cyan]%}%D{%I:%M:%S %p}%{$fg[yellow]%}]" # 1. [time]
 BASE_PROMPT2="$> %{$reset_color%}" #$> 
+# Set a timeout to 1 second (to update the clock)
+TMOUT=1
+function TRAPALRM {
+    zle reset-prompt
+}
 
-BASE_RPROMPT="%{$fg[cyan]%}%3d%{$reset_color%}"
+BASE_RPROMPT="%{$fg[cyan]%}%2d%{$reset_color%}"
 RPROMPT="$BASE_RPROMPT"
 
-PS2='%_ > '
+#PS2='%_ > '
 
 
 # Enable auto completion
