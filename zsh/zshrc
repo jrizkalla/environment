@@ -1,0 +1,62 @@
+source $HOME/.bash_profile
+
+# Load colors
+autoload -U colors && colors
+
+# Customize the prompt
+setopt prompt_subst
+
+BASE_PROMPT1="%{$fg[yellow]%}%!. [%{$fg[cyan]%}%t%{$fg[yellow]%}]" # 1. [time]
+BASE_PROMPT2="$> %{$reset_color%}" #$> 
+
+BASE_RPROMPT="%{$fg[cyan]%}%3d%{$reset_color%}"
+RPROMPT="$BASE_RPROMPT"
+
+PS2='%_ > '
+
+
+# Enable auto completion
+autoload -U compinit
+compinit
+zstyle ':completion:*' menu select
+setopt completealiases
+# Colors in cd completion
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+
+# Type the name of the directory without cd
+setopt autocd
+# enable correction
+setopt correctall
+
+# Set vi mode
+bindkey -v
+export KEYTIMEOUT=10 # Kill the lag
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey '^?' backward-delete-char
+
+
+# Add an indicator of the current mode (normal or insert)
+function zle-keymap-select {
+    mode="n"
+    if [ "$KEYMAP" = "main" ]; then
+        mode="i"
+    fi
+    PROMPT="$BASE_PROMPT1 $mode$BASE_PROMPT2"
+    zle reset-prompt
+}
+zle -N zle-keymap-select
+
+# Git branch in status
+function zle-line-init {
+    zle zle-keymap-select
+    branch=$(basename "$(git symbolic-ref HEAD 2>/dev/null)")
+    if [ -n "$branch" ]; then
+        branch="[$branch]"
+    fi
+    RPROMPT="$BASE_RPROMPT %{$fg[green]%}$branch%{$reset_color%}"
+    zle reset-prompt
+}
+zle -N zle-line-init
+
+# Enable fish like syntax highlighting
+source $HOME/environment/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,5 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/johnrizkalla/environment/python'
-let g:netrw_dirhist_2='/Users/johnrizkalla/environment/vimconfig/customization'
-let g:netrw_dirhist_3='/Users/johnrizkalla/environment/vimconfig/customization/mappings'
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/johnrizkalla/environment/bash'
+let g:netrw_dirhist_2='/Users/johnrizkalla/environment'
+let g:netrw_dirhist_3='/Users/johnrizkalla'
+let g:netrw_dirhist_4='/Users/johnrizkalla/environment'
+let g:netrw_dirhist_5='/Users/johnrizkalla'
+let g:netrw_dirhist_6='/Users/johnrizkalla/environment'
+let g:netrw_dirhist_7='/Users/johnrizkalla'
+let g:netrw_dirhist_8='/Users/johnrizkalla/environment'
+let g:netrw_dirhist_9='/Users/johnrizkalla/environment/bash'

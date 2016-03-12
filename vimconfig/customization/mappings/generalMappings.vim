@@ -153,4 +153,7 @@ nnoremap <leader>m let @0=@"<cr>
 vmap <C-c> :w! ~/.vbuf<CR>
 nnoremap <C-c> :.w! ~/.vbuf<CR>
 nnoremap <C-p> :r ~/.vbuf<CR>
+
+" Map the really awkward ` key
+nnoremap <leader>g `
  

@@ -16,6 +16,9 @@ fi
 if [ -L "$HOME/.env_bash_profile" ]; then
     rm -f "$HOME/.env_bash_profile"
 fi
+if [ -L "$HOME/.zshrc" ]; then
+    rm -f "$HOME/.zshrc"
+fi
 if [ -L "$HOME/.tmux.conf" ]; then
     rm -f "$HOME/.tmux.conf"
 fi

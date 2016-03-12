@@ -10,13 +10,14 @@ alias ls='ls -G -F'
 alias process='ps -A | egrep -i '
 alias rm='trash'
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias linux="ssh jrizkall@linux.student.cs.uwaterloo.ca"
+#alias linux="ssh jrizkall@linux.student.cs.uwaterloo.ca"
 alias linux2="ssh jrizkall@ubuntu1204-002.student.cs.uwaterloo.ca"
 alias linux4="ssh jrizkall@ubuntu1204-004.student.cs.uwaterloo.ca"
 alias linux6="ssh jrizkall@ubuntu1204-006.student.cs.uwaterloo.ca"
 alias glinux="ssh -X jrizkall@linux.student.cs.uwaterloo.ca"
 alias xcode="open -a Xcode "
 alias less="less -r"
+alias stop="kill SIGTSTP"
 
 alias branch='BRANCH_FROM=$(pwd); cd'
 alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
@@ -32,7 +33,7 @@ alias mvimootb='mvim -u NONE'
 
 alias fork='open -a $TERM_PROGRAM .' # open this directory in another terminal window/tab
 # customize the prompt
-export PS1='\e[33m[\t] $>\e[0m '
+export PS1="\e[33m[\t] $>\e[0m "
 
 # add a new directory to the list of directories that have the executable files
 export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
@@ -41,7 +42,7 @@ export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
 #export PATH="$PATH:$HOME/sys161/bin:$HOME/sys161/tools/bin"
 
 # icloud locations
-if [ $USER == 'johnrizkalla' ]; then
+if [ "$USER" = 'johnrizkalla' ]; then
     export ICLOUD='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs'
     export DOCUMENTS="$ICLOUD/Documents"
     export CURRENT_TERM="$DOCUMENTS/2015 - 2016 Academic Year/Winter 2015 (4A term)"
@@ -55,6 +56,8 @@ if [ $USER == 'johnrizkalla' ]; then
     alias desktop="cd ~/Desktop"
     #and a summary:
     alias folders='echo -e icloud; echo -e "\tdocuments"; echo -e "\t\tterm"; echo home; echo -e "\tdownloads"; echo -e "\tdesktop"'
+    
+    export CDPATH="::$CURRENT_TERM"
 fi
 
 ##

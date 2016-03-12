@@ -1,3 +1,6 @@
+# Make open work
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+ 
 # Vim copy mode
 set-window-option -g mode-keys vi
 bind-key -t vi-copy 'v' begin-selection
@@ -28,3 +31,6 @@ set -g status-fg white
 set -g status-bg '#005f5f'
 set-window-option -g window-status-current-bg '#5fffff'
 set-window-option -g window-status-current-fg black
+
+# Set the clock to 12 hour not 24 hour
+set-window-option -g clock-mode-style 12

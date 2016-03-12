@@ -9,6 +9,7 @@ echo "Settings up environment in $env"
 
 # Set up the links
 ln -s "$env/bash/bash_profile.sh" "$HOME/.bash_profile"
+ln -s "$env/zsh/zshrc" "$HOME/.zshrc"
 ln -s "$env/vimconfig/vimrc" "$HOME/.vimrc"
 ln -s "$env/vimconfig" "$HOME/.vim"
 ln -s "$env/bash/tmux.conf.sh" "$HOME/.tmux.conf"
@@ -26,5 +27,8 @@ ln -F -s "$env/bash/settitle.sh" "$env/bin/settitle"
 ln -F -s "$env/bash/trash.sh" "$env/bin/trash"
 ln -F -s "$env/bash/waitforprocess.sh" "$env/bin/waitforprocess"
 ln -F -s "$env/bash/csconfig.sh" "$env/bin/csconfig"
+ln -F -s "$env/bash/log.sh" "$env/bin/flog"
 
 ln -F -s "$env/python/tree.py" "$env/bin/tree"
+ln -F -s "$env/python/passwordgen.py" "$env/bin/passwordgen"
+
