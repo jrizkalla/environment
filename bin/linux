@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo 'activate application "iTerm"
-tell application "System Events" to keystroke "t" using command down
-tell application "iTerm" to tell session -1 of current terminal to write text "linux6"' | osascript
