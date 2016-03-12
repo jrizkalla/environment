@@ -38,6 +38,12 @@ bindkey -v
 export KEYTIMEOUT=10 # Kill the lag
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
+function ctrl-z-widget {
+    fg
+    clear
+}
+zle -N ctrl-z-widget
+bindkey '^z' ctrl-z-widget
 
 
 # Add an indicator of the current mode (normal or insert)
@@ -55,10 +61,24 @@ zle -N zle-keymap-select
 function zle-line-init {
     zle zle-keymap-select
     branch=$(basename "$(git symbolic-ref HEAD 2>/dev/null)")
-    if [ -n "$branch" ]; then
-        branch="[$branch]"
+    # Set the color based on wether the current repo is clean or not
+    git diff --cached --exit-code >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        # are there untracked files?
+        if [[ $(git ls-files --other --exclude-standard --directory) ]]; then
+            color='red'
+        else
+            color='green'
+        fi
+    else
+        color='red'
     fi
-    RPROMPT="$BASE_RPROMPT %{$fg[green]%}$branch%{$reset_color%}"
+    
+    if [ -n "$branch" ]; then
+        branch="[%{$fg[$color]%}$branch%{$reset_color%}]"
+    fi
+    
+    RPROMPT="$BASE_RPROMPT $branch"
     zle reset-prompt
 }
 zle -N zle-line-init
