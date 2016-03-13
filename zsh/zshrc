@@ -14,7 +14,7 @@ function TRAPALRM {
     zle reset-prompt
 }
 
-BASE_RPROMPT="%{$fg[cyan]%}%2d%{$reset_color%}"
+BASE_RPROMPT="%{$fg[white]%}%1m %{$fg[cyan]%}%1d%{$reset_color%}"
 RPROMPT="$BASE_RPROMPT"
 
 #PS2='%_ > '

@@ -30,6 +30,7 @@ ln -F -s "$env/bash/waitforprocess.sh" "$env/bin/waitforprocess"
 ln -F -s "$env/bash/csconfig.sh" "$env/bin/csconfig"
 ln -F -s "$env/bash/log.sh" "$env/bin/flog"
 ln -F -s "$env/bash/tmuxhome.sh" "$env/bin/tmuxhome"
+ln -F -s "$env/bash/lock.sh" "$env/bin/lock"
 
 ln -F -s "$env/python/tree.py" "$env/bin/tree"
 ln -F -s "$env/python/passwordgen.py" "$env/bin/passwordgen"
