@@ -11,7 +11,9 @@ BASE_PROMPT2="$> %{$reset_color%}" #$>
 # Set a timeout to 1 second (to update the clock)
 TMOUT=1
 function TRAPALRM {
-    zle reset-prompt
+    if [ "$WIDGET" != "expand-or-complete" ]; then
+        zle reset-prompt
+    fi
 }
 
 BASE_RPROMPT="%{$fg[white]%}%1m %{$fg[cyan]%}%1d%{$reset_color%}"
@@ -21,12 +23,12 @@ RPROMPT="$BASE_RPROMPT"
 
 
 # Enable auto completion
-autoload -U compinit
-compinit
+zmodload zsh/complist
+autoload -U compinit && compinit
 zstyle ':completion:*' menu select
-setopt completealiases
-# Colors in cd completion
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+setopt completealiases
+setopt menu_complete
 
 # Type the name of the directory without cd
 setopt autocd
