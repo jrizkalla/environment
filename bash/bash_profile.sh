@@ -73,4 +73,12 @@ export PATH
 export LOG_FILE="$HOME/.log_file"
 # flog can be used to print to a log file
 
+# Some functions
+type qlmanage >/dev/null # Quick look (OS X)
+if [ $? -eq 0 ]; then
+    function preview {
+        qlmanage -p $1 >/dev/null 2>&1 &
+    }
+fi
+
 source "$HOME/.env_bash_profile"

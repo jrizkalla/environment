@@ -7,8 +7,8 @@ set number
 
 set nocompatible                    " Make vim uncompatible with old vi
 
-"colorscheme monokai                 " Set the color to. Other subscripts (like latexSettings.vim) can change it
-colorscheme xcode-midnight
+colorscheme monokai                 " Set the color to. Other subscripts (like latexSettings.vim) can change it
+"colorscheme xcode-midnight
 if has("gui_running")
     set guifont=Monaco:h11
     

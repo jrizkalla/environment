@@ -34,6 +34,7 @@ Plug 'lervag/vimtex' 					                                        " LaTeX suppor
 Plug 'tomtom/tcomment_vim'                                                      " Comment support
 Plug 'tpope/vim-fugitive'                                                       " Git support
 Plug 'molok/vim-smartusline'                                                    " Colorful status line
+Plug 'easymotion/vim-easymotion'
 "Plug 'Valloric/YouCompleteMe'                                                  " YCM -- to complicated
 "Plug 'scrooloose/nerdtree'
 

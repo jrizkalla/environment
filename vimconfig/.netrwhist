@@ -1,11 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/johnrizkalla/environment/bash'
-let g:netrw_dirhist_2='/Users/johnrizkalla/environment'
-let g:netrw_dirhist_3='/Users/johnrizkalla'
-let g:netrw_dirhist_4='/Users/johnrizkalla/environment'
-let g:netrw_dirhist_5='/Users/johnrizkalla'
-let g:netrw_dirhist_6='/Users/johnrizkalla/environment'
-let g:netrw_dirhist_7='/Users/johnrizkalla'
-let g:netrw_dirhist_8='/Users/johnrizkalla/environment'
-let g:netrw_dirhist_9='/Users/johnrizkalla/environment/bash'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs/Documents/2015 - 2016 Academic Year/Winter 2015 (4A term)/CS456/assignments/a2'
+let g:netrw_dirhist_2='/Users/johnrizkalla/Downloads/Website/Owl Template/html/stylesheets'
+let g:netrw_dirhist_3='/Users/johnrizkalla/environment/vimconfig/customization'

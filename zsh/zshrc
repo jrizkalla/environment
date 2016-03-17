@@ -41,8 +41,8 @@ export KEYTIMEOUT=10 # Kill the lag
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
 function ctrl-z-widget {
-    fg
     clear
+    fg
 }
 zle -N ctrl-z-widget
 bindkey '^z' ctrl-z-widget
