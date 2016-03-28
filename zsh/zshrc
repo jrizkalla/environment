@@ -85,5 +85,13 @@ function zle-line-init {
 }
 zle -N zle-line-init
 
+# Save the history between sessions
+HISTSIZE=1000
+HISTFILE="$HOME/.zsh_history_file"
+SAVEHIST=1000
+
+# Share the history
+setopt SHARE_HISTORY
+
 # Enable fish like syntax highlighting
 source $HOME/environment/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

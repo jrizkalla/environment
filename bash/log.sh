@@ -6,7 +6,15 @@ for s in $@; do
     str+="$s "
 done
 
+progName="$(basename $(ps -o comm= $$))"
 if [ -n "$str" ]; then
-    progName=$(basename $(ps -o comm=$PPID))
-    echo -e "[$(date +%T)] $(ps -o comm= $PPID): $str" >> "$HOME/.log_file"
+    echo -e "[$(date +%T)] $progName: $str" >> "$HOME/.log_file"
+else
+    # Read from stdin and echo to file
+    while [ 1 ]; do
+        read line
+        if [ $? -ne 0 ]; then break; fi
+        
+        echo -e "[$(date +%T)] $progName: $line" >> "$HOME/.log_file"
+    done
 fi

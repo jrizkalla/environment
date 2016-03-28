@@ -55,7 +55,6 @@ nnoremap <D-j> /<++><cr>4x:noh<cr>
 inoremap <C-j> <esc>: call Useless_func()<cr>
 nnoremap <C-j> /<++><cr>4x:noh<cr>
 
-nnoremap <leader>j /<++><cr>4x:noh<cr>
 vnoremap <D-j> /<++><cr>4x:noh<cr>
 inoremap <D-J> <++>
 nnoremap <D-J> i<++>
@@ -156,4 +155,15 @@ nnoremap <C-p> :r ~/.vbuf<CR>
 
 " Map the really awkward ` key
 nnoremap <leader>g `
- 
+
+
+" Easy motion mappings
+nmap f <Plug>(easymotion-f)
+nmap F <Plug>(easymotion-F)
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
+nmap <leader>h <Plug>(easymotion-h)
+nmap <leader>l <Plug>(easymotion-l)
+nmap n <Plug>(easymotion-n)
+nmap N <Plug>(easymotion-N)
+

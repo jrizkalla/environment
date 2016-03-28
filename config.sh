@@ -34,4 +34,5 @@ ln -F -s "$env/bash/lock.sh" "$env/bin/lock"
 
 ln -F -s "$env/python/tree.py" "$env/bin/tree"
 ln -F -s "$env/python/passwordgen.py" "$env/bin/passwordgen"
+ln -F -s "$env/python/music.py" "$env/bin/play"
 
