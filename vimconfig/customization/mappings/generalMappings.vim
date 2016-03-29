@@ -122,12 +122,12 @@ nnoremap <leader>g `a
 nnoremap <leader>n :set relativenumber!<cr>
 
 " Some fast jumping around
-nnoremap fj   10j
-nnoremap ffj  20j
-nnoremap fffj 30
-nnoremap fk   10k
-nnoremap ffk  20k
-nnoremap fffk 30k
+"nnoremap fj   10j
+"nnoremap ffj  20j
+"nnoremap fffj 30
+"nnoremap fk   10k
+"nnoremap ffk  20k
+"nnoremap fffk 30k
 
 " Paste from register 0
 nnoremap <leader>p "0p
@@ -164,6 +164,6 @@ nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
 nmap <leader>h <Plug>(easymotion-h)
 nmap <leader>l <Plug>(easymotion-l)
-nmap n <Plug>(easymotion-n)
-nmap N <Plug>(easymotion-N)
+nmap <leader>n <Plug>(easymotion-n)
+nmap <leader>N <Plug>(easymotion-N)
 
