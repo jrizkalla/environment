@@ -9,6 +9,7 @@ setopt prompt_subst
 BASE_PROMPT1="%{$fg[yellow]%}%!. [%{$fg[cyan]%}%D{%I:%M:%S %p}%{$fg[yellow]%}]" # 1. [time]
 BASE_PROMPT2="$> %{$reset_color%}" #$> 
 # Set a timeout to 1 second (to update the clock)
+# 
 TMOUT=1
 function TRAPALRM {
     if [ "$WIDGET" != "expand-or-complete" ]; then
@@ -37,7 +38,7 @@ setopt correctall
 
 # Set vi mode
 bindkey -v
-export KEYTIMEOUT=10 # Kill the lag
+#export KEYTIMEOUT=20 # Kill the lag (don't need this with jk instead of <esc>)
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^?' backward-delete-char
 function ctrl-z-widget {
