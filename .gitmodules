@@ -4,3 +4,6 @@
 [submodule "vimconfig/plugins/vim-easymotion/vim-easymotion"]
 	path = vimconfig/plugins/vim-easymotion/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "vimconfig/plugins/vim-syntax-extra"]
+	path = vimconfig/plugins/vim-syntax-extra
+	url = https://github.com/justinmk/vim-syntax-extra.git
