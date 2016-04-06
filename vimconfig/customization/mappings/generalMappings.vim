@@ -97,8 +97,8 @@ nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
 
 " Open file explorer
-"nnoremap <leader>ls  :NERDTreeToggle<cr>
-nnoremap <leader>ls  :Explore<cr>
+nnoremap <leader>ls  :NERDTreeToggle<cr>
+"nnoremap <leader>ls  :Explore<cr>
 nnoremap <leader>tls :tabe %:h<cr>
 nnoremap <leader>vls :Vexplore<cr>
 nnoremap <leader>hls :Hexplore<cr>

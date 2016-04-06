@@ -29,8 +29,21 @@ set -g mouse on
 # Some color:
 set -g status-fg white
 set -g status-bg '#005f5f'
+set -g status-right "#{prefix_highlight} CPU: #{cpu_percentage} Battery: #{battery_percentage} | %a %h-%d %H:%M"
 set-window-option -g window-status-current-bg '#5fffff'
 set-window-option -g window-status-current-fg black
 
 # Set the clock to 12 hour not 24 hour
 set-window-option -g clock-mode-style 12
+
+
+# Plugins
+
+# set -g @plugin "github_username/plugin_name"
+set -g @plugin "tmux-plugins/tmux-yank"
+set -g @plugin "tmux-plugins/tmux-cpu"
+set -g @plugin "tmux-plugins/tmux-prefix-highlight"
+set -g @plugin "tmux-plugins/tmux-battery"
+
+# Initialize TMUX plugin manager
+run "~/.tmux/plugins/tpm/tpm"

@@ -1,4 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs/Documents/2015 - 2016 Academic Year/Winter 2015 (4A term)/CS458/Assignment/a3/code'
-let g:netrw_dirhist_2='/Users/johnrizkalla/environment/vimconfig/customization'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/johnrizkalla/environment/vimconfig/customization'
+let g:netrw_dirhist_2='/Users/johnrizkalla/environment/vimconfig/customization/mappings'
+let g:netrw_dirhist_3='/Users/johnrizkalla/environment/vimconfig/colors'
+let g:netrw_dirhist_4='/Users/johnrizkalla/environment/vimconfig'
+let g:netrw_dirhist_5='/Users/johnrizkalla/environment/vimconfig/colors'

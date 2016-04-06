@@ -16,7 +16,7 @@ if &background == 'light'
 	hi Cursor guibg=#f39812 ctermbg=172
 	hi CursorColumn guibg=#cce0ef ctermbg=146
 	hi CursorIM guibg=#4a9f68 ctermbg=65
-	hi CursorLine guibg=#cce0ef gui=none ctermbg=153 cterm=none
+	hi CursorLine guibg=NONE gui=bold ctermbg=NONE cterm=bold
 	hi CursorLineNr guifg=#567686 guibg=#cce0ef gui=none ctermfg=60 ctermbg=146
 	hi DiffAdd guibg=#d0ead0 ctermbg=151
 	hi DiffChange guibg=#fdfec9 ctermbg=229

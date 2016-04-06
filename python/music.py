@@ -387,7 +387,10 @@ if __name__ == "__main__":
         while True:
             try:
                 line = raw_input();
-                run(line);
+                if len(line.strip()) == 0:
+                    run("|");
+                else:
+                    run(line);
             except EOFError:
                 sys.exit(0);
             except KeyboardInterrupt:

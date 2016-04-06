@@ -37,7 +37,7 @@ Plug 'molok/vim-smartusline'                                                    
 Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-syntax-extra'
 "Plug 'Valloric/YouCompleteMe'                                                  " YCM -- to complicated
-"Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 so ~/.vim/autoload/DoxygenToolkit.vim 					                        " Doxygnen doc support

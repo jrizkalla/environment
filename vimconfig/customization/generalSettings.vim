@@ -55,6 +55,8 @@ set tabstop=4
 set shiftwidth=4 " For indentation
 set expandtab
 
+set cursorline " Hightlight the line the cursor is on
+
 " Highlight all results and highlight next result while typing
 :set hlsearch incsearch
 

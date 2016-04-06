@@ -22,6 +22,9 @@ fi
 if [ -L "$HOME/.tmux.conf" ]; then
     rm -f "$HOME/.tmux.conf"
 fi
+if [ -L "$HOME/.tmux" ]; then
+    rm -f "$HOME/.tmux"
+fi
 
 
 echo "Removing all links in $env/bin"

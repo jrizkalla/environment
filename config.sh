@@ -13,7 +13,10 @@ ln -s "$env/bash/bash_profile.sh" "$HOME/.bash_profile"
 ln -s "$env/zsh/zshrc" "$HOME/.zshrc"
 ln -s "$env/vimconfig/vimrc" "$HOME/.vimrc"
 ln -s "$env/vimconfig" "$HOME/.vim"
-ln -s "$env/bash/tmux.conf.sh" "$HOME/.tmux.conf"
+ln -s "$env/tmux" "$HOME/.tmux"
+
+# tmux links
+ln -s "$env/tmux/tmux.conf.sh" "$HOME/.tmux.conf"
 
 # Change .bash_profile
 echo -e "\n# Created by .config\nexport PATH=\"\$PATH:$env/bin\"\nexport PYTHONPATH=\"\$PYTHONPATH:$env/python\"" > "$env/bash/env_bash_profile.sh"
@@ -29,10 +32,10 @@ ln -F -s "$env/bash/trash.sh" "$env/bin/trash"
 ln -F -s "$env/bash/waitforprocess.sh" "$env/bin/waitforprocess"
 ln -F -s "$env/bash/csconfig.sh" "$env/bin/csconfig"
 ln -F -s "$env/bash/log.sh" "$env/bin/flog"
-ln -F -s "$env/bash/tmuxhome.sh" "$env/bin/tmuxhome"
 ln -F -s "$env/bash/lock.sh" "$env/bin/lock"
 
 ln -F -s "$env/python/tree.py" "$env/bin/tree"
 ln -F -s "$env/python/passwordgen.py" "$env/bin/passwordgen"
 ln -F -s "$env/python/music.py" "$env/bin/play"
 
+ln -F -s "$env/tmux/scripts/tmuxhome.sh" "$env/bin/tmuxhome"
