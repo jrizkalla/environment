@@ -36,3 +36,6 @@ done
 
 echo "Removing $env/bash/env_bash_profile.sh"
 rm -f "$env/bash/env_bash_profile.sh"
+
+echo "Removing compiled C files at $env/C/bin/"
+rm -f "$env/C/bin/"*

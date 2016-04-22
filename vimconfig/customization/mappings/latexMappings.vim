@@ -18,24 +18,27 @@ endfunction
 
 
 " The x<BS> is to make sure Vim does not remove indentation
-inoremap <CR> <esc>: call LaTeX_Mapping_return()<cr>
-nnoremap <CR>      : execute "normal! o" . LaTeX_insert_item()<cr>
-inoremap <S-CR> <cr>
+inoremap <buffer> <CR> <esc>: call LaTeX_Mapping_return()<cr>
+nnoremap <buffer> <CR>      : execute "normal! o" . LaTeX_insert_item()<cr>
+inoremap <buffer> <S-CR> <cr>
 
-inoremap <D-e> \emph{}<++><esc>ba
-inoremap <D-i> \it{}<++><esc>ba
-inoremap <D-u> \und{}<++><esc>ba
-
-nnoremap <localleader>r :call LaTeX_create_env("")<cr>
-
-nnoremap <localleader>i : call LaTeX_create_env("itemize")<cr>
-nnoremap <localleader>e : call LaTeX_create_env("enumerate")<cr>
-nnoremap <localleader>d : call LaTeX_create_env("description")<cr>
-
-nnoremap <localleader>s : call LaTeX_Create_section("")<cr>
+inoremap <buffer> <D-e> \emph{}<++><esc>ba
+inoremap <buffer> <D-i> \it{}<++><esc>ba
+inoremap <buffer> <D-u> \und{}<++><esc>ba
+"inoremap <buffer> <C-e> \emph{}<++><esc>ba
+"inoremap <buffer> <C-i> \it{}<++><esc>ba
+"inoremap <buffer> <C-u> \und{}<++><esc>ba
+       
+nnoremap <buffer> <localleader>r :call LaTeX_create_env("")<cr>
+      
+nnoremap <buffer> <localleader>i : call LaTeX_create_env("itemize")<cr>
+nnoremap <buffer> <localleader>e : call LaTeX_create_env("enumerate")<cr>
+nnoremap <buffer> <localleader>d : call LaTeX_create_env("description")<cr>
+     
+nnoremap <buffer> <localleader>s : call LaTeX_Create_section("")<cr>
 
 " Map the " to either `` or ''
-inoremap " x<bs><c-c>: execute "normal! a" . LaTeX_Type_of_quotes() . "\<c-v><c-c>"<cr>a
+inoremap <buffer> " x<bs><c-c>: execute "normal! a" . LaTeX_Type_of_quotes() . "\<c-v><c-c>"<cr>a
 
 " Operator mappings
  

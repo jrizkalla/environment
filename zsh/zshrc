@@ -68,10 +68,10 @@ function zle-line-init {
     git diff --cached --exit-code >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         # are there untracked files?
-        if [[ $(git ls-files --other --exclude-standard --directory) ]]; then
-            color='red'
-        else
+        if [ -z "$(git status --porcelain)" ]; then
             color='green'
+        else
+            color='red'
         fi
     else
         color='red'

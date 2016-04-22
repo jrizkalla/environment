@@ -11,7 +11,7 @@ inoremap JK <esc>
 
 " jj exists insert mode and goes to the previous mark
 inoremap jj <esc>:w<cr>`a
-inoremap <esc> <nop>
+inoremap <esc> <esc>:noh<cr>
 " Make other mutating, common commands save the file (like x)
 "nnoremap x x:w<cr>
 "nnoremap dd dd:w<cr>
@@ -62,7 +62,7 @@ vnoremap <D-J> i<++>
 nnoremap + a<++><esc>
 
 " And of course, a mapping for saving
-nnoremap <leader>w :set buftype=<cr>:w<cr>
+nnoremap <leader><leader>w :set buftype=<cr>:w<cr>
 
 " Open the .vim/customization director
 nnoremap <leader>src :tabedit ~/.vimrc<cr>:split ~/.vim/customization<cr>
@@ -78,16 +78,16 @@ nnoremap <leader>tp :tabp<cr>
 nnoremap <leader>tq :call QuitWithoutSaving('tabclose!')<cr>
 
 " Window commands
-nnoremap <leader>wov :vsplit 
-nnoremap <leader>woh :split 
+nnoremap <leader>gov :vsplit 
+nnoremap <leader>goh :split 
 " Switch between windows
-nnoremap <leader>ww :wincmd w<cr>
-nnoremap <leader>wk :wincmd k<cr>
-nnoremap <leader>wj :wincmd j<cr>
-nnoremap <leader>wh :wincmd h<cr>
-nnoremap <leader>wl :wincmd l<cr>
-nnoremap <leader>wq :call QuitWithoutSaving('quit!')<cr>
-nnoremap <leader>ws <c-w><c-r>
+nnoremap <leader>gw :wincmd w<cr>
+nnoremap <leader>gk :wincmd k<cr>
+nnoremap <leader>gj :wincmd j<cr>
+nnoremap <leader>gh :wincmd h<cr>
+nnoremap <leader>gl :wincmd l<cr>
+nnoremap <leader>gq :call QuitWithoutSaving('quit!')<cr>
+nnoremap <leader>gs <c-w><c-r>
 
 " Close all windows 
 nnoremap <leader>q :call QuitWithoutSaving('quitall!')<cr>
@@ -142,7 +142,7 @@ inoremap [] []<++><c-c>4hi
 
 " smart backspace
 " <c-c> instead of <esc> to avoid triggering autocmds
-inoremap <BS> <bs><c-c>: call SmartBackspace(4)<cr>
+" inoremap <BS> <bs><c-c>: call SmartBackspace(4)<cr>
 
 " Add a new mapping to move things from the delete register to the yank
 " register
@@ -166,4 +166,29 @@ nmap <leader>h <Plug>(easymotion-h)
 nmap <leader>l <Plug>(easymotion-l)
 nmap <leader>n <Plug>(easymotion-n)
 nmap <leader>N <Plug>(easymotion-N)
+nmap <leader>w <Plug>(easymotion-w)
+nmap <leader>W <Plug>(easymotion-W)
 
+
+" Place quites around stuff:
+vnoremap " <esc>`<i"<esc>`>a"<esc>
+
+" Stop using _, use ^ and 0 instead
+nnoremap _ <nop>
+
+" Typos ---------------- {{{
+iabbrev teh the
+iabbrev theyre they're
+" }}}
+
+
+" Fix regex experssions {{{
+nnoremap / /\v
+nnoremap ? ?\v
+vnoremap / /\v
+vnoremap ? ?\v
+" }}}
+ 
+ 
+ " Make trailing spaces errors
+match Error /\v[^ ] +$/

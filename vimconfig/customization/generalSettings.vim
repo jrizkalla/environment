@@ -39,9 +39,11 @@ autocmd! GUIEnter * set vb t_vb=
 
 set laststatus=2                    " Keep the status line shown
 set statusline=\ \ 
-set statusline+=%.30f%m\ %y
+set statusline+=%.30f%m%r\ %y
 set statusline+=\ \ 
 set statusline+=branch:\ %{fugitive#statusline()}
+set statusline+=\ \ 
+set statusline+=Char:\ %3b\ -\ 0x%-3B
 set statusline+=%=
 set statusline+=col:\ %-4c
 set statusline+=\ \ 
@@ -59,6 +61,10 @@ set cursorline " Hightlight the line the cursor is on
 
 " Highlight all results and highlight next result while typing
 :set hlsearch incsearch
+
+
+set shiftround  " Make indent a multiple of shiftwidth
+
 
 " Set line numbering to relative in normal mode and absolute in insert mode
 set relativenumber
@@ -136,3 +142,20 @@ endfunction
  " For assembly file (ARM assembly)
  let asmsyntax='armasm'
  let filetype_inc='armasm'
+ 
+ 
+ " Hard-time:
+let g:hardtime_timeout=500
+let g:hardtime_maxcount=1
+let g:hardtime_allow_different_key = 1
+let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "w", "e", "b"]
+let g:hardtime_ignore_quickfix = 0
+let g:hardtime_ignore_buffer_patterns = []
+
+" Move
+let g:move_key_modifier = 'D'
+
+" Close all folds
+set foldlevelstart=0
+" A column that indicates whether something is folded or not
+set foldcolumn=1 

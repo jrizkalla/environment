@@ -41,6 +41,11 @@ export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
 # for os 161
 #export PATH="$PATH:$HOME/sys161/bin:$HOME/sys161/tools/bin"
 
+# Specifically for OS X:
+if [ "$(uname)" = "Darwin" ]; then
+    alias save="open /System/Library/Frameworks/ScreenSaver.framework/Versions/Current/Resources/ScreenSaverEngine.app"
+fi
+
 # icloud locations
 if [ "$USER" = 'johnrizkalla' ]; then
     export ICLOUD='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs'

@@ -22,3 +22,12 @@
 [submodule "tmux/plugins/tmux-cpu"]
 	path = tmux/plugins/tmux-cpu
 	url = https://github.com/tmux-plugins/tmux-cpu.git
+[submodule "vimconfig/plugins/Align"]
+	path = vimconfig/plugins/Align
+	url = https://github.com/vim-scripts/Align.git
+[submodule "vimconfig/bundle/SimpylFold"]
+	path = vimconfig/bundle/SimpylFold
+	url = https://github.com/tmhedberg/SimpylFold.git
+[submodule "vimconfig/plugins/vim-hardtime"]
+	path = vimconfig/plugins/vim-hardtime
+	url = https://github.com/takac/vim-hardtime

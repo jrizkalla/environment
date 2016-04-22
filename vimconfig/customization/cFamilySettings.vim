@@ -1,3 +1,4 @@
+set foldmethod=syntax
 let g:cfam_status_bar_buffer = "no"
 let g:cfam_status_bar_string = ""
 
