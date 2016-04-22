@@ -1,6 +1,8 @@
 bin/*
 vim/*
-#vimconfig/plugins/*
+C/bin/*
+
+bash/env_bash_profile.sh
 
 # general files
 *.swp
