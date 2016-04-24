@@ -31,3 +31,15 @@
 [submodule "vimconfig/plugins/vim-hardtime"]
 	path = vimconfig/plugins/vim-hardtime
 	url = https://github.com/takac/vim-hardtime
+[submodule "vim/plugins/vimtex"]
+	path = vim/plugins/vimtex
+	url = https://github.com/lervag/vimtex.git
+[submodule "vim/plugins/nerdtree"]
+	path = vim/plugins/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/plugins/SimpylFold"]
+	path = vim/plugins/SimpylFold
+	url = https://github.com/tmhedberg/SimpylFold.git
+[submodule "vim/plugins/vim-hardtime"]
+	path = vim/plugins/vim-hardtime
+	url = https://github.com/takac/vim-hardtime.git

@@ -1,5 +1,4 @@
 bin/*
-vim/*
 C/bin/*
 
 bash/env_bash_profile.sh
@@ -43,3 +42,5 @@ bash/env_bash_profile.sh
 
 */*/*/*/*/*.py[cdo]
 
+# Vim crap
+vim/.netrwhist

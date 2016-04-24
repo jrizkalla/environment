@@ -1,0 +1,27 @@
+
+" Why download a plugin manager when I can do it manually?
+" (I'm too lazy to try to figure out how plugin managers work with git
+" submodules)
+filetype plugin on
+" Load the plugins...
+
+" lervag/vimtex
+let &runtimepath .= ",~/.vim/plugins/vimtex"
+" scrooloose/nerdtree
+let &runtimepath .= ",~/.vim/plugins/nerdtree"
+" tmhedberg/SimpylFold
+let &runtimepath .= ",~/.vim/plugins/SimpylFold"
+" takac/vim-hardtime
+let &runtimepath .= ",~/.vim/plugins/vim-hardtime"
+
+" And of course, my awesome plugin...
+let &runtimepath .= ",~/.vim/plugins/personal"
+
+
+
+
+"Plug 'octol/vim-cpp-enhanced-highlight' 		                                " cpp syntax highlighting
+"Plug 'justinmk/vim-syntax-extra'
+""Plug 'Valloric/YouCompleteMe'                                                  " YCM -- to complicated
+"Plug 'vim-scripts/Align'                                                        " Align stuff
+"Plug 'matze/vim-move'                                                           " Move code around

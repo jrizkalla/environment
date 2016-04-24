@@ -11,8 +11,8 @@ echo "Settings up environment in $env"
 # Set up the links
 ln -s "$env/bash/bash_profile.sh" "$HOME/.bash_profile"
 ln -s "$env/zsh/zshrc" "$HOME/.zshrc"
-ln -s "$env/vimconfig/vimrc" "$HOME/.vimrc"
-ln -s "$env/vimconfig" "$HOME/.vim"
+ln -s "$env/vim/vimrc" "$HOME/.vimrc"
+ln -s "$env/vim" "$HOME/.vim"
 ln -s "$env/tmux" "$HOME/.tmux"
 
 # tmux links
