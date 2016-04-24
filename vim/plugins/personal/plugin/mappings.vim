@@ -81,9 +81,6 @@ nnoremap O Ox<bs>
 " Make it actually insert a new line
 nnoremap <cr> $a<cr>x<bs><c-c>
 
-" Make <esc> do something useful {{{
-nnoremap <esc> :noh<cr>
-" }}}
 " }}}
  
 " ----- Files {{{

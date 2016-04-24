@@ -13,6 +13,8 @@ let &runtimepath .= ",~/.vim/plugins/nerdtree"
 let &runtimepath .= ",~/.vim/plugins/SimpylFold"
 " takac/vim-hardtime
 let &runtimepath .= ",~/.vim/plugins/vim-hardtime"
+" tmux-plugins/vim-tmux-focus-events
+let &runtimepath .= ",~/.vim/plugins/vim-tmux-focus-events"
 
 " And of course, my awesome plugin...
 let &runtimepath .= ",~/.vim/plugins/personal"

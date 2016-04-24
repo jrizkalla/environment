@@ -1,5 +1,6 @@
 # Make open work
 set-option -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
+set-option -g focus-events on
  
 # Vim copy mode
 set-window-option -g mode-keys vi
