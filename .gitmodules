@@ -40,9 +40,9 @@
 [submodule "vim/plugins/SimpylFold"]
 	path = vim/plugins/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
-[submodule "vim/plugins/vim-hardtime"]
-	path = vim/plugins/vim-hardtime
-	url = https://github.com/takac/vim-hardtime.git
 [submodule "vim/plugins/vim-tmux-focus-events"]
 	path = vim/plugins/vim-tmux-focus-events
 	url = https://github.com/tmux-plugins/vim-tmux-focus-events.git
+[submodule "vim/plugins/vim-swift"]
+	path = vim/plugins/vim-swift
+	url = https://github.com/toyamarinyon/vim-swift.git

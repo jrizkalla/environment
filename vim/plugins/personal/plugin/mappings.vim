@@ -42,6 +42,11 @@ nnoremap ` '
 " }}}
 "  }}}
   
+" ----- Searching {{{
+nnoremap / /\v
+nnoremap ? ?\v
+" }}}
+
 " ----- Tabs and Windows {{{
 " Buffers {{{
 nnoremap <leader>bp :bp<cr>
@@ -118,6 +123,21 @@ nnoremap <C-p> :r ~/.vbuf<CR>
 nnoremap <leader>c 0d$
 " }}}
  
+" ----- Commands {{{
+nnoremap <leader>e :exe ""<left>
+
+" Make it easier to execute move and copy 
+" by changing the line number (turn off relative)
+" when the user enters command line mode
+" {{{
+" Note: for some reason I don't understand, `cnoremap <esc>` breaks the arrow
+" keys behaviour in command line mode
+nnoremap : :set norelativenumber<cr>:
+cnoremap <silent> <cr> <cr>:set relativenumber<cr>
+cnoremap <silent> <c-c> <c-c>:set relativenumber<cr>
+" }}}
+" }}}
+
 " ----- Vim is not for the weak {{{
 inoremap <left> <nop>
 inoremap <right> <nop>

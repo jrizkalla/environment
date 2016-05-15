@@ -5,6 +5,10 @@ set autoread " Automatically read changed files
 set ignorecase
 set smartcase
 
+" ----- Fixing Vim (fix insane defaults) {{{
+set mouse=a " Make Vim recognize mouse events
+" }}}
+ 
 " ----- Disable sounds on errors {{{
 " Disable sounds on errors
 set noerrorbells
@@ -77,8 +81,13 @@ function! QuitWithoutSaving(quitCommand)
        if &modified
            redraw
            "if input("Quit with unsaved changes (y/n)? ", "n") ==~ "y"
-           echo "Quit with unsaved changes (y/n)? "
-           if nr2char(getchar()) ==? "y"
+           echo "Quit with unsaved changes (y/n) or save and quit (s)? "
+           let input = nr2char(getchar())
+           if input ==? "y"
+               execute a:quitCommand
+               return 1
+           elseif input ==? "s"
+               write
                execute a:quitCommand
                return 1
            else
@@ -124,16 +133,10 @@ set foldcolumn=1
 " }}}
  
 " ----- Commands {{{
-command! Reloadrc execute "normal! :source $MYVIMRC\<cr> :filetype detect\<cr>"
+command! Reloadrc runtime! plugin/*.vim
 " }}}
- 
-" ----- Hard Time Plugin {{{
-let g:hardtime_timeout=500
-let g:hardtime_maxcount=1
-let g:hardtime_allow_different_key = 1
-let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "w", "e", "b"]
-let g:hardtime_ignore_quickfix = 0
-let g:hardtime_ignore_buffer_patterns = []
 
-HardTimeOn
+" ----- Numbers {{{
+" I don't use octal numbers so make <c-a> and <c-x> ignore them
+set nrformats=hex
 " }}}

@@ -5,19 +5,19 @@
 filetype plugin on
 " Load the plugins...
 
+execute "source " . $HOME . "/.vim/SimplePlug.vim"
 " lervag/vimtex
-let &runtimepath .= ",~/.vim/plugins/vimtex"
+let &runtimepath .= $HOME . "/.vim/vimtex"
+" Plugin "vimtex"
 " scrooloose/nerdtree
-let &runtimepath .= ",~/.vim/plugins/nerdtree"
+Plugin "nerdtree"
 " tmhedberg/SimpylFold
-let &runtimepath .= ",~/.vim/plugins/SimpylFold"
-" takac/vim-hardtime
-let &runtimepath .= ",~/.vim/plugins/vim-hardtime"
+Plugin "SimpylFold"
 " tmux-plugins/vim-tmux-focus-events
-let &runtimepath .= ",~/.vim/plugins/vim-tmux-focus-events"
+"Plugin "vim-tmux-focus-events"
 
 " And of course, my awesome plugin...
-let &runtimepath .= ",~/.vim/plugins/personal"
+Plugin "personal"
 
 
 

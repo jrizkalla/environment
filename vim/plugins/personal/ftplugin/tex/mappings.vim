@@ -34,7 +34,7 @@ inoremap <silent> <buffer> <D-u> \und{}<++><esc>ba
 
 " Control key for regular Vim {{{
 inoremap <silent> <buffer> <C-e> \emph{}<++><esc>ba
-inoremap <silent> <buffer> <C-i> \it{}<++><esc>ba
+"inoremap <silent> <buffer> <C-i> \it{}<++><esc>ba
 inoremap <silent> <buffer> <C-u> \und{}<++><esc>ba
 " }}}
 

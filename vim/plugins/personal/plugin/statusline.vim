@@ -1,6 +1,7 @@
 " Color key:
 " User1 is for filename. It is controlled by a helper function
 " User2 is for flags (like readonly)
+" User3 is for gitbranch. It is controlled by a helper function
  
 " ----- Settings {{{
 set laststatus=2                    " Keep the status line shown
@@ -12,6 +13,7 @@ let g:statusline_git_clean_color = "cterm=bold ctermfg=255 ctermbg=30 guifg=#eee
 " }}}
 
 " ----- Helper functions {{{
+" filename {{{
 function! Statusline_filename()
     " Return '<filename> ' if it's not modified
     " And    '<filename>+' if it is
@@ -25,7 +27,9 @@ function! Statusline_filename()
         redraw
         return @% . ' '
 endfunction
+" }}}
 
+" gitbranch {{{
 let g:statusline_gitbranch_buffer = ""
 augroup statusline_gitbranch
     autocmd!
@@ -47,6 +51,7 @@ function! Statusline_gitbranch()
         let branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null")
         let branch = "[" . branch[:-2] . "]"
         if v:shell_error 
+            execute "highlight User3 " . g:statusline_git_clean_color
             let g:statusline_gitbranch_buffer = " " " Avoid rerunning
             return " "
         endif
@@ -54,6 +59,7 @@ function! Statusline_gitbranch()
         " Is it clean?
         let clean = system("git status --porcelain")
         if v:shell_error 
+            execute "highlight User3 " . g:statusline_git_clean_color
             let g:statusline_gitbranch_buffer = " " " Avoid rerunning
             return " "
         endif
@@ -69,6 +75,7 @@ function! Statusline_gitbranch()
         return branch
     endif
 endfunction
+" }}}
 " }}}
 
 " ----- Actual statusline {{{
