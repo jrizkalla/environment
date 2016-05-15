@@ -123,6 +123,8 @@ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
 " ----- Spelling {{{
 set dictionary="/usr/dict/words"
+" Load common abbreviations
+call spelling#LoadSpellingAbbrevs()
 " }}}
 
 " ----- Folding {{{
@@ -134,6 +136,8 @@ set foldcolumn=1
  
 " ----- Commands {{{
 command! Reloadrc runtime! plugin/*.vim
+" For adding spelling errors
+command! -nargs=* Spell silent call spelling#CreateAbbrev(<f-args>)
 " }}}
 
 " ----- Numbers {{{

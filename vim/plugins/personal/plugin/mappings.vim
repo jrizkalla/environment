@@ -148,5 +148,4 @@ nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 
-inoremap <esc> <nop>
 " }}}

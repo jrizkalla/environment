@@ -14,7 +14,7 @@ Plugin "nerdtree"
 " tmhedberg/SimpylFold
 Plugin "SimpylFold"
 " tmux-plugins/vim-tmux-focus-events
-"Plugin "vim-tmux-focus-events"
+Plugin "vim-tmux-focus-events"
 
 " And of course, my awesome plugin...
 Plugin "personal"
