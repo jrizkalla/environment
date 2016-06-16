@@ -61,12 +61,16 @@ set shiftround  " Make indent a multiple of shiftwidth
 " ----- Line numbers {{{
 set relativenumber
 set number
-augroup line_numbering
-    autocmd!
-    autocmd  InsertEnter * :set norelativenumber
-    autocmd  InsertEnter * :set number
-    autocmd  InsertLeave * :set relativenumber
-augroup end
+
+
+if v:version > 703 " hybrid mode does not work with <= Vim 7.3 
+    augroup line_numbering
+        autocmd!
+        autocmd  InsertEnter * :set norelativenumber
+        autocmd  InsertEnter * :set number
+        autocmd  InsertLeave * :set relativenumber
+    augroup end
+endif
 " }}}
  
 " ----- Quiting {{{
@@ -144,3 +148,13 @@ command! -nargs=* Spell silent call spelling#CreateAbbrev(<f-args>)
 " I don't use octal numbers so make <c-a> and <c-x> ignore them
 set nrformats=hex
 " }}}
+
+" ----- You Complete Me {{{
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_filetype_whitelist = { "cpp" : 1, "c": 1, "python" : 1, "css": 1, "javascript": 1}
+
+" Additional triggers for css (empty lines and :)
+let g:ycm_semantic_triggers = { 
+            \ "css": [ 're!\s*' , '.' ],
+        \ }
+" }}

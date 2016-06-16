@@ -55,7 +55,7 @@ nnoremap <leader>bn :bn<cr>
 
 " Tabs {{{
 nnoremap <leader>to :tabedit 
-nnoremap <leader>tq :call QuitWithoutSaving('tabclose!')<cr>
+nnoremap <silent> <leader>tq :call QuitWithoutSaving('tabclose!')<cr>
 " }}}
 
 " Windows {{{
@@ -67,11 +67,11 @@ nnoremap <leader>wk :wincmd k<cr>
 nnoremap <leader>wj :wincmd j<cr>
 nnoremap <leader>wh :wincmd h<cr>
 nnoremap <leader>wl :wincmd l<cr>
-nnoremap <leader>wq :call QuitWithoutSaving('quit!')<cr>
+nnoremap <silent> <leader>wq :call QuitWithoutSaving('quit!')<cr>
 nnoremap <leader>ws <c-w><c-r>
 
 " Close all windows
-nnoremap <leader>q :call QuitWithoutSaving('quitall!')<cr>
+nnoremap <silent> <leader>q :call QuitWithoutSaving('quitall!')<cr>
 " }}}
 " }}}
  
@@ -89,11 +89,12 @@ nnoremap <cr> $a<cr>x<bs><c-c>
 " }}}
  
 " ----- Files {{{
-" File explorer (NerdTree) {{{
-nnoremap <leader>ls  :NERDTreeToggle<cr>
-nnoremap <leader>tls :tabe %:h<cr>
-nnoremap <leader>vls :Vexplore<cr>
-nnoremap <leader>hls :Hexplore<cr>
+" File explorer {{{
+nnoremap <silent><leader>ff  :Explore<cr>
+nnoremap <silent><leader>fl  :Lexplore<cr>
+nnoremap <silent><leader>ft :tabe %:h<cr>
+nnoremap <silent><leader>fv :Vexplore<cr>
+nnoremap <silent><leader>fh :Hexplore<cr>
 " }}}
 
 " Saving {{{
@@ -132,9 +133,11 @@ nnoremap <leader>e :exe ""<left>
 " {{{
 " Note: for some reason I don't understand, `cnoremap <esc>` breaks the arrow
 " keys behaviour in command line mode
-nnoremap : :set norelativenumber<cr>:
-cnoremap <silent> <cr> <cr>:set relativenumber<cr>
-cnoremap <silent> <c-c> <c-c>:set relativenumber<cr>
+if v:version > 703
+    nnoremap : :set norelativenumber<cr>:
+    cnoremap <silent> <cr> <cr>:set relativenumber<cr>
+    cnoremap <silent> <c-c> <c-c>:set relativenumber<cr>
+endif
 " }}}
 " }}}
 

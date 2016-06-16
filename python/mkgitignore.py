@@ -21,9 +21,12 @@ files["cc"] = files["c"];
 
 files["java"] = ["*.class", "*.jar"];
 
-files["python"] = ["*.py[cdo]"];
+files["python"] = ["*.py[cdo]", "__pychache__/*"];
 files["py"] = files["python"];
 
+files["xcode"] = ["DerivedData/*"];
+
+files["swift"] = files["xcode"];
 
 def printGitignore(*langs, **settings):
     '''

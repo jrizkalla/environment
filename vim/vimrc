@@ -5,21 +5,29 @@
 filetype plugin on
 " Load the plugins...
 
+
 execute "source " . $HOME . "/.vim/SimplePlug.vim"
+
 " lervag/vimtex
-let &runtimepath .= $HOME . "/.vim/vimtex"
-" Plugin "vimtex"
-" scrooloose/nerdtree
-Plugin "nerdtree"
-" tmhedberg/SimpylFold
+Plugin "vimtex"
 Plugin "SimpylFold"
+" scrooloose/nerdtree
+"Plugin "nerdtree"
 " tmux-plugins/vim-tmux-focus-events
 Plugin "vim-tmux-focus-events"
+" Easy Align
+Plugin "vim-easy-align"
+
+"Jinja syntax highlighting
+Plugin "Vim-Jinja2-Syntax"
+
 
 " And of course, my awesome plugin...
 Plugin "personal"
 
-
+" You complete me has to be loaded after personal since
+" personal changes it's settings
+Plugin "YouCompleteMe"
 
 
 "Plug 'octol/vim-cpp-enhanced-highlight' 		                                " cpp syntax highlighting

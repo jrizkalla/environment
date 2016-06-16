@@ -79,18 +79,18 @@ endfunction
 " }}}
 
 " ----- Actual statusline {{{
-setlocal statusline=\ \ 
-setlocal statusline+=%n:\ %1*%.30{Statusline_filename()}%*%2*%r%*%y
-setlocal statusline+=\ %3*%.30{Statusline_gitbranch()}%*
-setlocal statusline+=\ \ 
-setlocal statusline+=Char:\ %3b\ -\ 0x%-3B
-setlocal statusline+=%=
-setlocal statusline+=col:\ %-4c
-setlocal statusline+=\ \ 
-setlocal statusline+=%4l/%-4L
-setlocal statusline+=\ \ 
-setlocal statusline+=%3p%%
-setlocal statusline+=\ \ 
+set statusline=\ \ 
+set statusline+=%n:\ %1*%.30{Statusline_filename()}%*%2*%r%*%y
+set statusline+=\ %3*%.30{Statusline_gitbranch()}%*
+set statusline+=\ \ 
+set statusline+=Char:\ %3b\ -\ 0x%-3B
+set statusline+=%=
+set statusline+=col:\ %-4c
+set statusline+=\ \ 
+set statusline+=%4l/%-4L
+set statusline+=\ \ 
+set statusline+=%3p%%
+set statusline+=\ \ 
 
 " Color {{{
 highlight Statusline ctermfg=255 ctermbg=30 guifg=#eeeeee guibg=#008787

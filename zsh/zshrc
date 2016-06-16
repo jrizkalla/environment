@@ -96,3 +96,8 @@ setopt SHARE_HISTORY
 
 # Enable fish like syntax highlighting
 source $HOME/environment/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Enable fish like autosuggestions
+source $HOME/environment/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Bind Ctrl+k to complete a suggestiong (as in ok)
+bindkey '^k' autosuggest-accept

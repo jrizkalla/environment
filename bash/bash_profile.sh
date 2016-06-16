@@ -5,8 +5,15 @@ alias c='clear'
 alias delete='\rm -i -r'
 alias egrep='egrep --color=auto'
 alias grep='grep --color=auto'
-alias la='ls -G -A -F'
-alias ls='ls -G -F'
+# Does ls accept -G or --color=auto for color?
+ls -G > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    alias la='ls -G -A -F'
+    alias ls='ls -G -F'
+else
+    alias la='ls --color=auto -A -F'
+    alias ls='ls --color=auto -F'
+fi
 alias process='ps -A | egrep -i '
 alias rm='trash'
 #alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -23,9 +30,13 @@ alias branch='BRANCH_FROM=$(pwd); cd'
 alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
 
 # Vim
-alias  vim="/Applications/MacVim.app/Contents/MacOS/Vim -p"
-alias mvim="mvim -p" # multiple tabs in vim
-alias cvim="mvim -p -c 'call CFamily_OpenAll()'"
+# Is MacVim installed?
+ls "/Applications/MacVim.app/Contents/MacOS/Vim" > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    alias  vim="/Applications/MacVim.app/Contents/MacOS/Vim -p"
+    alias mvim="mvim -p" # multiple tabs in vim
+    alias cvim="mvim -p -c 'call CFamily_OpenAll()'"
+fi
 
 # Out of the box vim and mvim
 alias  vimootb='vim  -u NONE'
@@ -47,7 +58,7 @@ if [ "$(uname)" = "Darwin" ]; then
 fi
 
 # icloud locations
-if [ "$USER" = 'johnrizkalla' ]; then
+if [ "$USER" = 'johnrizkalla' -a "$(uname)" = 'Darwin' ]; then
     export ICLOUD='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs'
     export DOCUMENTS="$ICLOUD/Documents"
     export CURRENT_TERM="$DOCUMENTS/2015 - 2016 Academic Year/Winter 2015 (4A term)"
@@ -79,7 +90,7 @@ export LOG_FILE="$HOME/.log_file"
 # flog can be used to print to a log file
 
 # Some functions
-type qlmanage >/dev/null # Quick look (OS X)
+type qlmanage >/dev/null 2>&1 # Quick look (OS X)
 if [ $? -eq 0 ]; then
     function preview {
         qlmanage -p $1 >/dev/null 2>&1 &

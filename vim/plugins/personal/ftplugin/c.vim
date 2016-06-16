@@ -1,4 +1,3 @@
-
 " ----- Folding {{{
 setlocal foldmethod=syntax
 " Close all folds

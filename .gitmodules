@@ -47,3 +47,15 @@
 [submodule "vim/plugins/vim-swift"]
 	path = vim/plugins/vim-swift
 	url = https://github.com/toyamarinyon/vim-swift.git
+[submodule "vim/plugins/YouCompleteMe"]
+	path = vim/plugins/YouCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "vim/plugins/vim-easy-align"]
+	path = vim/plugins/vim-easy-align
+	url = git@github.com:junegunn/vim-easy-align.git
+[submodule "zsh/zsh-autosuggestions"]
+	path = zsh/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule "vim/plugins/Vim-Jinja2-Syntax"]
+	path = vim/plugins/Vim-Jinja2-Syntax
+	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
