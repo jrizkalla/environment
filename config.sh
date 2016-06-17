@@ -34,6 +34,7 @@ ln -F -s "$env/bash/settitle.sh" "$env/bin/settitle"
 ln -F -s "$env/bash/trash.sh" "$env/bin/trash"
 ln -F -s "$env/bash/waitforprocess.sh" "$env/bin/waitforprocess"
 ln -F -s "$env/bash/csconfig.sh" "$env/bin/csconfig"
+ln -F -s "$env/bash/tmux-default-command.sh" "$env/bin/tmux-default-command"
 
 ln -F -s "$env/python/tree.py" "$env/bin/tree"
 ln -F -s "$env/python/passwordgen.py" "$env/bin/passwordgen"

@@ -1,5 +1,12 @@
 # Make open work
-set-option -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
+# Default command (fallback order):
+#   reattach-to-username with zsh
+#   reattach-to-username with bash
+#   zsh
+#   bash
+#   sh
+#set-option -g default-command 'reattach-to-user-namespace -l /usr/local/bin/zsh'
+set-option -g default-command "tmux-default-command"
 set-option -g focus-events on
  
 # Vim copy mode

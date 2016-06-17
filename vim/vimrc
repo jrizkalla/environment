@@ -15,8 +15,6 @@ Plugin "SimpylFold"
 "Plugin "nerdtree"
 " tmux-plugins/vim-tmux-focus-events
 Plugin "vim-tmux-focus-events"
-" Easy Align
-Plugin "vim-easy-align"
 
 "Jinja syntax highlighting
 Plugin "Vim-Jinja2-Syntax"
@@ -28,6 +26,9 @@ Plugin "personal"
 " You complete me has to be loaded after personal since
 " personal changes it's settings
 Plugin "YouCompleteMe"
+
+" Easy Align
+Plugin "vim-easy-align"
 
 
 "Plug 'octol/vim-cpp-enhanced-highlight' 		                                " cpp syntax highlighting

@@ -151,10 +151,36 @@ set nrformats=hex
 
 " ----- You Complete Me {{{
 let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_filetype_whitelist = { "cpp" : 1, "c": 1, "python" : 1, "css": 1, "javascript": 1}
+let g:ycm_filetype_whitelist = { 
+            \ "cpp"        : 1,
+            \ "c"          : 1,
+            \ "python"     : 1,
+            \ "css"        : 1,
+            \ "javascript" : 1,
+            \ "scss"       : 1
+            \}
 
 " Additional triggers for css (empty lines and :)
 let g:ycm_semantic_triggers = { 
             \ "css": [ 're!\s*' , '.' ],
         \ }
-" }}
+" }}}
+
+" ----- EasyAlign Settings {{{
+  
+let g:easy_align_delimiters = {
+            \  ' ': { 'pattern': ' ',  'left_margin': 0, 'right_margin': 0, 'stick_to_left': 0 },
+            \  '=': { 'pattern': '===\|<=>\|\(&&\|||\|<<\|>>\)=\|=\~[#?]\?\|=>\|[:+/*!%^=><&|.-]\?=[#?]\?',
+            \                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+            \  ':': { 'pattern': ':',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+            \  ',': { 'pattern': ',',  'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 },
+            \  '|': { 'pattern': '|',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+            \  '.': { 'pattern': '\.', 'left_margin': 0, 'right_margin': 0, 'stick_to_left': 0 },
+            \  '#': { 'pattern': '#\+', 'delimiter_align': 'l', 'ignore_groups': ['!Comment']  },
+            \  '&': { 'pattern': '\\\@<!&\|\\\\',
+            \                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+            \  '{': { 'pattern': '(\@<!{',
+            \                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
+            \  '}': { 'pattern': '}',  'left_margin': 1, 'right_margin': 0, 'stick_to_left': 0 }
+            \ }
+" }}}
