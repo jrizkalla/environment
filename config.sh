@@ -21,6 +21,9 @@ ln -s "$env/tmux/tmux.conf.sh" "$HOME/.tmux.conf"
 # Change .bash_profile
 echo -e "\n# Created by .config\nexport PATH=\"\$PATH:$env/bin:$env/C/bin\"\nexport PYTHONPATH=\"\$PYTHONPATH:$env/python\"" > "$env/bash/env_bash_profile.sh"
 echo -e "export ENV=\"$env\"\nsource csconfig cs" >> "$env/bash/env_bash_profile.sh"
+if [ $(uname) = 'Linux' ]; then
+    echo -e 'export TRASH_DIR="$HOME/.local/share/Trash"' >> "$env/bash/env_bash_profile.sh"
+fi
 
 ln -s "$env/bash/env_bash_profile.sh" "$HOME/.env_bash_profile"
 
