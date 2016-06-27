@@ -22,6 +22,11 @@ class SchemaTestCase(unittest.TestCase):
                     'key6_4' : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
                     'key6_5' : ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
                     },
+                'key7' : [{
+                        'key7_1' : 0,
+                    }, {
+                        'key7_2' : 0,
+                        }],
                 'invalid-py-key1' : 0,
                 '342'             : 0,
                 'invalid key 2'   : 0,
@@ -47,7 +52,7 @@ class SchemaTestCase(unittest.TestCase):
         self.assertEqual(s, copy.deepcopy(s), "schema not equal to it's copy");
         
         # Assert that all the keys are in there
-        default_keys = {'key1':0, 'key2':0, 'key3':0, 'key4':0, 'key5':0, 'key6':0, 'invalid-py-key1':0, '342':0, 'invalid key 2':0};
+        default_keys = {'key1':0, 'key2':0, 'key3':0, 'key4':0, 'key5':0, 'key6':0, 'key7':0, 'invalid-py-key1':0, '342':0, 'invalid key 2':0};
         keys = {};
         for k,v in s.items():
             keys[k] = 0;
@@ -58,6 +63,7 @@ class SchemaTestCase(unittest.TestCase):
         
         self.assertTrue(type(s.key6) is Schema, 's.key6 is not a Schema');
         self.assertTrue(type(s['key6']) is Schema, 's["key6"] is not a Schema');
+        self.assertTrue(type(s['key7'][0]) is Schema, 's["key7"][0] is not a Schema');
         
         self.assertEqual(s.key1, s['key1']);
         self.assertEqual(s.key2, s['key2']);
@@ -65,6 +71,7 @@ class SchemaTestCase(unittest.TestCase):
         self.assertEqual(s.key4, s['key4']);
         self.assertEqual(s.key5, s['key5']);
         self.assertEqual(s.key6, s['key6']);
+        self.assertEqual(s.key7, s['key7']);
         
         
     def test_create_from_dict(self):

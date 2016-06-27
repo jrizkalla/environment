@@ -10,7 +10,8 @@ def _obj_to_schema(obj):
     elif type(obj) is list:
         copy = [];
         for e in obj:
-            copy.append(_obj_to_schema(e));
+            e = _obj_to_schema(e);
+            copy.append(Schema(e) if type(e) is dict else e);
         return copy;
     else:
         return obj;
@@ -31,6 +32,11 @@ class Schema(dict):
         # Convert d into a Schema (recursively)
         d = _obj_to_schema(d);
         super().__init__(d);
+        
+    def dump(self, f, **kargs):
+        json.dump(self, f, **kargs);
+    def dumps(self, f, **kargs):
+        json.dumps(self, f, **kargs);
         
     def __getattr__(self, attr):
         try:

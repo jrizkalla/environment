@@ -98,3 +98,7 @@ if [ $? -eq 0 ]; then
 fi
 
 source "$HOME/.env_bash_profile"
+
+if [ -x "$HOME/.local_bash_profile" ]; then
+    source "$HOME/.local_bash_profile"
+fi
