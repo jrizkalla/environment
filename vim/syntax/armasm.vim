@@ -67,6 +67,7 @@ syn match armasmBuiltIn		"{NOSWST}"
 " TODO: consider handling for string expansions ($x)
 
 syn match armasmComment		";.*" contains=armasmTodo
+syn region armasmComment        start='\/\*' end='\*\/'
 
 syn region armasmString		start=+"+ end=+"+ oneline
 

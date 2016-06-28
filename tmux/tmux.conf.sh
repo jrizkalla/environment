@@ -8,6 +8,9 @@
 #set-option -g default-command 'reattach-to-user-namespace -l /usr/local/bin/zsh'
 set-option -g default-command "tmux-default-command"
 set-option -g focus-events on
+
+# Change the prefix to C-a
+set -g prefix C-a
  
 # Vim copy mode
 set-window-option -g mode-keys vi
@@ -20,8 +23,7 @@ bind-key l select-pane -R
 bind-key k select-pane -U
 bind-key j select-pane -D
 
-# Remap l because it does something useful
-bind-key C-b last-window
+bind-key C-a last-window
 
 # Bind pane splitting
 bind-key - split-window v
