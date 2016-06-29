@@ -140,6 +140,12 @@ if v:version > 703
 endif
 " }}}
 " }}}
+ 
+" ----- Comments {{{
+" This is C-/
+nnoremap <silent>  :Comment<cr>
+vnoremap <silent>  :Comment<cr>
+" }}}
 
 " ----- Vim is not for the weak {{{
 inoremap <left> <nop>

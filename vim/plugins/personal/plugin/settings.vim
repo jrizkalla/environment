@@ -142,6 +142,8 @@ set foldcolumn=1
 command! Reloadrc runtime! plugin/*.vim
 " For adding spelling errors
 command! -nargs=* Spell silent call spelling#CreateAbbrev(<f-args>)
+" For comments
+command! -range Comment silent <line1>,<line2>call comment#ToggleComment()
 " }}}
 
 " ----- Numbers {{{

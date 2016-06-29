@@ -9,9 +9,6 @@
 set-option -g default-command "tmux-default-command"
 set-option -g focus-events on
 
-# Change the prefix to C-a
-set -g prefix C-a
- 
 # Vim copy mode
 set-window-option -g mode-keys vi
 bind-key -t vi-copy 'v' begin-selection
@@ -23,7 +20,7 @@ bind-key l select-pane -R
 bind-key k select-pane -U
 bind-key j select-pane -D
 
-bind-key C-a last-window
+bind-key C-b last-window
 
 # Bind pane splitting
 bind-key - split-window v
