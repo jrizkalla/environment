@@ -11,6 +11,8 @@ if !exists("g:comment_strings")
                 \"css"        : ["/*", "*/"],
                 \"python"     : ["#?"],
                 \"javascript" : ["//?"],
+                \"tex"        : ["%?"],
+                \"plaintex"   : ["%?"],
             \}
 endif
 
