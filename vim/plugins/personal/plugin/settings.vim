@@ -168,6 +168,12 @@ let g:ycm_semantic_triggers = {
         \ }
 " }}}
 
+" ----- Completion for commands {{{
+set wildmenu
+set wildchar=<Tab>
+set wildmode=full
+" }}}
+
 " ----- EasyAlign Settings {{{
   
 let g:easy_align_delimiters = {

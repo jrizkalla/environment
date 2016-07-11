@@ -102,3 +102,7 @@ source "$HOME/.env_bash_profile"
 if [ -x "$HOME/.local_bash_profile" ]; then
     source "$HOME/.local_bash_profile"
 fi
+
+function armdump {
+    arm-none-eabi-objdump -D $@ | vim - -c 'source ~/.vim/scripts/ObjDumpToARM.vim'
+}

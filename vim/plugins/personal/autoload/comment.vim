@@ -1,10 +1,16 @@
 if !exists("g:comment_strings")
     " Create the default one
+    " Note: comments without a delim are marked with ? to 
+    " identify them from normal comments
+    " Comments like /* */ are not because they can't be nesed
     let g:comment_string = {
-                \"" : ['//', '//'],
-                \"vim" : ['"'],
-                \"c"   : [ "/*", "*/" ],
-                \"c++" : [ "//" ],
+                \"vim"        : ['"?'],
+                \"c"          : ["//?"],
+                \"c++"        : ["//?" ],
+                \"ld"         : ["/*", "*/"],
+                \"css"        : ["/*", "*/"],
+                \"python"     : ["#?"],
+                \"javascript" : ["//?"],
             \}
 endif
 

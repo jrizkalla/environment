@@ -40,6 +40,9 @@ set -g status-right "#{prefix_highlight} CPU: #{cpu_percentage} Battery: #{batte
 set-window-option -g window-status-current-bg '#5fffff'
 set-window-option -g window-status-current-fg black
 
+set -g pane-border-fg '#005f5f' # same color as Tmux's status line
+set -g pane-active-border-fg '#008787' # same color as Vim's status line
+
 # Set the clock to 12 hour not 24 hour
 set-window-option -g clock-mode-style 12
 
