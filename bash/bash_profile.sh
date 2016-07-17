@@ -29,6 +29,8 @@ alias stop="kill SIGTSTP"
 alias branch='BRANCH_FROM=$(pwd); cd'
 alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
 
+alias tmuxnew='tmux -2 new -d -s'
+
 # Vim
 # Is MacVim installed?
 ls "/Applications/MacVim.app/Contents/MacOS/Vim" > /dev/null 2>&1

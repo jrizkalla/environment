@@ -24,6 +24,7 @@ echo -e "export ENV=\"$env\"\nsource csconfig cs" >> "$env/bash/env_bash_profile
 if [ $(uname) = 'Linux' ]; then
     echo -e 'export TRASH_DIR="$HOME/.local/share/Trash"' >> "$env/bash/env_bash_profile.sh"
 fi
+echo -e "export OSA_LIBRARY_PATH=\"$env/jxa/lib\"" >> "$env/bash/env_bash_profile.sh"
 
 ln -s "$env/bash/env_bash_profile.sh" "$HOME/.env_bash_profile"
 
