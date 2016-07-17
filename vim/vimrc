@@ -8,27 +8,34 @@ filetype plugin on
 
 execute "source " . $HOME . "/.vim/SimplePlug.vim"
 
-" lervag/vimtex
-Plugin "vimtex"
-Plugin "SimpylFold"
-" scrooloose/nerdtree
-"Plugin "nerdtree"
-" tmux-plugins/vim-tmux-focus-events
+if !exists("g:fast_startup")
+    " lervag/vimtex
+    Plugin "vimtex"
+    Plugin "SimpylFold"
+    " scrooloose/nerdtree
+    "Plugin "nerdtree"
+    " tmux-plugins/vim-tmux-focus-events
+endif
+
 Plugin "vim-tmux-focus-events"
 
-"Jinja syntax highlighting
-Plugin "Vim-Jinja2-Syntax"
+if !exists("g:fast_startup")
+    "Jinja syntax highlighting
+    Plugin "Vim-Jinja2-Syntax"
+endif
 
 
 " And of course, my awesome plugin...
 Plugin "personal"
 
-" You complete me has to be loaded after personal since
-" personal changes it's settings
-Plugin "YouCompleteMe"
+if !exists("g:fast_startup")
+    " You complete me has to be loaded after personal since
+    " personal changes it's settings
+    Plugin "YouCompleteMe"
 
-" Easy Align
-Plugin "vim-easy-align"
+    " Easy Align
+    Plugin "vim-easy-align"
+endif
 
 
 "Plug 'octol/vim-cpp-enhanced-highlight' 		                                " cpp syntax highlighting
