@@ -166,6 +166,9 @@ let g:ycm_filetype_whitelist = {
 let g:ycm_semantic_triggers = { 
             \ "css": [ 're!\s*' , '.' ],
         \ }
+
+let g:ycm_global_ycm_extra_conf = '~/environment/vim/default_ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['~/environment/vim/default_ycm_extra_conf.py']
 " }}}
 
 " ----- Completion for commands {{{

@@ -8,6 +8,8 @@ filetype plugin on
 
 execute "source " . $HOME . "/.vim/SimplePlug.vim"
 
+Plugin "pretty"
+
 if !exists("g:fast_startup")
     " lervag/vimtex
     Plugin "vimtex"

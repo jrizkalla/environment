@@ -65,23 +65,26 @@ syntax match month /\v(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/ contain
 
 " ----- Linked File {{{
 " Lines that are split from links. They look like <space?> |-> <path>
-syntax match linkedFile /\v^\s*\|-\>\s+.*$/
+syntax match linkedFile /\v^\s*\|-\>\s+.*$/ contains=linkSymbol
+syntax match linkedDest /\v\/.*$/ contained containedin=linkedFile
+syntax match linkSymbol /\v\|-\>/ contained containedin=linkedFile
 " }}}
 
 " ----- Links {{{
-highlight def link filePermissionsEmpty Comment
-highlight def link filePermissionsRead Identifier
-highlight def link filePermissionsWrite Function
-highlight def link filePermissionsExecute Exception
+highlight def link filePermissionsEmpty    Comment
+highlight def link filePermissionsRead     Identifier
+highlight def link filePermissionsWrite    Function
+highlight def link filePermissionsExecute  Exception
 
 highlight def link numLinks Number 
 
-highlight def link fileSizeNum Number
-highlight def link fileSizeUnit Identifier
+highlight def link fileSizeNum   Number
+highlight def link fileSizeUnit  Identifier
 
-highlight def link dirName Function
-highlight def link execName Keyword
-highlight def link linkName Type
+highlight def link dirName   Function
+highlight def link execName  Keyword
+highlight def link linkName  Type
 
-highlight def link linkedFile Type
+highlight def link linkSymbol Type
+highlight def link linkedDest Comment
 " }}}
