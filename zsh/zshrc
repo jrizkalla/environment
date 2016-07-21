@@ -82,7 +82,7 @@ function zle-line-init {
     fi
     
     RPROMPT="$BASE_RPROMPT $branch"
-    zle reset-prompt
+    zle && zle reset-prompt
 }
 zle -N zle-line-init
 
