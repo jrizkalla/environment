@@ -101,3 +101,4 @@ source "$ENV/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Bind Ctrl+k to complete a suggestiong (as in ok)
 bindkey '^k' autosuggest-accept
+bindkey '^j' forward-word

@@ -32,6 +32,9 @@ bind-key | split-window h
 #set -g mouse-resize-pane on
 set -g mouse on
 
+# Set TERM to screen-256color instead of just screen
+set -g default-terminal "screen-256color"
+
 
 # Some color:
 set -g status-fg white
