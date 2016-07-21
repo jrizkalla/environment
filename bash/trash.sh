@@ -23,18 +23,19 @@ args=()
 
 for something in $@; do
     if [ ${something:0:1} = '-' ]; then
-        args+="$something";
+        args+=("$something")
     else
-        files+="$something";
+        files+=("$something")
     fi
 done
 
-dbprint "Args: $args"
-dbprint "Files: $files"
+dbprint "Args: ${args[@]}"
+dbprint "Files: ${files[@]}"
 
-for file in $files; do
+for file in "${files[@]}"; do
     # Look for an unused filename to move to
-    baseFilename="$file"
+    baseFilename="$(basename "$file")"
+    dbprint "base filename: $baseFilename"
     if [ -e "$TRASH_DIR/$baseFilename" ]; then
         counter=1
         while [ -e "$TRASH_DIR/copy$counter-$baseFilename" ]; do
