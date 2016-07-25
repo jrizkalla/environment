@@ -23,8 +23,10 @@ if [ $(tmux list-sessions -F "#{session_name}" | egrep "$session_name" | wc -c) 
         start_directory="$HOME"
     fi
     cd "$start_directory"
+    echo tmux new-session -s "$session_name" $tmux_detatch
     tmux new-session -s "$session_name" $tmux_detatch
 else
     # Just create a new session and attach it to the old one (group them)
+    echo tmux new-session -t "$session_name" $tmux_detatch
     tmux new-session -t "$session_name" $tmux_detatch
 fi
