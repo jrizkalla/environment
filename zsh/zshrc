@@ -62,7 +62,7 @@ zle -N zle-keymap-select
 
 # Git branch in status
 function zle-line-init {
-    zle zle-keymap-select
+    zle && zle zle-keymap-select
     branch=$(basename "$(git symbolic-ref HEAD 2>/dev/null)")
     # Set the color based on wether the current repo is clean or not
     git diff --cached --exit-code >/dev/null 2>&1
