@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs/Documents/codetracker/database'
+let g:netrw_dirhist_2='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs/Documents/codetracker'
+let g:netrw_dirhist_3='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs/Documents/codetracker/database'
+let g:netrw_dirhist_4='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs/Documents/codetracker/gui/static'
+let g:netrw_dirhist_5='/Users/johnrizkalla/Library/Mobile Documents/com~apple~CloudDocs/Documents/codetracker/gui'

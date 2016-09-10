@@ -17,6 +17,8 @@ if !exists("g:fast_startup")
     " scrooloose/nerdtree
     "Plugin "nerdtree"
     " tmux-plugins/vim-tmux-focus-events
+     
+    Plugin "codi.vim"
 endif
 
 Plugin "vim-tmux-focus-events"
