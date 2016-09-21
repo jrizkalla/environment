@@ -159,7 +159,8 @@ let g:ycm_filetype_whitelist = {
             \ "python"     : 1,
             \ "css"        : 1,
             \ "javascript" : 1,
-            \ "scss"       : 1
+            \ "scss"       : 1,
+            \ "java"       : 1
             \}
 
 " Additional triggers for css (empty lines and :)
