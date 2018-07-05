@@ -38,7 +38,6 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
-'-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -58,6 +57,23 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 # This path will only work on OS X, but extra paths that don't exist are not
 # harmful
+'-stdlib=libc++',
+'-std=c++17',
+'-x', 'c++',
+'-x', 'c++-header',
+# This path will only work on OS X, but extra paths that don't exist are not
+# harmful
+'-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.0.2/include',
+'-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+'-isystem', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include',
+'-isystem', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks',
+'-isystem', '/System/Library/Frameworks/Python.framework/Headers',
+'-isystem', '../llvm/include',
+'-isystem', '../llvm/tools/clang/include',
+'-I/usr/lib/',
+'-I/usr/include/',
+'-I','.',
+'-I','./ClangCompleter',
 ]
 
 

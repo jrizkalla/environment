@@ -1,54 +1,75 @@
 import json;
+from collections import UserDict
+from collections.abc import Mapping
 
-def _obj_to_schema(obj):
-    if type(obj) is dict:
-        copy = {};
-        for k,v in obj.items():
-            v = _obj_to_schema(v);
-            copy[k] = Schema(v) if type(v) is dict else v;
-        return copy;
-    elif type(obj) is list:
-        copy = [];
-        for e in obj:
-            e = _obj_to_schema(e);
-            copy.append(Schema(e) if type(e) is dict else e);
-        return copy;
-    else:
-        return obj;
+from typing import Any
 
-class Schema(dict):
-    def __init__(self, data, **kargs):
+class JSObject(UserDict):
+    '''
+    Implements a Javascript Object (for the lack of a better term).
+    JSObjects are essentially dictionaries that allow getting, setting, and deleting keys using the 
+    dot syntax.
+    '''
+    
+    @classmethod
+    def load(Class, *args, **kwargs):
         '''
-        Creates a Schema from a file or a dictionary.
-        Parameters:
-        data  -- either a filename (string) or a dict
-        kargs -- arguments passed to `json.load` or `json.loads`
+        Load a JSObject from a JSON file.
+        *args and **kwargs are passed directly to json.load.
         '''
-        if type(data) is str:
-            with open(data, 'r') as f:
-                d = json.load(f, **kargs);
-        else:
-            d = data;
-        # Convert d into a Schema (recursively)
-        d = _obj_to_schema(d);
-        super().__init__(d);
+        kwargs['object_hook'] = lambda d: Class(d)
+        return json.load(*args, **kwargs)
+    
+    @classmethod
+    def loads(Class, *args, **kwargs):
+        '''
+        Load a JSObject from a JSON string.
+        *args and **kwargs are passed directly to json.loads.
+        '''
+        kwargs['object_hook'] = lambda d: Class(d)
+        return json.loads(*args, **kwargs)
         
-    def dump(self, f, **kargs):
+    def __init__(self, data={}):
+        '''
+        Create a new JSObject from a dictionary.
+        '''
+        
+        data = dict(data)
+        for k in data:
+            value = data[k]
+            if isinstance(value, Mapping) and type(value) != self.__class__:
+                value = JSObject(value)
+                
+            data[k] = value
+        
+        self.__dict__['data'] = {}
+        super().__init__(data)
+        
+    def dump(self, f, **kargs) -> None:
         json.dump(self, f, **kargs);
-    def dumps(self, f, **kargs):
-        json.dumps(self, f, **kargs);
+    def dumps(self, f, **kargs) -> str:
+        return json.dumps(self, f, **kargs);
         
-    def __getattr__(self, attr):
+    def __getattr__(self, attr: str) -> Any:
         try:
-            return super().__getitem__(attr);
+            return self[attr];
         except KeyError as e:
             raise AttributeError from e;
     
-    def __setattr__(self, attr, value):
-        try:
-            return super().__setitem__(attr, value);
-        except KeyError as e:
-            raise AttributeError from e;
+    def __setattr__(self, attr: str, value: Any):
+        if attr in self.__dict__:
+            self.__dict__[attr] = value
+        else:
+            self[attr] = value
         
-    def __delattr__(self, attr):
-        return super().__delitem__(attr);
+    def __delattr__(self, attr: str):
+        if attr in self.__dict__:
+            del self.__dict__[attr]
+        else:
+            del self.data[attr]
+        
+    def __repr__(self) -> str:
+        return '{self.__class__.name}({repr})'.format(self=self, repr=super().__repr__())
+    
+    def __str__(self) -> str:
+        return '{self.__class__.name}({str})'.format(self=self, str=super().__str__())

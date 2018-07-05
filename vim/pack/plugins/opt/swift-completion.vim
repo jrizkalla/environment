@@ -1,0 +1,1 @@
+/Users/johnrizkalla/Documents/swift-completion/swift-completion.vim

@@ -1,21 +1,27 @@
 source $HOME/.bash_profile
 
+fpath=($ENV/zsh/complete_funcs $fpath)
+
 # Load colors
 autoload -U colors && colors
 
 # Customize the prompt
 setopt prompt_subst
+setopt extendedglob
+setopt hist_ignorespace
+
+alias kk=' echo "$(fc -ln -1)" && eval "$(fc -ln -1)"'
 
 BASE_PROMPT1="%{$fg[yellow]%}%!. [%{$fg[cyan]%}%D{%I:%M:%S %p}%{$fg[yellow]%}]" # 1. [time]
 BASE_PROMPT2="$> %{$reset_color%}" #$> 
 # Set a timeout to 1 second (to update the clock)
 # 
-TMOUT=1
-function TRAPALRM {
-    if [ "$WIDGET" != "expand-or-complete" ]; then
-        zle reset-prompt
-    fi
-}
+#TMOUT=1
+#function TRAPALRM {
+#    if [ "$WIDGET" != "expand-or-complete" ]; then
+#        zle reset-prompt
+#    fi
+#}
 
 BASE_RPROMPT="%{$fg[white]%}%1m %{$fg[cyan]%}%1d%{$reset_color%}"
 RPROMPT="$BASE_RPROMPT"
@@ -33,8 +39,8 @@ setopt menu_complete
 
 # Type the name of the directory without cd
 setopt autocd
-# enable correction
-setopt correctall
+# don't enable correction (I don't like it)
+# setopt correctall
 
 # Set vi mode
 bindkey -v
@@ -81,7 +87,14 @@ function zle-line-init {
         branch="[%{$fg[$color]%}$branch%{$reset_color%}]"
     fi
     
-    RPROMPT="$BASE_RPROMPT $branch"
+    # also get the Python virtual environment name (if it exists)
+    if [ -n "$VIRTUAL_ENV" ]; then
+        virtual_env="(%{$fg[yellow]%}$(basename $VIRTUAL_ENV)%{$reset_color%})"
+    else
+        virtual_env=""
+    fi
+    
+    RPROMPT="$BASE_RPROMPT$virtual_env $branch"
     zle && zle reset-prompt
 }
 zle -N zle-line-init
@@ -102,3 +115,7 @@ source "$ENV/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # Bind Ctrl+k to complete a suggestiong (as in ok)
 bindkey '^k' autosuggest-accept
 bindkey '^j' forward-word
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+

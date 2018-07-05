@@ -1,100 +1,69 @@
 #!/usr/bin/env python3
 
+from urllib import request as http
+from urllib.parse import quote
+import re
+import typing as T
 import sys
-import os
-from argparse import ArgumentParser, FileType
+import argparse
+from os import path
 
-files = {}
-
-# Vim files
-files["general"] = ["*.sw[op]"]
-# OS X files
-files["general"] += [".DS_Store"]
+try:
+    eval('f""')
+except SyntaxError:
+    print("Python 3.6 required", file=sys.stderr)
 
 
-files["tex"] = ["*.log", "*.aux", "*.toc", "*.out", "*.fls", "*.fdb_latexmk", "*.pdf", "*.dvi", "*.ps"]
-files["latex"] = files["tex"]
+LIST_SEPERATOR = re.compile("[\s,]")
+TMP_CACHE = "/tmp/mkgitignore_langs.txt"
 
-files["c"] = ["*.d", "*.elf", "*.o", ".out", "*.map"]
-files["c++"] = files["c"]
-files["cpp"] = files["c"]
-files["cc"] = files["c"]
-
-files["java"] = ["*.class", "*.jar"]
-
-files["python"] = ["*.py[cdo]", "__pychache__/*"]
-files["py"] = files["python"]
-
-files["xcode"] = ["DerivedData/*"]
-
-files["swift"] = files["xcode"]
-
-
-arg_parser = ArgumentParser(description='Generate gitignore.')
-arg_parser.add_argument('langs', type=str, nargs='*', metavar='LANGUAGE [LANGUAGE [...] ]', help=\
-        '''The languages to create the .gitignore for.''')
-arg_parser.add_argument('-l', '--level', default=1, type=int, metavar='NUM',
-        help='''The level of subdirectories to include in the gitignore (1 means current directory).
-If NUM is -1, add all levels (required git >= 1.8.2).
-The default is 1.''')
-arg_parser.add_argument('-o', '--output', default='.gitignore', type=FileType('w'), 
-        metavar='FILENAME', help='''The output filename. 
-Ignored if --stdout or stderr is specified. The default is .gitignore.''')
-arg_parser.add_argument('--stdout', action='store_true', help='''Write to stdout. Ignored if --stderr is specified''')
-arg_parser.add_argument('--stderr', action='store_true', help='''Write to stderr. Never ignored.''')
-
-
-
-def print_gitignore(*langs, **settings):
-    '''
-    Prints a .gitignore file:
-
-    Params:
-        *langs = the languages to print the .gitignore for
-        **settings:
-            - "subdirectory_level" - the level of subdirectores to print to (0 is for the current directory only). 0 by default
-            - "output_stream" - the output stream to print to. sys.stdout by default
-    '''
-    
-    level = settings.get('subdirectory_level', 0)
-    out   = settings.get('output_stream', sys.stdout)
-    
-    langs = ["general"] + list(langs)
-    
-    for lang in langs:
-        lang = lang.lower()
-        if not type(lang) is str:
-            raise TypeError("Languages must all be strings")
-        
-        out.write("\n# " + lang + " files\n")
-        if level < 0:
-            try:
-                for f in files[lang]:
-                    out.write('**/' + f + '\n')
-            except KeyError: pass
-        else:
-            for l in range(0, level):
-                try:
-                    for f in files[lang]:
-                        out.write(('*/' * l) + f + '\n')
-                except KeyError: pass
-                
-            
-def main(argv):
-    ns = arg_parser.parse_args(argv[1:])
-    
-    if ns.stderr:
-        output = sys.stderr
-    elif ns.stdout:
-        output = sys.stdout
-    else:
-        output = ns.output
-        
+def get_langs(url: str = "https://www.gitignore.io/api/list") -> T.Set[str]:
     try:
-        print_gitignore(*ns.langs, subdirectory_level=ns.level, output_stream=output)
-    finally:
-        ns.output.close()
-            
+        with open(TMP_CACHE, "r") as tmp_file:
+            return set(l.strip() for l in tmp_file.readlines())
+    except:
+        # fallback on the url
+        resp = http.urlopen(url)
+        if resp.getcode() != 200: 
+            raise http.URLError(f"Error: {resp.getcode()} {resp.reason}")
+        res = set(LIST_SEPERATOR.split(resp.read().decode().strip()))
+        try:
+            with open(TMP_CACHE, "w") as tmp_file:
+                for r in res:
+                    print(r, file=tmp_file)
+        except: pass
+        return res
+
+def get_gitignore(langs: T.Iterable[str], base_url="https://www.gitignore.io/api/"):
+    query = quote(",".join(l.lower().strip() for l in langs))
+    if query == "":
+        return ""
+    url = base_url + ("" if base_url[-1] == "" else "/") + query
+    resp = http.urlopen(url)
+    if resp.getcode() != 200: 
+        raise http.URLError(f"Error: {resp.getcode()} {resp.reason}")
+    return resp.read().decode()
+
+arg_parser = argparse.ArgumentParser(
+        description="Download .gitignore from gitignore.io")
+arg_parser.add_argument("langs", nargs="*", 
+        help="Languages included in .gitignore")
+arg_parser.add_argument("--list", action="store_true", default=False, 
+        help="List supported languages and exit")
+arg_parser.add_argument("-o", "--output",
+        metavar="FILE", type=argparse.FileType("w"), 
+        default=".gitignore", help="Output file")
+arg_parser.add_argument("--bare", action="store_true", default=False,
+        help="Don't add extra languages (like Vim and Mac OS)")
+
+def main(langs, list, output, bare):
+    if list:
+        for lang in get_langs():
+            print(lang)
+    if not bare:
+        langs = set(langs + "vim macos".split(" "))
+    print(get_gitignore(langs), file=output)
+
 if __name__ == "__main__":
-    ret = main(sys.argv)
+    ret = main(**vars(arg_parser.parse_args()))
     sys.exit(ret if ret is not None else 0)

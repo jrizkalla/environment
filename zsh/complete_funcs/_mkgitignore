@@ -1,0 +1,23 @@
+#compdef mkgitignore
+
+
+local -a list
+list=("${(@f)$(mkgitignore --list)}")
+list+=(
+    "--help[display a help message]"\
+    "--list[list supported languages and exit]"\
+    "-o[output file]:output file:->output"\
+    "--bare[don't add extra language (like Vim and Mac OS)]")
+
+_values "options" $list
+
+case "$state" in 
+    langs)
+        _values "languages" $list
+        ;;
+    output)
+        local -a list
+        list=(".gitignore" "-")
+        _values "output files" $list
+        ;;
+esac

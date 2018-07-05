@@ -14,6 +14,8 @@ ln -s "$env/zsh/zshrc" "$HOME/.zshrc"
 ln -s "$env/vim/vimrc" "$HOME/.vimrc"
 ln -s "$env/vim" "$HOME/.vim"
 ln -s "$env/tmux" "$HOME/.tmux"
+ln -s "$env/wm/khdrc" "$HOME/.khdrc"
+ln -s "$env/wm/chunkwmrc" "$HOME/.chunkwmrc"
 
 # tmux links
 ln -s "$env/tmux/tmux.conf.sh" "$HOME/.tmux.conf"

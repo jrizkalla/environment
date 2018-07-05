@@ -11,8 +11,9 @@ set-option -g focus-events on
 
 # Vim copy mode
 set-window-option -g mode-keys vi
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection
+
 
 # Some useful mappings:
 bind-key h select-pane -L
@@ -25,6 +26,8 @@ bind-key C-b last-window
 # Bind pane splitting
 bind-key - split-window v
 bind-key | split-window h
+
+bind-key C-q confirm-before kill-session
 
 # Enable mouse control
 #set -g mouse-select-window on
@@ -39,7 +42,7 @@ set -g default-terminal "screen-256color"
 # Some color:
 set -g status-fg white
 set -g status-bg '#005f5f'
-set -g status-right "#{prefix_highlight} CPU: #{cpu_percentage} Battery: #{battery_percentage} | %a %h-%d %H:%M"
+set -g status-right "#{prefix_highlight} CPU: #{cpu_percentage} %a %h-%d %H:%M"
 set-window-option -g window-status-current-bg '#5fffff'
 set-window-option -g window-status-current-fg black
 
@@ -60,3 +63,8 @@ set -g @plugin "tmux-plugins/tmux-battery"
 
 # Initialize TMUX plugin manager
 run "~/.tmux/plugins/tpm/tpm"
+
+
+# Useful shortcuts
+ 
+bind-key a set-window-option synchronize-panes

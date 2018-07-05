@@ -1,20 +1,25 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import urllib2;
-import urllib;
+import urllib.parse as urllib
+import urllib3
 
 RANDOM_WORD_WEBSITE='http://watchout4snakes.com/wo4snakes/Random/RandomWord';
 
 def getRandomWord():
     ''' Returns a random word using an online service'''
     
-    req = urllib2.Request(RANDOM_WORD_WEBSITE, urllib.urlencode({"LastWord":""}));
-    req.add_header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A");
-    assert req.get_method() == "POST";
-    websiteFile = urllib2.urlopen(req);
+    #req = urllib2.Request(RANDOM_WORD_WEBSITE, urllib.urlencode({"LastWord":""}));
+#?    req.add_header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A");
+    http = urllib3.PoolManager()
+    req = http.request("GET", RANDOM_WORD_WEBSITE +"?"+ urllib.urlencode({"LastWord": ""}),
+            headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A"
+                });
+#?    assert req.get_method() == "POST";
+#?    websiteFile = urllib2.urlopen(req);
     
-    word = websiteFile.read();
-    websiteFile.close();
+    word = req.data.decode("utf-8")
+#?    word = websiteFile.read();
+#?    websiteFile.close();
     
     return word;
 
@@ -57,3 +62,4 @@ if __name__ == "__main__": # running as a script
             sys.stdout.write("\nPassword: %s\n" % pswd);
     except:
         sys.stderr.write("Something wrong! Check your internet connection\n");
+        raise

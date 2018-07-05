@@ -18,25 +18,32 @@ alias process='ps -A | egrep -i '
 alias rm='trash'
 #alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias linux="ssh jrizkall@linux.student.cs.uwaterloo.ca"
-alias linux2="ssh jrizkall@ubuntu1204-002.student.cs.uwaterloo.ca"
-alias linux4="ssh jrizkall@ubuntu1204-004.student.cs.uwaterloo.ca"
-alias linux6="ssh jrizkall@ubuntu1204-006.student.cs.uwaterloo.ca"
+alias linux2="ssh jrizkall@ubuntu1604-002.student.cs.uwaterloo.ca"
+alias linux4="ssh jrizkall@ubuntu1604-004.student.cs.uwaterloo.ca"
+alias linux6="ssh jrizkall@ubuntu1604-006.student.cs.uwaterloo.ca"
 alias glinux="ssh -X jrizkall@linux.student.cs.uwaterloo.ca"
 alias xcode="open -a Xcode "
 alias less="less -r"
 alias stop="kill SIGTSTP"
 
+alias pmux="./scripts/tmux.sh"
+
 alias branch='BRANCH_FROM=$(pwd); cd'
 alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
+
+alias autolatex='latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
+alias skim='open -a Skim'
 
 # Vim
 # Is MacVim installed?
 ls "/Applications/MacVim.app/Contents/MacOS/Vim" > /dev/null 2>&1
 if [ $? -eq 0 ]; then
-    alias  vim="/Applications/MacVim.app/Contents/MacOS/Vim -p"
+    alias  vim="/Applications/MacVim.app/Contents/MacOS/Vim"
     alias mvim="mvim -p" # multiple tabs in vim
     alias cvim="mvim -p -c 'call CFamily_OpenAll()'"
 fi
+# TODO: fix
+alias vim="mvim -v"
 
 # Out of the box vim and mvim
 alias  vimootb='vim  -u NONE'
@@ -82,7 +89,7 @@ fi
 
 # Setting PATH for Python 3.4
 # The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
+PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:${PATH}"
 export PATH
 
 # Set the log file (for scripts running in the background)
@@ -106,3 +113,88 @@ fi
 function armdump {
     arm-none-eabi-objdump -D $@ | vim - -c 'source ~/.vim/scripts/ObjDumpToARM.vim'
 }
+
+# Encrypt and zip a directory
+function enczip {
+    zip -r "$1.zip" "$1"
+    err="$?"
+    if [ "$err" -ne 0 ]; then
+        return $err
+    fi
+    openssl des3 -in "$1.zip" -out "$1.zipenc"
+    err="$?"
+    if [ "$err" -ne 0 ]; then
+        \rm -rf "$1.zip"
+        return $err
+    fi
+    \rm -rf "$1" "$1.zip"
+}
+
+function deczip {
+    ext="${1##*.}"
+    name="${1%.*}"
+    
+    openssl des3 -d -in "$1" -out "$name.zip"
+    err="$?"
+    if [ "$err" -ne 0 ]; then
+        \rm -f "$name.zip"
+        return $err
+    fi
+    unzip "$name.zip"
+    err="$?"
+    if [ "$err" -ne 0 ]; then
+        \rm -rf "$name.zip"
+        return $err
+    fi
+    \rm -f "$name.zip" "$name.$ext"
+}
+
+function automd {
+    filename="$1"
+    if [ ! -f "$filename.md" ]; then
+        # Does the file end with md?
+        filename="$(basename "$filename" ".md")"
+        if [ ! -f "$filename.md" ]; then
+            echo "Cannot open file $filename.md"
+            return 1
+        fi
+    fi
+    
+    #echo "$filename.md" | entr sh -c pandoc --standalone "$filename.md" -o "$filename.tex" &&
+    #        sed -i.bak '1s/$/\\usepackage{tikz}\\usetikzlibrary{calc,positioning}/' "$filename.tex" &&
+    #        latexmk -pdf "$filename.tex" &&
+    #        \rm *.^(md|pdf)
+    trap "return;" SIGINT SIGTERM
+    while [ 1 ]; do
+        fswatch -L -0 -1 "$filename.md" > /dev/null
+        echo "Recompiling $filename.md"
+        pandoc --verbose "$filename.md" -o "$filename.pdf"
+    done
+}
+
+function help {
+    man $* 2>/dev/null
+    if [ $? -ne 0 ]; then
+        "$1" --help 2>&1 | less
+    fi
+}
+
+function winmgr {
+    cmd=$(echo $1 | tr "[:upper:]" "[:lower"])
+    if [ "$cmd" = "on" ]; then
+        launchctl load ~/Library/LaunchAgents/com.koekeishiya.khd.plist
+        launchctl load ~/Library/LaunchAgents/com.koekeishiya.chunkwm.plist
+    else
+        launchctl unload ~/Library/LaunchAgents/com.koekeishiya.khd.plist
+        launchctl unload ~/Library/LaunchAgents/com.koekeishiya.chunkwm.plist
+    fi
+}
+
+
+function activate {
+    script="env/bin/activate"
+    if [ -n "$1" ]; then script="$1"; fi
+    source "$script"
+}
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

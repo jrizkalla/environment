@@ -1,0 +1,78 @@
+khd mode windowctrl on_enter chunkc border::color 0xfffffb28
+
+khd mode default on_enter chunkc border::color 0xff005f5f
+
+- capslock : khd -e "mode activate windowctrl"
+windowctrl - capslock: khd -e "mode activate default"
+windowctrl - i : khd -e "mode activate windowinfo"
+windowinfo - i : khd -e "mode activate default"
+
+# use m to send to main monitor and shift+m to send to secondary monitor
+windowctrl - u : chunkc tiling::window --send-to-monitor next && khd -e "mode activate default"
+windowctrl - o : chunkc tiling::window --send-to-monitor prev && khd -e "mode activate default"
+
+
+# move desktops
+windowctrl + ctrl - u : chunkc tiling::window --send-to-desktop prev && khd -e "mode activate default"
+windowctrl + ctrl - o : chunkc tiling::window --send-to-desktop next && khd -e "mode activate default"
+windowctrl + ctrl - 0 : chunkc tiling::window --send-to-desktop 0    && khd -e "mode activate default"
+windowctrl + ctrl - 1 : chunkc tiling::window --send-to-desktop 1    && khd -e "mode activate default"
+windowctrl + ctrl - 2 : chunkc tiling::window --send-to-desktop 2    && khd -e "mode activate default"
+windowctrl + ctrl - 3 : chunkc tiling::window --send-to-desktop 3    && khd -e "mode activate default"
+windowctrl + ctrl - 4 : chunkc tiling::window --send-to-desktop 4    && khd -e "mode activate default"
+windowctrl + ctrl - 5 : chunkc tiling::window --send-to-desktop 5    && khd -e "mode activate default"
+windowctrl + ctrl - 6 : chunkc tiling::window --send-to-desktop 6    && khd -e "mode activate default"
+windowctrl + ctrl - 7 : chunkc tiling::window --send-to-desktop 7    && khd -e "mode activate default"
+windowctrl + ctrl - 8 : chunkc tiling::window --send-to-desktop 8    && khd -e "mode activate default"
+windowctrl + ctrl - 9 : chunkc tiling::window --send-to-desktop 9    && khd -e "mode activate default"
+
+# focus
+windowctrl + cmd - l : chunkc tiling::window --focus east && khd -e "mode activate default"
+windowctrl + cmd - h : chunkc tiling::window --focus west && khd -e "mode activate default"
+windowctrl + cmd - k : chunkc tiling::window --focus north && khd -e "mode activate default"
+windowctrl + cmd - j : chunkc tiling::window --focus south && khd -e "mode activate default"
+
+# Faster shortcuts (without mode switching)
+ctrl + shift - l : chunkc tiling::window --focus east
+ctrl + shift - h : chunkc tiling::window --focus west
+ctrl + shift - k : chunkc tiling::window --focus north
+ctrl + shift - j : chunkc tiling::window --focus south
+# NOTE: next and prev depend on the monitor config.
+ctrl + shift - u : chunkc tiling::monitor -f next
+ctrl + shift - o : chunkc tiling::monitor -f prev
+
+# Swapping
+windowctrl - l : chunkc tiling::window --swap east && khd -e "mode activate default"
+windowctrl - h : chunkc tiling::window --swap west && khd -e "mode activate default"
+windowctrl - k : chunkc tiling::window --swap north && khd -e "mode activate default"
+windowctrl - j : chunkc tiling::window --swap south && khd -e "mode activate default"
+
+# Make floating
+# don't deactivate windowctrl after making a window float because it probably needs to be warped
+windowctrl - f : chunkc tiling::window --toggle float
+windowctrl + shift - f : chunkc tiling::window --warp-floating fullscreen && khd -e "mode activate default"
+windowctrl + shift - l : chunkc tiling::window --warp-floating right && khd -e "mode activate default"
+windowctrl + shift - h : chunkc tiling::window --warp-floating left && khd -e "mode activate default"
+windowctrl - p : chunkc tiling::window --warp-floating pip-right && khd -e "mode activate default"
+windowctrl + shift - p : chunkc tiling::window --warp-floating pip-left && khd -e "mode activate default"
+
+windowctrl - r : launchctl unload /Users/johnrizkalla/Library/LaunchAgents/com.koekeishiya.chunkwm.plist && launchctl load /Users/johnrizkalla/Library/LaunchAgents/com.koekeishiya.chunkwm.plist && khd -e "mode activate default"
+
+windowctrl - w : launchctl unload /Users/johnrizkalla/Library/LaunchAgents/com.johnrizkalla.wallget.plist && launchctl load /Users/johnrizkalla/Library/LaunchAgents/com.johnrizkalla.wallget.plist && khd -e "mode activate default"
+
+
+windowctrl - n : echo -e 'tell application "System Events"\ndo shell script "/Applications/Mission\\\\ Control.app/Contents/MacOS/Mission\\\\ Control"\ntell process "Dock"\nclick button 1 of group "Spaces Bar" of group 1 of group "Mission Control"\nend tell\ndelay 0.6\ntell application "System Events"\nkey code 53\nend tell\nend tell\n' | osascript && khd -e "mode activate default"
+
+
+# print info about the window
+windowinfo - n : echo "$(chunkc tiling::query --window name)"
+windowinfo - o : echo "$(chunkc tiling::query --window owner)"
+windowinfo - s : echo "$(chunkc tiling::query --window float)"
+windowinfo - a : echo "$(chunkc tiling::query --window)"
+windowinfo - d : echo "$(chunkc tiling::query --desktop id)"
+
+# Cheat cheat:
+#   hjkl -- swap
+#   shift + hl -- set floating location
+#   ctrl + hl -- move accross desktops
+#   cmd + hjkl -- focus

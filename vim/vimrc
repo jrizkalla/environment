@@ -2,45 +2,81 @@
 " Why download a plugin manager when I can do it manually?
 " (I'm too lazy to try to figure out how plugin managers work with git
 " submodules)
-filetype plugin on
+filetype off
+filetype plugin indent on
 " Load the plugins...
 
+"au BufNewFile,BufRead *.regex setfiletype regex
 
-execute "source " . $HOME . "/.vim/SimplePlug.vim"
+packadd pretty
 
-Plugin "pretty"
 
 if !exists("g:fast_startup")
     " lervag/vimtex
-    Plugin "vimtex"
-    Plugin "SimpylFold"
+    "Plugin "vimtex" " Crashes on MacVim on Mac OS Sierra for some reason
+    "?Plugin "SimpylFold"
+    "Plugin "python-syntax"
     " scrooloose/nerdtree
     "Plugin "nerdtree"
     " tmux-plugins/vim-tmux-focus-events
      
-    Plugin "codi.vim"
+    "?Plugin "codi.vim"
+    
+    "Plugin "vim-pencil"
+    "?Plugin "emmet-vim"
+    
+    "?Plugin "swift.vim"
+    "?Plugin "vim-swift"
+
+    packadd python-syntax
+    packadd codi.vim
+    packadd vim-pencil
+    packadd emmet-vim
+    "?packadd vim-swift
+    let g:swift_no_fold=1
+    "packadd vim-swift
+    packadd swift.vim
+    packadd deoplete-swift
+    packadd vim-javascript
+    packadd vim-jsx
+    let g:jsx_ext_required = 0
+    packadd LaTeX-Box
 endif
 
-Plugin "vim-tmux-focus-events"
+
+"?Plugin "vim-tmux-focus-events"
 
 if !exists("g:fast_startup")
     "Jinja syntax highlighting
-    Plugin "Vim-Jinja2-Syntax"
+    "?Plugin "Vim-Jinja2-Syntax"
+    packadd Vim-Jinja2-Syntax
 endif
 
 
 " And of course, my awesome plugin...
-Plugin "personal"
+"?Plugin "personal"
+packadd vim-environment
 
 if !exists("g:fast_startup")
     " You complete me has to be loaded after personal since
     " personal changes it's settings
-    Plugin "YouCompleteMe"
+"?    Plugin "YouCompleteMe"
+    "packadd YouCompleteMe
+    packadd vim-easy-align
+    packadd ctrlp.vim
+    packadd swift-completion.vim
 
     " Easy Align
-    Plugin "vim-easy-align"
+    "?Plugin "vim-easy-align"
+    
+    "?Plugin "ctrlp.vim"
 endif
 
+
+" TODO remove this.
+autocmd BufNewFile,BufRead *.s set ft=nasm
+autocmd BufNewFile,BufRead *.s set foldmethod=marker
+autocmd BufNewFile,BufRead *.html set ft=jinja
 
 "Plug 'octol/vim-cpp-enhanced-highlight' 		                                " cpp syntax highlighting
 "Plug 'justinmk/vim-syntax-extra'
