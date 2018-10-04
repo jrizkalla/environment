@@ -40,6 +40,7 @@ syntax on
 filetype indent on " Filetype specific indentation
 
 set cursorline " Highlight the line the cursor is on
+set cursorcolumn " Highlight the line the cursor is on
 
 " Search highlighting {{{
 set hlsearch
@@ -157,52 +158,10 @@ command! -range Comment silent <line1>,<line2>call comment#ToggleComment()
 set nrformats=hex
 " }}}
 
-" ----- You Complete Me {{{
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_filetype_whitelist = { 
-            \ "cpp"        : 1,
-            \ "c"          : 1,
-            \ "python"     : 1,
-            \ "css"        : 1,
-            \ "javascript" : 1,
-            \ "scss"       : 1,
-            \ "java"       : 1,
-            \ "objc"       : 1,
-            \ "swift"      : 1,
-            \}
-
-" Additional triggers for css (empty lines and :)
-let g:ycm_semantic_triggers = { 
-            \ "css": [ 're!\s*' , '.' ],
-        \ }
-
-let g:ycm_global_ycm_extra_conf = '~/environment/vim/default_ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/environment/vim/default_ycm_extra_conf.py']
-" }}}
-
 " ----- Completion for commands {{{
 set wildmenu
 set wildchar=<Tab>
 set wildmode=full
-" }}}
-
-" ----- EasyAlign Settings {{{
-  
-let g:easy_align_delimiters = {
-            \  ' ': { 'pattern': ' ',  'left_margin': 0, 'right_margin': 0, 'stick_to_left': 0 },
-            \  '=': { 'pattern': '===\|<=>\|\(&&\|||\|<<\|>>\)=\|=\~[#?]\?\|=>\|[:+/*!%^=><&|.-]\?=[#?]\?',
-            \                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
-            \  ':': { 'pattern': ':',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
-            \  ',': { 'pattern': ',',  'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 },
-            \  '|': { 'pattern': '|',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
-            \  '.': { 'pattern': '\.', 'left_margin': 0, 'right_margin': 0, 'stick_to_left': 0 },
-            \  '#': { 'pattern': '#\+', 'delimiter_align': 'l', 'ignore_groups': ['!Comment']  },
-            \  '&': { 'pattern': '\\\@<!&\|\\\\',
-            \                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
-            \  '{': { 'pattern': '(\@<!{',
-            \                          'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0 },
-            \  '}': { 'pattern': '}',  'left_margin': 1, 'right_margin': 0, 'stick_to_left': 0 }
-            \ }
 " }}}
 
 " ----- Persistent undo {{{

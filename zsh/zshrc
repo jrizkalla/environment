@@ -1,6 +1,6 @@
 source $HOME/.bash_profile
 
-fpath=($ENV/zsh/complete_funcs $fpath)
+fpath=($ENV/zsh/plugins/complete_funcs $fpath)
 
 # Load colors
 autoload -U colors && colors
@@ -108,9 +108,9 @@ SAVEHIST=1000
 setopt SHARE_HISTORY
 
 # Enable fish like syntax highlighting
-source "$ENV/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$ENV/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # Enable fish like autosuggestions
-source "$ENV/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ENV/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Bind Ctrl+k to complete a suggestiong (as in ok)
 bindkey '^k' autosuggest-accept
@@ -119,3 +119,5 @@ bindkey '^j' forward-word
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

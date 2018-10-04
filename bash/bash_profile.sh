@@ -33,6 +33,7 @@ alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
 
 alias autolatex='latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
 alias skim='open -a Skim'
+alias git-tree="git log --graph --pretty=oneline --abbrev-commit"
 
 # Vim
 # Is MacVim installed?
@@ -79,8 +80,6 @@ if [ "$USER" = 'johnrizkalla' -a "$(uname)" = 'Darwin' ]; then
     alias desktop="cd ~/Desktop"
     #and a summary:
     alias folders='echo -e icloud; echo -e "\tdocuments"; echo -e "\t\tterm"; echo home; echo -e "\tdownloads"; echo -e "\tdesktop"'
-    
-    export CDPATH="::$CURRENT_TERM"
 fi
 
 ##
@@ -197,4 +196,49 @@ function activate {
     source "$script"
 }
 
+if [ -x /usr/local/bin/egrep ]; then
+    GREP=/usr/local/bin/egrep
+else
+    GREP=egrep
+fi
+
+function psearch {
+    case_sensitive=true
+    for arg in "$@"; do
+        if [ "${arg:0:1}" != "-" ]; then
+            term="$arg"
+        elif [ "$arg" = "-i" ]; then
+            case_sensitive=false
+        fi
+    done
+    if [ -z "$term" ]; then
+        echo "Error: search for what?" >&2
+        return 1
+    fi
+    
+    if [ $case_sensitive = "true" ]; then
+        case_sensitive_flag=""
+    else
+        case_sensitive_flag="\c"
+    fi
+    egrep -rnI $@ . | vim -R - "+syntax match String \"\m$case_sensitive_flag$term\"" "+syntax match Keyword \"\m\<$case_sensitive_flag$term\>\""}
+
+function openproj {
+    # find the correct version of xcode
+    xcode_loc="$(cd `xcode-select -p` && cd ../.. && pwd)"
+    xcode_proj="$(ls -d *.xcodeproj)"
+    if [ $? -ne 0 ]; then
+        echo "Error: no .xcodeproj file found" >&2
+        return 1
+    fi
+    echo open -a $xcode_loc $xcode_proj
+    open -a "$xcode_loc" "$xcode_proj"
+}
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+
+# apple specific aliases
+alias bats="/SWE/CoreOS/Tools/bin/bats"
+alias install-xcode="~uitools/bin/install-xcode"
+alias ssh-ios="/AppleInternal/Applications/iOS\ Menu.app/Contents/Resources/sshasuser 10022 root"

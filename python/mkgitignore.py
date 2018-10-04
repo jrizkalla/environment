@@ -7,6 +7,7 @@ import typing as T
 import sys
 import argparse
 from os import path
+from itertools import chain
 
 try:
     eval('f""')
@@ -35,11 +36,25 @@ def get_langs(url: str = "https://www.gitignore.io/api/list") -> T.Set[str]:
         return res
 
 def get_gitignore(langs: T.Iterable[str], base_url="https://www.gitignore.io/api/"):
+    langs = list(langs)
+    
+    supported_langs = get_langs()
+    
+    for l in langs:
+        if l not in supported_langs:
+            raise Exception(f"language '{l}' is not supported by gitignore.io")
+    # make sure that they're all supported
+    
     query = quote(",".join(l.lower().strip() for l in langs))
     if query == "":
         return ""
     url = base_url + ("" if base_url[-1] == "" else "/") + query
-    resp = http.urlopen(url)
+    try:
+        resp = http.urlopen(url)
+    except:
+        print(f"Failed to get url: {url}")
+        raise
+    
     if resp.getcode() != 200: 
         raise http.URLError(f"Error: {resp.getcode()} {resp.reason}")
     return resp.read().decode()
@@ -65,5 +80,9 @@ def main(langs, list, output, bare):
     print(get_gitignore(langs), file=output)
 
 if __name__ == "__main__":
-    ret = main(**vars(arg_parser.parse_args()))
+    try:
+        ret = main(**vars(arg_parser.parse_args()))
+    except Exception as e:
+        ret = 1
+        print(f"Error: {e}")
     sys.exit(ret if ret is not None else 0)

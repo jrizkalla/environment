@@ -39,3 +39,9 @@ rm -f "$env/bash/env_bash_profile.sh"
 
 echo "Removing compiled C files at $env/C/bin/"
 rm -f "$env/C/bin/"*
+
+echo "Removing downloaded vim plugins"
+rm -rf vim/plugins/*
+
+echo "Removing Zsh plugins"
+rm -rf zsh/plugins/*

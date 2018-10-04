@@ -1,5 +1,5 @@
 " ----- Folding {{{
-setlocal foldmethod=syntax
+setlocal foldmethod=indent
 " Close all folds
 setlocal foldlevelstart=0
 " }}}

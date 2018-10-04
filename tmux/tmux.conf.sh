@@ -6,8 +6,9 @@
 #   bash
 #   sh
 #set-option -g default-command 'reattach-to-user-namespace -l /usr/local/bin/zsh'
-set-option -g default-command "tmux-default-command"
+set-option -g default-command "/Users/johnrizkalla/environment/bin/tmux-default-command"
 set-option -g focus-events on
+set-option -g history-limit 1000000
 
 # Vim copy mode
 set-window-option -g mode-keys vi
@@ -20,6 +21,13 @@ bind-key h select-pane -L
 bind-key l select-pane -R
 bind-key k select-pane -U
 bind-key j select-pane -D
+bind-key C-0 select-pane -t 0
+bind-key C-1 select-pane -t 1
+bind-key C-2 select-pane -t 2
+bind-key C-3 select-pane -t 3
+bind-key C-4 select-pane -t 4
+bind-key C-5 select-pane -t 5
+bind-key C-6 select-pane -t 6
 
 bind-key C-b last-window
 
@@ -28,6 +36,9 @@ bind-key - split-window v
 bind-key | split-window h
 
 bind-key C-q confirm-before kill-session
+
+# Useful shortcuts
+bind-key a set-window-option synchronize-panes
 
 # Enable mouse control
 #set -g mouse-select-window on
@@ -61,10 +72,7 @@ set -g @plugin "tmux-plugins/tmux-cpu"
 set -g @plugin "tmux-plugins/tmux-prefix-highlight"
 set -g @plugin "tmux-plugins/tmux-battery"
 
+
+
 # Initialize TMUX plugin manager
 run "~/.tmux/plugins/tpm/tpm"
-
-
-# Useful shortcuts
- 
-bind-key a set-window-option synchronize-panes

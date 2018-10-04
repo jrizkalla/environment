@@ -45,6 +45,17 @@ nnoremap ` '
 " ----- Searching {{{
 nnoremap / /\v
 nnoremap ? ?\v
+
+nnoremap <leader>/ :BLines<cr>
+
+" Make searches center the text being searched for (so you don't have to look
+" for it)
+nnoremap n nzv
+nnoremap N Nzv
+nnoremap * *zv
+nnoremap # #zv
+nnoremap g* g*zv
+nnoremap g# g#zv
 " }}}
 
 " ----- Tabs and Windows {{{
@@ -105,6 +116,16 @@ nnoremap <leader><leader>w :set buftype=<cr>:w<cr>
 " Open vimrc {{{
 nnoremap <leader>src :tabedit ~/.vimrc<cr>:split ~/.vim/plugins/personal<cr>
 " }}}
+ 
+" open header of definition
+nnoremap <localleader>t :call gotodef#GoToDef()<cr>
+
+" open file under cursor
+nnoremap <leader>o :call openfile#OpenFileUnderCursor()<cr>
+
+" Open FZF
+nnoremap <leader><leader> :FZF<cr>
+nnoremap <leader>h :History<cr>
 " }}}
  
 " ----- Buffers {{{
@@ -153,3 +174,5 @@ nnoremap <up>      <nop>
 nnoremap <down>    <nop>
 
 " }}}
+
+nnoremap <leader>k :call opendoc#SearchDuckDuckGo(expand("<cword>"))<cr>

@@ -38,26 +38,26 @@ ctrl + shift - h : chunkc tiling::window --focus west
 ctrl + shift - k : chunkc tiling::window --focus north
 ctrl + shift - j : chunkc tiling::window --focus south
 # NOTE: next and prev depend on the monitor config.
-ctrl + shift - u : chunkc tiling::monitor -f next
-ctrl + shift - o : chunkc tiling::monitor -f prev
+ctrl + shift - o : chunkc tiling::monitor -f next
+ctrl + shift - u : chunkc tiling::monitor -f prev
 
 # Swapping
-windowctrl - l : chunkc tiling::window --swap east && khd -e "mode activate default"
-windowctrl - h : chunkc tiling::window --swap west && khd -e "mode activate default"
-windowctrl - k : chunkc tiling::window --swap north && khd -e "mode activate default"
-windowctrl - j : chunkc tiling::window --swap south && khd -e "mode activate default"
+windowctrl - l : chunkc tiling::window --warp east && khd -e "mode activate default"
+windowctrl - h : chunkc tiling::window --warp west && khd -e "mode activate default"
+windowctrl - k : chunkc tiling::window --warp north && khd -e "mode activate default"
+windowctrl - j : chunkc tiling::window --warp south && khd -e "mode activate default"
+
+# rotate
+windowctrl - r : chunkc tiling::window --rotate 90 && khd -e "mode activate default"
 
 # Make floating
 # don't deactivate windowctrl after making a window float because it probably needs to be warped
 windowctrl - f : chunkc tiling::window --toggle float
 windowctrl + shift - f : chunkc tiling::window --warp-floating fullscreen && khd -e "mode activate default"
 windowctrl + shift - l : chunkc tiling::window --warp-floating right && khd -e "mode activate default"
-windowctrl + shift - h : chunkc tiling::window --warp-floating left && khd -e "mode activate default"
-windowctrl - p : chunkc tiling::window --warp-floating pip-right && khd -e "mode activate default"
-windowctrl + shift - p : chunkc tiling::window --warp-floating pip-left && khd -e "mode activate default"
-
-windowctrl - r : launchctl unload /Users/johnrizkalla/Library/LaunchAgents/com.koekeishiya.chunkwm.plist && launchctl load /Users/johnrizkalla/Library/LaunchAgents/com.koekeishiya.chunkwm.plist && khd -e "mode activate default"
-
+windowctrl + shift - h : chunkc tiling::window --warp-floating left && khd -e "mode activate default" windowctrl - p : chunkc tiling::window --warp-floating pip-right && khd -e "mode activate default" windowctrl + shift - p : chunkc tiling::window --warp-floating pip-left && khd -e "mode activate default" 
+windowctrl + cmd - r : brew services restart chunkwm && khd -e "mode activate default" 
+windowctrl - q : brew services stop chunkwm && brew services stop khd
 windowctrl - w : launchctl unload /Users/johnrizkalla/Library/LaunchAgents/com.johnrizkalla.wallget.plist && launchctl load /Users/johnrizkalla/Library/LaunchAgents/com.johnrizkalla.wallget.plist && khd -e "mode activate default"
 
 
