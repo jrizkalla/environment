@@ -5,6 +5,8 @@ set autoread " Automatically read changed files
 set ignorecase
 set smartcase
 
+let &colorcolumn="80,".join(range(120,999),",")
+
 " ----- Fixing Vim (fix insane defaults) {{{
 set mouse=a " Make Vim recognize mouse events
 set path+=**
