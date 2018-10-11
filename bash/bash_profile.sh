@@ -235,6 +235,27 @@ function openproj {
     open -a "$xcode_loc" "$xcode_proj"
 }
 
+# Remove gaps in window numbers in the current tmux session
+function tmux-gap-remove {
+    while true; do
+        # find the gap
+        window_nums=($(tmux list-windows | awk '{print $1}' | cut -c -1))
+        echo '"' "${window_nums[*]}" '"'
+        for i in $(seq 1 $(( ${#window_nums[*]} - 1 ))); do
+            difference=$(( ${window_nums[$i+1]} - ${window_nums[$i]} ))
+            if [ $difference -gt 1 ]; then
+                break;
+            fi
+        done
+        
+        if [ $difference = 1 ]; then break; fi
+        for j in $(seq $(( $i + 1 )) $(( ${#window_nums[*]} ))); do
+            echo tmux move-window -s $j -t $(( $j - $difference  + 1))
+            tmux move-window -s $j -t $(( $j - $difference  + 1))
+        done
+    done
+}
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 
