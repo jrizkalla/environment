@@ -12,13 +12,16 @@ function! s:IsAllowed(char)
     return 0
 endfunction
 
-function! openfile#GetFileUnderCursor()
+" Return a list of file name and line number under the cursor
+" If line number is not found, the list size will be 1
+" If file name is not found, the list size will be 0
+function! openfile#GetFileInfoUnderCursor()
     let line = getline(".")
     let colidx = col(".") - 1
     
     if !s:IsAllowed(line[colidx])
         echoe "No file found under cursor"
-        return ""
+        return []
     endif
     
     " Go left until we hit a weird character or the beginning of the line
@@ -41,17 +44,36 @@ function! openfile#GetFileUnderCursor()
         endif
     endwhile
     
+    let numStartIdx = endidx+2
+    let numEndIdx = numStartIdx
+    while numStartIdx < len(line) - 1
+        if line[numEndIdx] >= '0' && line[numEndIdx] <= '9'
+            let numEndIdx += 1
+        else
+            break
+        endif
+    endwhile
+    
     let fname = line[startidx:endidx]
     " remove leading and trailing spaces
     let fname = substitute(fname, '^\v\s*(.{-})\s*$', '\1', '')
-    return fname
+    if numStartIdx != numEndIdx
+        return [fname, line[numStartIdx:numEndIdx]]
+    else
+        return [fname]
+    endif
 endfunction
 
 function! openfile#OpenFileUnderCursor()
-    let fname = openfile#GetFileUnderCursor()
-    if fname == ""
+    let finfo = openfile#GetFileInfoUnderCursor()
+    if len(finfo) == 0
         return
     endif
     
+    let fname = finfo[0]
+    
     execute "tabedit " . fname
+    if len(finfo) == 2
+        execute ": " . finfo[1]
+    endif
 endfunction
