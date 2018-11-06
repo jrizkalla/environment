@@ -33,7 +33,7 @@ alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
 
 alias autolatex='latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
 alias skim='open -a Skim'
-alias git-tree="git log --graph --pretty=oneline --abbrev-commit"
+alias glog="git log --decorate --graph --abbrev-commit"
 
 # Vim
 # Is MacVim installed?
@@ -258,6 +258,10 @@ function tmux-gap-remove {
 
 function vlog {
     log $@ | vim - +"set ft=log"
+}
+
+function curr-branch {
+    git branch | grep \* | cut -d ' ' -f2
 }
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
