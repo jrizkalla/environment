@@ -75,7 +75,25 @@ function! Statusline_gitbranch()
         return branch
     endif
 endfunction
+
+
+"if exists("*Tlist_Get_Tagname_By_Line")
+"function! Statusline_currentfunction()
+"        return Tlist_Get_Tagname_By_Line()
+"endfunction
+    
 " }}}
+ 
+" current function {{{
+function Statusline_getfunction()
+    if exists("*Tlist_Get_Tagname_By_Line")
+        return Tlist_Get_Tagname_By_Line()
+    else
+        return ""
+    endif
+endfunction
+" }}}
+
 " }}}
 
 " ----- Actual statusline {{{
@@ -85,6 +103,8 @@ set statusline+=\ %3*%.30{Statusline_gitbranch()}%*
 set statusline+=\ \ 
 set statusline+=Char:\ %3b\ -\ 0x%-3B
 set statusline+=%=
+set statusline+=%4*%{Tlist_Get_Tagname_By_Line()}%*
+set statusline+=\ \ 
 set statusline+=col:\ %-4c
 set statusline+=\ \ 
 set statusline+=%4l/%-4L
@@ -95,5 +115,6 @@ set statusline+=\ \
 " Color {{{
 highlight Statusline ctermfg=255 ctermbg=30 guifg=#eeeeee guibg=#008787
 highlight User2 cterm=bold ctermfg=22 ctermbg=30 gui=bold guifg=#005f00 guibg=#008787
+"highlight User3 ctermfg=255 ctermbg=30 guifg=#eeeeee guibg=#008787
 " }}}
 " }}}
