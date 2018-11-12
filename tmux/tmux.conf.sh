@@ -63,6 +63,7 @@ set -g pane-active-border-fg '#008787' # same color as Vim's status line
 # Set the clock to 12 hour not 24 hour
 set-window-option -g clock-mode-style 12
 
+set-option -g destroy-unattached
 
 # Plugins
 
@@ -71,6 +72,10 @@ set -g @plugin "tmux-plugins/tmux-yank"
 set -g @plugin "tmux-plugins/tmux-cpu"
 set -g @plugin "tmux-plugins/tmux-prefix-highlight"
 set -g @plugin "tmux-plugins/tmux-battery"
+set -g @plugin "tmux-plugins/tmux-resurrect"
+set -g @resurrect-capture-pane-contents 'on'
+set -g @resurrect-strategy-vim 'session'
+set -g @plugin "tmux-plugins/tmux-continuum"
 
 
 

@@ -57,4 +57,5 @@ vim/plugins
 vim/undodir
 vim/.netrwhist
 tmux/plugins
+tmux/resurrect
 zsh/plugins

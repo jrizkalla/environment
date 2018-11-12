@@ -221,7 +221,7 @@ function psearch {
     else
         case_sensitive_flag="\c"
     fi
-    egrep -rnI $@ . | vim -R - "+syntax match String \"\m$case_sensitive_flag$term\"" "+syntax match Keyword \"\m\<$case_sensitive_flag$term\>\""}
+    egrep -rnI $@ . | vim -R - "+syntax match String \"\v$case_sensitive_flag$term\"" "+syntax match Keyword \"\v\<$case_sensitive_flag$term\>\""}
 
 function openproj {
     # find the correct version of xcode
@@ -271,3 +271,5 @@ function curr-branch {
 alias bats="/SWE/CoreOS/Tools/bin/bats"
 alias install-xcode="~uitools/bin/install-xcode"
 alias ssh-ios="/AppleInternal/Applications/iOS\ Menu.app/Contents/Resources/sshasuser 10022 root"
+
+if [ -r ~/.bashrc ]; then source ~/.bashrc; fi

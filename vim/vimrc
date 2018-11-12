@@ -71,6 +71,7 @@ if !exists("g:fast_startup")
 endif
 
 
+Plug 'tpope/vim-obsession'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug '~/.vim/my-plugins/personal'
 
