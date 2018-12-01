@@ -51,8 +51,7 @@ windowctrl - j : chunkc tiling::window --warp south && khd -e "mode activate def
 windowctrl - r : chunkc tiling::window --rotate 90 && khd -e "mode activate default"
 
 # Make floating
-# don't deactivate windowctrl after making a window float because it probably needs to be warped
-windowctrl - f : chunkc tiling::window --toggle float
+windowctrl - f : chunkc tiling::window --toggle float && khd -e "mode activate default"
 windowctrl + shift - f : chunkc tiling::window --warp-floating fullscreen && khd -e "mode activate default"
 windowctrl + shift - l : chunkc tiling::window --warp-floating right && khd -e "mode activate default"
 windowctrl + shift - h : chunkc tiling::window --warp-floating left && khd -e "mode activate default" windowctrl - p : chunkc tiling::window --warp-floating pip-right && khd -e "mode activate default" windowctrl + shift - p : chunkc tiling::window --warp-floating pip-left && khd -e "mode activate default" 
