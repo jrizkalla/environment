@@ -63,7 +63,8 @@ set -g pane-active-border-fg '#008787' # same color as Vim's status line
 # Set the clock to 12 hour not 24 hour
 set-window-option -g clock-mode-style 12
 
-set-option -g destroy-unattached
+# WORST CONFIG EVER
+#set-option -g destroy-unattached
 
 # Plugins
 
