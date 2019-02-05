@@ -17,10 +17,14 @@ bind-key -T copy-mode-vi y send-keys -X copy-selection
 
 
 # Some useful mappings:
-bind-key h select-pane -L
-bind-key l select-pane -R
-bind-key k select-pane -U
-bind-key j select-pane -D
+#bind-key h select-pane -L
+#bind-key l select-pane -R
+#bind-key k select-pane -U
+#bind-key j select-pane -D
+bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-h) || tmux select-pane -L"
+bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-j) || tmux select-pane -D"
+bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-k) || tmux select-pane -U"
+bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-l) || tmux select-pane -R"
 bind-key C-0 select-pane -t 0
 bind-key C-1 select-pane -t 1
 bind-key C-2 select-pane -t 2

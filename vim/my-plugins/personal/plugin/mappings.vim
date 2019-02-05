@@ -25,8 +25,8 @@ endfunction
 inoremap <D-j> <esc>: call Useless_func()<cr>
 nnoremap <D-j> /<++><cr>4x:noh<cr>
 " And for vim on terminal (or Linux)
-inoremap <C-j> <esc>: call Useless_func()<cr>
-nnoremap <C-j> /<++><cr>4x:noh<cr>
+"?inoremap <C-j> <esc>: call Useless_func()<cr>
+"?nnoremap <C-j> /<++><cr>4x:noh<cr>
 
 vnoremap <D-j> /<++><cr>4x:noh<cr>
 inoremap <D-J> <++>

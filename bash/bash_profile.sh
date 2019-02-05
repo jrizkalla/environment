@@ -272,6 +272,4 @@ alias bats="/SWE/CoreOS/Tools/bin/bats"
 alias install-xcode="~uitools/bin/install-xcode"
 alias ssh-ios="/AppleInternal/Applications/iOS\ Menu.app/Contents/Resources/sshasuser 10022 root"
 
-$ENV/bash/make_all_windows_floating.bash & disown
-
 if [ -r ~/.bashrc ]; then source ~/.bashrc; fi
