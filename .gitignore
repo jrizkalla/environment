@@ -59,3 +59,4 @@ vim/.netrwhist
 tmux/plugins
 tmux/resurrect
 zsh/plugins
+bin/

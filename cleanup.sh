@@ -34,6 +34,8 @@ for file in $(ls "$env/bin"); do
     fi
 done
 
+rm -f "$HOME/.radar_names"
+
 echo "Removing $env/bash/env_bash_profile.sh"
 rm -f "$env/bash/env_bash_profile.sh"
 

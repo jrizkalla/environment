@@ -23,7 +23,7 @@ BASE_PROMPT2="$> %{$reset_color%}" #$>
 #    fi
 #}
 
-BASE_RPROMPT="%{$fg[white]%}%1M %{$fg[cyan]%}%1d%{$reset_color%}"
+BASE_RPROMPT="%{$fg[white]%}%{$fg[cyan]%}%1d%{$reset_color%}"
 RPROMPT="$BASE_RPROMPT"
 
 #PS2='%_ > '
@@ -67,11 +67,22 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 
 # Git branch in status
+export _rprompt_use_radar_title=false
+
 function zle-line-init {
     zle && zle zle-keymap-select
     
-    branch="$(curr-radar 2>/dev/null)"
-    if [ $? -ne 0 ]; then
+    if [ $_rprompt_use_radar_title = "true" ]; then
+        curr_radar=$(curr-radar --id-only 2>/dev/null)
+        if [ -n "$curr_radar" ]; then
+            branch=$(radartitle $curr_radar)
+        else
+            branch=""
+        fi
+    else
+        branch="$(curr-radar 2>/dev/null)"
+    fi
+    if [ -z "$branch" ]; then
         branch=$(basename "$(git symbolic-ref HEAD 2>/dev/null)")
     fi
     # Set the color based on wether the current repo is clean or not
@@ -103,6 +114,19 @@ function zle-line-init {
 }
 zle -N zle-line-init
 
+function curr-radar-title {
+    if [ "$_rprompt_use_radar_title" = "true" ]; then
+        export _rprompt_use_radar_title=false
+    else
+        export _rprompt_use_radar_title=true
+    fi
+    zle zle-line-init
+}
+zle -N curr-radar-title
+bindkey -a 's' curr-radar-title
+
+
+
 # Save the history between sessions
 HISTSIZE=1000
 HISTFILE="$HOME/.zsh_history_file"
@@ -116,9 +140,8 @@ source "$ENV/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # Enable fish like autosuggestions
 source "$ENV/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# Bind Ctrl+k to complete a suggestiong (as in ok)
-bindkey '^k' autosuggest-accept
-bindkey '^j' forward-word
+bindkey '^f' autosuggest-accept
+bindkey '^s' forward-word
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
