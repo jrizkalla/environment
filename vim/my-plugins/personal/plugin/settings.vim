@@ -9,7 +9,9 @@ let &colorcolumn="80,".join(range(120,999),",")
 
 " Make swap files go to their own directory since we can't always 
 " rely on repos having correct .gitignores
-silent !mkdir ~/.swapfiles >/dev/null 2>&1
+if !isdirectory($HOME . "/.swapfiles") 
+    call mkdir($HOME . "/.swapfiles")
+endif
 set directory=$HOME/.swapfiles//
 
 " ----- Fixing Vim (fix insane defaults) {{{
