@@ -1,5 +1,6 @@
 
-# Created by https://www.gitignore.io/api/vim,macos
+# Created by https://www.gitignore.io/api/macos,vim
+# Edit at https://www.gitignore.io/?templates=macos,vim
 
 ### macOS ###
 # General
@@ -48,16 +49,5 @@ tags
 # Persistent undo
 [._]*.un~
 
+# End of https://www.gitignore.io/api/macos,vim
 
-# End of https://www.gitignore.io/api/vim,macos
-
-
-C/bin
-vim/plugins
-vim/undodir
-vim/.netrwhist
-tmux/plugins
-tmux/resurrect
-zsh/plugins
-bin/
-__pycache__/

@@ -80,6 +80,7 @@ set -g @plugin "tmux-plugins/tmux-battery"
 set -g @plugin "tmux-plugins/tmux-resurrect"
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session'
 set -g @plugin "tmux-plugins/tmux-continuum"
 
 

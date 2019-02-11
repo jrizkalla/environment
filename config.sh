@@ -121,6 +121,7 @@ ln -f -s "$env/python/passwordgen.py" "$env/bin/passwordgen"
 ln -f -s "$env/python/music.py" "$env/bin/play"
 ln -f -s "$env/python/mkgitignore.py" "$env/bin/mkgitignore"
 ln -f -s "$env/python/radartitle.py" "$env/bin/radartitle"
+ln -f -s "$env/python/run_cmd.py" "$env/bin/cmd"
 
 ln -f -s "$env/tmux/scripts/tmuxhome.sh" "$env/bin/tmuxhome"
 

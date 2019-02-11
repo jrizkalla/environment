@@ -1,0 +1,62 @@
+#compdef _gnu_generic cmd
+
+
+_arguments \
+    ":subcommand:->subcommand" \
+    "*::options:->options"
+
+case $state in
+    subcommand)
+        local -a subcommands
+        subcommands=(
+            "list:View list of commands" 
+            "run:Run a command" 
+            "save:Save a command"
+            "view:View details about a command"
+        )
+        _describe -t subcommands "cmd subcommand" subcommands
+        ;;
+    options)
+        case $words[1] in
+            list)
+                _arguments \
+                    "--names[List saved command names only]" \
+                    "-d[Print the dates.]" \
+                    "--date[Print the dates.]" 
+            ;;
+            run | view)
+                # get the list of commands
+                local -a list
+                
+                list=("${(@f)$(cmd list --names)}")
+                _values "options" $list
+        esac
+        ;;
+esac
+
+#_arguments "1:command:((" \
+#    "list\:'View list of commands'" \
+#    "run\:'Run a command'" \
+#    "))"
+#_arguments "1:command:((\
+#    list:'View list of commands' \
+#    run:'Run a command' \
+#    save:'Save a command' \
+#    view:'View details about a command'\
+#    ))"
+
+
+#_values "subcommands" \
+#    "list[View list of commands]::->list" \
+#    "run[Run a command]::->run" \
+#    "save[Save a command]::->save" \
+#    "view[View details about a command]::->view"
+#
+#case "$state" in
+#    list)
+#        _values "list options" \
+#            "--names[List saved command names only]" \
+#            "-d[Print the dates]"
+#            "--date[Print the dates]"
+#        ;;
+#esac
