@@ -129,7 +129,7 @@ nnoremap <leader>h :History<cr>
 " }}}
  
 " ----- Buffers {{{
-nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>bl :buffers<CR>:buffer<Space>
 "  }}}
 
 " ----- Copying {{{
@@ -174,5 +174,11 @@ nnoremap <up>      <nop>
 nnoremap <down>    <nop>
 
 " }}}
+
+" ----- Plugins {{{
+if exists(":GitGutterLineHighlightsToggle")
+    nnoremap <leader>d :GitGutterLineHighlightsToggle<cr>
+endif
+"  }}}
 
 nnoremap <leader>k :call opendoc#SearchDuckDuckGo(expand("<cword>"))<cr>

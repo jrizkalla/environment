@@ -7,12 +7,18 @@ set smartcase
 
 let &colorcolumn="80,".join(range(120,999),",")
 
-" Make swap files go to their own directory since we can't always 
-" rely on repos having correct .gitignores
-if !isdirectory($HOME . "/.swapfiles") 
-    call mkdir($HOME . "/.swapfiles")
-endif
-set directory=$HOME/.swapfiles//
+
+" ----- Swap Files {{{
+    " Make swap files go to their own directory since we can't always 
+    " rely on repos having correct .gitignores
+    if !isdirectory($HOME . "/.swapfiles") 
+        call mkdir($HOME . "/.swapfiles")
+    endif
+    set directory=$HOME/.swapfiles//
+    
+    set updatetime=100
+    
+" }}}
 
 " ----- Fixing Vim (fix insane defaults) {{{
 set mouse=a " Make Vim recognize mouse events

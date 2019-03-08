@@ -25,6 +25,8 @@ if !exists("g:fast_startup")
     Plug 'vim-scripts/taglist.vim'
     
     
+    Plug 'chrisbra/Recover.vim'
+    
     " --- YouCompleteMe {{{
     let g:ycm_seed_identifiers_with_syntax = 1
     let g:ycm_filetype_whitelist = { 
@@ -68,6 +70,7 @@ if !exists("g:fast_startup")
     Plug 'junegunn/vim-easy-align'
     " }}}
     
+    Plug 'airblade/vim-gitgutter'
 endif
 
 

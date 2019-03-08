@@ -267,9 +267,10 @@ function curr-branch {
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 
-# apple specific aliases
-alias bats="/SWE/CoreOS/Tools/bin/bats"
-alias install-xcode="~uitools/bin/install-xcode"
-alias ssh-ios="/AppleInternal/Applications/iOS\ Menu.app/Contents/Resources/sshasuser 10022 root"
+FZF_BASE_OPTS='--border --color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229 --color info:150,prompt:110,spinner:150,pointer:167,marker:174'
+export FZF_DEFAULT_OPTS="$_FZF_BASE_OPTS --preview '[[ \$(file --mime {}) =~ binary ]] && xxd {} || (highlight --out-format=xterm256 {} || cat {}) 2>/dev/null'"
+export FZF_TMUX=1
+export FZF_TMUX_HEIGHT=95%
+
 
 if [ -r ~/.bashrc ]; then source ~/.bashrc; fi

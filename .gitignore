@@ -56,6 +56,7 @@ C/bin
 vim/plugins
 vim/undodir
 vim/.netrwhist
+vim/view
 tmux/plugins
 tmux/resurrect
 zsh/plugins
