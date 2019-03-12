@@ -223,17 +223,6 @@ function psearch {
     fi
     egrep -rnI $@ . | vim -R - "+syntax match String \"\v$case_sensitive_flag$term\"" "+syntax match Keyword \"\v\<$case_sensitive_flag$term\>\""}
 
-function openproj {
-    # find the correct version of xcode
-    xcode_loc="$(cd `xcode-select -p` && cd ../.. && pwd)"
-    xcode_proj="$(ls -d *.xcodeproj)"
-    if [ $? -ne 0 ]; then
-        echo "Error: no .xcodeproj file found" >&2
-        return 1
-    fi
-    echo open -a $xcode_loc $xcode_proj
-    open -a "$xcode_loc" "$xcode_proj"
-}
 
 # Remove gaps in window numbers in the current tmux session
 function tmux-gap-remove {
