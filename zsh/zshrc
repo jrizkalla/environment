@@ -143,6 +143,10 @@ source "$ENV/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^f' autosuggest-accept
 bindkey '^g' forward-word
 
+# make ctrl-a clear the display since l is being used for something else
+bindkey -s '^a' '^l'
+
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
