@@ -141,7 +141,7 @@ source "$ENV/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ENV/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 bindkey '^f' autosuggest-accept
-bindkey '^s' forward-word
+bindkey '^g' forward-word
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
