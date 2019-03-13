@@ -152,6 +152,8 @@ nnoremap <leader>c 0d$
 " ----- Commands {{{
 nnoremap <leader>e :exe ""<left>
 
+nnoremap <leader>x :!openproj<cr>
+
 " Make it easier to execute move and copy 
 " by changing the line number (turn off relative)
 " when the user enters command line mode

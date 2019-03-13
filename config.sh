@@ -57,6 +57,7 @@ echo "Settings up links in $env/bin"
 + ln -f -s \"$env/bash/pretty.sh\" \"$env/bin/pretty\"
 + ln -f -s \"$env/bash/tmuxnew.sh\" \"$env/bin/tmuxnew\"
 + ln -f -s \"$env/bash/compose.sh\" \"$env/bin/compose\"
++ ln -f -s \"$env/bash/openproj.sh\" \"$env/bin/openproj\"
 
 + ln -f -s \"$env/python/tree.py\" \"$env/bin/tree\"
 + ln -f -s \"$env/python/passwordgen.py\" \"$env/bin/passwordgen\"
