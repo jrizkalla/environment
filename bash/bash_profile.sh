@@ -261,5 +261,7 @@ export FZF_DEFAULT_OPTS="$_FZF_BASE_OPTS --preview '[[ \$(file --mime {}) =~ bin
 export FZF_TMUX=1
 export FZF_TMUX_HEIGHT=95%
 
+export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
 
 if [ -r ~/.bashrc ]; then source ~/.bashrc; fi

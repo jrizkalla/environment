@@ -99,7 +99,7 @@ function zle-line-init {
     fi
     
     if [ -n "$branch" ]; then
-        branch="[%{$fg[$color]%}$branch%{$reset_color%}]"
+        branch="[%{$fg_bold[$color]%}$branch%{$reset_color%}]"
     fi
     
     # also get the Python virtual environment name (if it exists)
@@ -109,7 +109,15 @@ function zle-line-init {
         virtual_env=""
     fi
     
-    RPROMPT="$BASE_RPROMPT$virtual_env $branch"
+    base_prompt="$BASE_RPROMPT"
+    
+    # Color the directory green if the parent of the current dir is called 'green'
+    # (don't ask why)
+    if [ "$(basename $(dirname $(pwd)))" = "green" ]; then
+        base_prompt="%{$fg[green]%}%1d%{$reset_color%}"
+    fi
+    
+    RPROMPT="$base_prompt$virtual_env $branch"
     zle && zle reset-prompt
 }
 zle -N zle-line-init
