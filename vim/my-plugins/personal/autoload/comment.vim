@@ -19,6 +19,8 @@ if !exists("g:comment_strings")
                 \"objc"       : ["//?"],
                 \"swift"      : ["//?"],
                 \"sh"         : ["#?"],
+                \"xml"        : ["<!--", "-->"],
+                \"html"       : ["<!--", "-->"],
             \}
 endif
 
