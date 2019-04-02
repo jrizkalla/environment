@@ -113,7 +113,8 @@ function zle-line-init {
     
     # Color the directory green if the parent of the current dir is called 'green'
     # (don't ask why)
-    if [ "$(basename $(dirname $(pwd)))" = "green" ]; then
+    #if [ "$(basename $(dirname $(pwd)))" = "green" ]; then
+    if dir-contains "$(pwd)" "green"; then
         base_prompt="%{$fg[green]%}%1d%{$reset_color%}"
     fi
     
