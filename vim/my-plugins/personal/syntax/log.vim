@@ -12,7 +12,7 @@ syntax match LogMessage '.*'
 syntax match LogSelector '\v(-|\+)?\[[\[\] a-zA-Z0-9_:.#]+\]' nextgroup=LogSelector,LogFunction skipwhite
 syntax match LogFunction '\v(\w|\.)+' nextgroup=LogSelector,LogFunction skipwhite
 syntax match LogThread '\v0x[0-9A-Fa-f]+' nextgroup=LogType,LogTypeError skipwhite
-syntax match LogTimestamp '\v^\d+-\d+-\d+\s[0-9-:.]*' nextgroup=LogThread skipwhite
+syntax match LogTimestamp '\v^\d+-\d+-\d+\s[0-9-:.]*(\+\d+)*' nextgroup=LogThread skipwhite
 
 syntax match HeaderLine '\v^Timestamp\s+Thread\s+Type\s+Activity\s+PID\s+TTL\s+$'
 

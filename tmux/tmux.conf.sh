@@ -8,7 +8,7 @@
 #set-option -g default-command 'reattach-to-user-namespace -l /usr/local/bin/zsh'
 set-option -g default-command "/Users/johnrizkalla/environment/bin/tmux-default-command"
 set-option -g focus-events on
-set-option -g history-limit 1000000
+set-option -g history-limit 100000
 
 # Vim copy mode
 set-window-option -g mode-keys vi

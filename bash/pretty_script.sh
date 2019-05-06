@@ -42,8 +42,15 @@ _STOPPED=0
 _CHECKPOINT_FMT="normal"
 ASK_FOR_CONFIRMATION=0
 
+_AT_ERROR=""
+
 function _parse_arg {
+    # TODO: generalize command line arguments
     case $1 in
+        h|help)
+            echo "Usage: command [-v|--verbose] [-c|--color] [--dry-run] [--start-at=<start>] [--stop-after=<stop>] [-l|--list-checkpoints] [--ask]"
+            exit 0
+        ;;
         v|verbose)
             VERBOSITY=$(($VERBOSITY + 1))
         ;;
@@ -160,6 +167,7 @@ function run {
         
         if [ $ret -ne 0 ]; then
             printf "${CLR_ERR}Error: process returned $ret$CLR_RESET\n"
+            eval "$_AT_ERROR"
         fi
         
         return $ret
@@ -176,6 +184,7 @@ function run {
             cat $stdout_file | sed "s/^/$INDENT/g"
             printf "stderr:\n"
             cat $stderr_file | sed "s/^/$INDENT/g"
+            eval "$_AT_ERROR"
         fi
         
         rm -f "$stdout_file"
@@ -214,6 +223,12 @@ function checkpoint {
             printf " %s \n" "$border"
         fi
     fi
+}
+
+# execute command on failure
+function at-error {
+    echo "Arg[0]: $0"
+    _AT_ERROR="$@"
 }
 
 function noop {

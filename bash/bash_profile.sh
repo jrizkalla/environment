@@ -221,7 +221,7 @@ function psearch {
     else
         case_sensitive_flag="\c"
     fi
-    egrep -rnI $@ . | vim -R - "+syntax match String \"\v$case_sensitive_flag$term\"" "+syntax match Keyword \"\v\<$case_sensitive_flag$term\>\""}
+    egrep -rnI --exclude-dir=build $@ . | vim -R - "+syntax match String \"\v$case_sensitive_flag$term\"" "+syntax match Keyword \"\v\<$case_sensitive_flag$term\>\""}
 
 
 # Remove gaps in window numbers in the current tmux session

@@ -30,6 +30,15 @@ case $state in
                 
                 list=("${(@f)$(cmd list --names)}")
                 _values "options" $list
+            ;;
+            save)
+                # TODO: add missing stuff
+                _arguments \
+                    "-d[Provide a description]"\
+                    "--desc[Provide a description]"\
+                    "--script[Read the contents of the file and run it as a script]"\
+                    "--source-file[Source this file when running the script]"
+            ;;
         esac
         ;;
 esac
