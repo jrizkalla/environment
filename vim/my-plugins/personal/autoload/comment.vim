@@ -18,6 +18,9 @@ if !exists("g:comment_strings")
                 \"plaintex"   : ["%?"],
                 \"objc"       : ["//?"],
                 \"swift"      : ["//?"],
+                \"sh"         : ["#?"],
+                \"xml"        : ["<!--", "-->"],
+                \"html"       : ["<!--", "-->"],
             \}
 endif
 

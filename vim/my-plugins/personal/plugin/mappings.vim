@@ -129,7 +129,7 @@ nnoremap <leader>h :History<cr>
 " }}}
  
 " ----- Buffers {{{
-nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>bl :buffers<CR>:buffer<Space>
 "  }}}
 
 " ----- Copying {{{
@@ -151,6 +151,8 @@ nnoremap <leader>c 0d$
  
 " ----- Commands {{{
 nnoremap <leader>e :exe ""<left>
+
+nnoremap <leader>x :!openproj<cr>
 
 " Make it easier to execute move and copy 
 " by changing the line number (turn off relative)
@@ -174,5 +176,11 @@ nnoremap <up>      <nop>
 nnoremap <down>    <nop>
 
 " }}}
+
+" ----- Plugins {{{
+if exists(":GitGutterLineHighlightsToggle")
+    nnoremap <leader>d :GitGutterLineHighlightsToggle<cr>
+endif
+"  }}}
 
 nnoremap <leader>k :call opendoc#SearchDuckDuckGo(expand("<cword>"))<cr>
