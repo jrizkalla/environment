@@ -253,6 +253,19 @@ function curr-branch {
     git branch | grep \* | cut -d ' ' -f2
 }
 
+function dir-contains {
+    haystack="$(cd $1 && pwd)"
+    needle=$2
+    
+    while [ "$haystack" != "/" ] && [ "$haystack" != "" ]; do
+        curr="$(basename "$haystack")"
+        if [ "$curr" = "$needle" ]; then return true; fi
+        haystack="$(dirname "$haystack")"
+    done
+    
+    false
+}
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 

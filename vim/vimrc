@@ -9,7 +9,8 @@ if !exists("g:fast_startup")
     Plug 'metakirby5/codi.vim'
     
     Plug 'mattn/emmet-vim'
-    Plug 'toyamarinyon/vim-swift'
+    "?Plug 'toyamarinyon/vim-swift'
+    Plug 'keith/swift.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'mxw/vim-jsx'
     let g:jsx_ext_required = 0

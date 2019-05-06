@@ -58,6 +58,7 @@ echo "Settings up links in $env/bin"
 + ln -f -s \"$env/bash/tmuxnew.sh\" \"$env/bin/tmuxnew\"
 + ln -f -s \"$env/bash/compose.sh\" \"$env/bin/compose\"
 + ln -f -s \"$env/bash/openproj.sh\" \"$env/bin/openproj\"
++ ln -f -s \"$env/bash/init_vim_on_ssh.sh\" \"$env/bin/init_vim_on_ssh\"
 
 + ln -f -s \"$env/python/tree.py\" \"$env/bin/tree\"
 + ln -f -s \"$env/python/passwordgen.py\" \"$env/bin/passwordgen\"
