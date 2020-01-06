@@ -6,7 +6,7 @@
 #   bash
 #   sh
 #set-option -g default-command 'reattach-to-user-namespace -l /usr/local/bin/zsh'
-set-option -g default-command "/Users/johnrizkalla/environment/bin/tmux-default-command"
+set-option -g default-command "$HOME/environment/bin/tmux-default-command"
 set-option -g focus-events on
 set-option -g history-limit 100000
 
@@ -32,6 +32,8 @@ bind-key C-3 select-pane -t 3
 bind-key C-4 select-pane -t 4
 bind-key C-5 select-pane -t 5
 bind-key C-6 select-pane -t 6
+
+bind-key C-a  send-keys -R \; clear-history
 
 bind-key C-b last-window
 
@@ -77,6 +79,7 @@ set -g @plugin "tmux-plugins/tmux-yank"
 set -g @plugin "tmux-plugins/tmux-cpu"
 set -g @plugin "tmux-plugins/tmux-prefix-highlight"
 set -g @plugin "tmux-plugins/tmux-battery"
+set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin "tmux-plugins/tmux-resurrect"
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-strategy-vim 'session'

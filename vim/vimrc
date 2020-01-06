@@ -81,5 +81,12 @@ Plug 'tpope/vim-obsession'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '~/.vim/my-plugins/personal'
+Plug '~/.vim/my-plugins/oslog'
+
+" Testing. Remove later
+syntax match Operator '||' conceal cchar=∨
+syntax match Operator '&&' conceal cchar=∧
+set conceallevel=2
+
 
 call plug#end()

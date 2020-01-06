@@ -16,7 +16,8 @@ set spell
 set linebreak " Wrap at word boundaries
 
 setlocal background=light
-colorscheme scheakur
+" I don't like this anymore
+"colorscheme scheakur
 
 if exists(":SoftPencil")
     SoftPencil

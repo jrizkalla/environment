@@ -1,4 +1,4 @@
-# Library to pretty print commands
+#level Library to pretty print commands
 # Usage:
 # source pretty_script file
 # + error checked command
@@ -166,8 +166,7 @@ function run {
         ret=$?
         
         if [ $ret -ne 0 ]; then
-            printf "${CLR_ERR}Error: process returned $ret$CLR_RESET\n"
-            eval "$_AT_ERROR"
+            printf "${CLR_ERR}Error (%s): process returned $ret$CLR_RESET\n" "$CURR_CHECKPOINT"
         fi
         
         return $ret
@@ -179,12 +178,11 @@ function run {
         
         ret=$?
         if [ $ret -ne 0 ]; then
-            printf "${CLR_ERR}Error: process returned $ret$CLR_RESET\n"
+            printf "${CLR_ERR}Error (%s): process returned $ret$CLR_RESET\n" "$CURR_CHECKPOINT"
             printf "stdout:\n"
             cat $stdout_file | sed "s/^/$INDENT/g"
             printf "stderr:\n"
             cat $stderr_file | sed "s/^/$INDENT/g"
-            eval "$_AT_ERROR"
         fi
         
         rm -f "$stdout_file"
@@ -198,7 +196,10 @@ function + {
     PROMPT=$PPROMPT
     run $@
     ret=$?
-    if [ $ret -ne 0 ]; then exit $ret; fi
+    if [ $ret -ne 0 ]; then
+        eval "$_AT_ERROR"
+        exit $ret;
+    fi
 }
 
 function - {

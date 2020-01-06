@@ -246,7 +246,7 @@ function tmux-gap-remove {
 }
 
 function vlog {
-    log $@ | vim - +"set ft=log"
+    log $@ | vim -
 }
 
 function curr-branch {

@@ -15,7 +15,7 @@ type brew >/dev/null 2>&1
 if [ $? -eq 0 ]; then
     - brew install fzf
     - brew install highlight
-    - brew install macvim --with-override-system-vim
+    - brew install macvim
     - brew install python3
     - brew install tmux
 else
@@ -66,6 +66,7 @@ echo "Settings up links in $env/bin"
 + ln -f -s \"$env/python/mkgitignore.py\" \"$env/bin/mkgitignore\"
 + ln -f -s \"$env/python/radartitle.py\" \"$env/bin/radartitle\"
 + ln -f -s \"$env/python/run_cmd.py\" \"$env/bin/cmd\"
++ ln -f -s \"$env/python/build_script_finder.py\" \"$env/bin/bld\"
 
 + ln -f -s \"$env/tmux/scripts/tmuxhome.sh\" \"$env/bin/tmuxhome\"
 
@@ -78,7 +79,7 @@ cd "$env/C/"
 + vim +PlugInstall +qall
 
 # Install tmux plugin manager
-+ git clone https://github.com/tmux-plugins/tpm "$env/tmux/plugins/tpm"
+- git clone https://github.com/tmux-plugins/tpm "$env/tmux/plugins/tpm"
 # install zsh plugins
 + \"$env/zsh/install-plugins.sh\"
 

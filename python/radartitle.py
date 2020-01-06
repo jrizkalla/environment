@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import json
-from subprocess import check_output
+from subprocess import check_output, CalledProcessError
 import sys
 
 GET_TITLE_SCRIPT = """
@@ -26,6 +26,8 @@ def get_title(id_):
         
         script = GET_TITLE_SCRIPT.format(id_)
         title = check_output(f"osascript -e '{script}'", shell=True).decode().strip()
+        if title.startswith("0\n"):
+            raise CalledProcessError(0, "osascript")
         problems[id_] = title
         # flush dictionary
         try:
@@ -37,4 +39,7 @@ def get_title(id_):
 
 
 if __name__ == "__main__":
-    print(get_title(sys.argv[1]))
+    try:
+        print(get_title(sys.argv[1]))
+    except:
+        sys.exit(1)
