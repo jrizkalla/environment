@@ -12,7 +12,7 @@ setopt hist_ignorespace
 
 alias kk=' echo "$(fc -ln -1)" && eval "$(fc -ln -1)"'
 
-BASE_PROMPT1="%{$fg[yellow]%}%!. [%{$fg[cyan]%}%D{%I:%M:%S %p}%{$fg[yellow]%}]" # 1. [time]
+BASE_PROMPT1="%{$fg[yellow]%}%!. [%{$fg[cyan]%}%D{%I:%M:%S %p}%{$fg[yellow]%}] %(?.%{$fg[green]%}✔︎.$fg[red]%}✕)%{$fg[yellow]%}" # 1. [time]
 BASE_PROMPT2="$> %{$reset_color%}" #$> 
 # Set a timeout to 1 second (to update the clock)
 # 
@@ -23,7 +23,7 @@ BASE_PROMPT2="$> %{$reset_color%}" #$>
 #    fi
 #}
 
-BASE_RPROMPT="%{$fg[white]%}%{$fg[cyan]%}%1d%{$reset_color%}"
+BASE_RPROMPT="%M %{$fg[white]%}%{$fg[cyan]%}%1d%{$reset_color%}"
 RPROMPT="$BASE_RPROMPT"
 
 #PS2='%_ > '

@@ -37,6 +37,8 @@ bind-key C-a  send-keys -R \; clear-history
 
 bind-key C-b last-window
 
+bind-key C-a  send-keys -R \; clear-history
+
 # Bind pane splitting
 bind-key - split-window v
 bind-key | split-window h

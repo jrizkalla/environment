@@ -253,6 +253,10 @@ function curr-branch {
     git branch | grep \* | cut -d ' ' -f2
 }
 
+function default-branch {
+    git remote show origin | grep 'HEAD branch' | sed 's/.*: //'
+}
+
 function dir-contains {
     haystack="$(cd $1 && pwd)"
     needle=$2
