@@ -25,16 +25,16 @@ fi
 echo "Settings up environment in $env"
 
 # Set up the links (ignoring errors)
-+ ln -f -s \"$env/bash/bash_profile.sh\" \"$HOME/.bash_profile\"
-+ ln -f -s \"$env/zsh/zshrc\" \"$HOME/.zshrc\"
-+ ln -f -s \"$env/vim/vimrc\" \"$HOME/.vimrc\"
-+ ln -f -s \"$env/vim\" \"$HOME/.vim\"
-+ ln -f -s \"$env/tmux\" \"$HOME/.tmux\"
-+ ln -f -s \"$env/wm/khdrc\" \"$HOME/.khdrc\"
-+ ln -f -s \"$env/wm/chunkwmrc\" \"$HOME/.chunkwmrc\"
+- ln -f -s \"$env/bash/bash_profile.sh\" \"$HOME/.bash_profile\"
+- ln -f -s \"$env/zsh/zshrc\" \"$HOME/.zshrc\"
+- ln -f -s \"$env/vim/vimrc\" \"$HOME/.vimrc\"
+- ln -f -s \"$env/vim\" \"$HOME/.vim\"
+- ln -f -s \"$env/tmux\" \"$HOME/.tmux\"
+- ln -f -s \"$env/wm/khdrc\" \"$HOME/.khdrc\"
+- ln -f -s \"$env/wm/chunkwmrc\" \"$HOME/.chunkwmrc\"
 
 # tmux links
-+ ln -f -s \"$env/tmux/tmux.conf.sh\" \"$HOME/.tmux.conf\"
+- ln -f -s \"$env/tmux/tmux.conf.sh\" \"$HOME/.tmux.conf\"
 
 # Change .bash_profile
 echo -e "\n# Created by .config\nexport PATH=\"\$PATH:$env/bin:$env/C/bin\"\nexport PYTHONPATH=\"\$PYTHONPATH:$env/python\"" > "$env/bash/env_bash_profile.sh"
@@ -44,31 +44,32 @@ if [ $(uname) = 'Linux' ]; then
 fi
 echo -e "export OSA_LIBRARY_PATH=\"$env/jxa/lib\"" >> "$env/bash/env_bash_profile.sh"
 
-+ ln -s "$env/bash/env_bash_profile.sh" "$HOME/.env_bash_profile"
+- ln -s "$env/bash/env_bash_profile.sh" "$HOME/.env_bash_profile"
 
 echo "Settings up links in $env/bin"
 
-+ ln -f -s \"$env/bash/pid.sh\" \"$env/bin/pid\"
-+ ln -f -s \"$env/bash/settitle.sh\" \"$env/bin/settitle\"
-+ ln -f -s \"$env/bash/trash.sh\" \"$env/bin/trash\"
-+ ln -f -s \"$env/bash/waitforprocess.sh\" \"$env/bin/waitforprocess\"
-+ ln -f -s \"$env/bash/csconfig.sh\" \"$env/bin/csconfig\"
-+ ln -f -s \"$env/bash/tmux-default-command.sh\" \"$env/bin/tmux-default-command\"
-+ ln -f -s \"$env/bash/pretty.sh\" \"$env/bin/pretty\"
-+ ln -f -s \"$env/bash/tmuxnew.sh\" \"$env/bin/tmuxnew\"
-+ ln -f -s \"$env/bash/compose.sh\" \"$env/bin/compose\"
-+ ln -f -s \"$env/bash/openproj.sh\" \"$env/bin/openproj\"
-+ ln -f -s \"$env/bash/init_vim_on_ssh.sh\" \"$env/bin/init_vim_on_ssh\"
+- ln -f -s \"$env/bash/pid.sh\" \"$env/bin/pid\"
+- ln -f -s \"$env/bash/settitle.sh\" \"$env/bin/settitle\"
+- ln -f -s \"$env/bash/trash.sh\" \"$env/bin/trash\"
+- ln -f -s \"$env/bash/waitforprocess.sh\" \"$env/bin/waitforprocess\"
+- ln -f -s \"$env/bash/csconfig.sh\" \"$env/bin/csconfig\"
+- ln -f -s \"$env/bash/tmux-default-command.sh\" \"$env/bin/tmux-default-command\"
+- ln -f -s \"$env/bash/pretty.sh\" \"$env/bin/pretty\"
+- ln -f -s \"$env/bash/tmuxnew.sh\" \"$env/bin/tmuxnew\"
+- ln -f -s \"$env/bash/compose.sh\" \"$env/bin/compose\"
+- ln -f -s \"$env/bash/openproj.sh\" \"$env/bin/openproj\"
+- ln -f -s \"$env/bash/init_vim_on_ssh.sh\" \"$env/bin/init_vim_on_ssh\"
 
-+ ln -f -s \"$env/python/tree.py\" \"$env/bin/tree\"
-+ ln -f -s \"$env/python/passwordgen.py\" \"$env/bin/passwordgen\"
-+ ln -f -s \"$env/python/music.py\" \"$env/bin/play\"
-+ ln -f -s \"$env/python/mkgitignore.py\" \"$env/bin/mkgitignore\"
-+ ln -f -s \"$env/python/radartitle.py\" \"$env/bin/radartitle\"
-+ ln -f -s \"$env/python/run_cmd.py\" \"$env/bin/cmd\"
-+ ln -f -s \"$env/python/build_script_finder.py\" \"$env/bin/bld\"
+- ln -f -s \"$env/python/tree.py\" \"$env/bin/tree\"
+- ln -f -s \"$env/python/passwordgen.py\" \"$env/bin/passwordgen\"
+- ln -f -s \"$env/python/music.py\" \"$env/bin/play\"
+- ln -f -s \"$env/python/mkgitignore.py\" \"$env/bin/mkgitignore\"
+- ln -f -s \"$env/python/radartitle.py\" \"$env/bin/radartitle\"
+- ln -f -s \"$env/python/run_cmd.py\" \"$env/bin/cmd\"
+- ln -f -s \"$env/python/build_script_finder.py\" \"$env/bin/bld\"
+- ln -f -s \"$env/python/server.py\" \"$env/bin/srv\"
 
-+ ln -f -s \"$env/tmux/scripts/tmuxhome.sh\" \"$env/bin/tmuxhome\"
+- ln -f -s \"$env/tmux/scripts/tmuxhome.sh\" \"$env/bin/tmuxhome\"
 
 # Compile C files
 echo "Compiling C programs..."
