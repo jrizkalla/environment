@@ -22,7 +22,7 @@ else
     echo "Not installing fzf, macvim, python3, and tmux because brew is missing"
 fi
 
-echo "Settings up environment in $env"
+checkpoint lns "Settings up environment in $env"
 
 # Set up the links (ignoring errors)
 - ln -f -s \"$env/bash/bash_profile.sh\" \"$HOME/.bash_profile\"
@@ -59,6 +59,7 @@ echo "Settings up links in $env/bin"
 - ln -f -s \"$env/bash/compose.sh\" \"$env/bin/compose\"
 - ln -f -s \"$env/bash/openproj.sh\" \"$env/bin/openproj\"
 - ln -f -s \"$env/bash/init_vim_on_ssh.sh\" \"$env/bin/init_vim_on_ssh\"
+- ln -f -s \"$env/bash/difftool.sh\" \"$env/bin/difftool\"
 
 - ln -f -s \"$env/python/tree.py\" \"$env/bin/tree\"
 - ln -f -s \"$env/python/passwordgen.py\" \"$env/bin/passwordgen\"
