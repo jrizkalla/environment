@@ -1,0 +1,70 @@
+{
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "~/.vimrc",
+    "workbench.colorTheme": "Jonokai Classic",
+    "editor.lineNumbers": "relative",
+    "terminal.integrated.allowChords": false,
+    "workbench.preferredDarkColorTheme": "Monokai",
+    "editor.fontFamily": "sf mono",
+    "editor.fontLigatures": true,
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 120,
+    "python.analysis.typeCheckingMode": "basic",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "python.venvFolders": [
+        "env",
+        ".venv",
+        "venv"
+    ],
+    "gitlab.showIssueLinkOnStatusBar": false,
+    "gitlab.showStatusBarLinks": false,
+    "coverage-gutters.coverageFileNames": [
+    
+        "lcov.info",
+        "cov.xml",
+        "coverage.xml",
+        "jacoco.xml",
+        "coverage.cobertura.xml"
+    ],
+    "python.formatting.provider": "autopep8",
+    "editor.stickyScroll.enabled": true,
+    "editor.suggest.matchOnWordStartOnly": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.commandCenter": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.exclude": {
+        "**/*.d.ts": true
+    },
+    "editor.accessibilitySupport": "off",
+    "diffEditor.wordWrap": "on",
+    "[python]": {
+        "editor.formatOnype": true
+    },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "python.languageServer": "Pylance",
+    "window.zoomLevel": -1,
+    "sourcekit-lsp.serverPath": "/usr/bin/sourcekit-lsp"
+}
