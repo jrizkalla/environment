@@ -40,8 +40,8 @@ bind-key C-b last-window
 bind-key C-a  send-keys -R \; clear-history
 
 # Bind pane splitting
-bind-key - split-window v
-bind-key | split-window h
+bind-key '"' split-window -v -c "#{pane_current_path}"
+bind-key '%' split-window -h -c "#{pane_current_path}"
 
 bind-key C-q confirm-before kill-session
 
@@ -62,11 +62,11 @@ set -g default-terminal "screen-256color"
 set -g status-fg white
 set -g status-bg '#005f5f'
 set -g status-right "#{prefix_highlight} CPU: #{cpu_percentage} %a %h-%d %H:%M"
-set-window-option -g window-status-current-bg '#5fffff'
-set-window-option -g window-status-current-fg black
+#set-window-option -g window-status-current-bg '#5fffff'
+#set-window-option -g window-status-current-fg black
 
-set -g pane-border-fg '#005f5f' # same color as Tmux's status line
-set -g pane-active-border-fg '#008787' # same color as Vim's status line
+#set -g pane-border-fg '#005f5f' # same color as Tmux's status line
+#set -g pane-active-border-fg '#008787' # same color as Vim's status line
 
 # Set the clock to 12 hour not 24 hour
 set-window-option -g clock-mode-style 12
@@ -88,6 +88,10 @@ set -g @resurrect-strategy-vim 'session'
 #set -g @resurrect-strategy-nvim 'session'
 set -g @plugin "tmux-plugins/tmux-continuum"
 set -g @plugin "tmux-plugins/tmux-copycat"
+set -g @plugin 'tmux-plugins/tmux-sidebar'
+
+set -g @sidebar-tree-command 'tree -C'
+set -g @plugin 'yardnsm/tmux-1password'
 
 
 

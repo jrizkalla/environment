@@ -28,12 +28,12 @@ alias stop="kill SIGTSTP"
 
 alias pmux="./scripts/tmux.sh"
 
-alias branch='BRANCH_FROM=$(pwd); cd'
 alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
 
 alias autolatex='latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
 alias skim='open -a Skim'
 alias glog="git log --decorate --graph --abbrev-commit"
+alias slog="git log '--format=format:%C(auto)%h -- %C(cyan)%cN%C(auto) %cr%d%n  ↳ %s'"
 
 # Vim
 # Is MacVim installed?
@@ -89,6 +89,9 @@ fi
 # Setting PATH for Python 3.4
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:${PATH}"
+for dir in $(ls -d ~/Library/Python/*/bin); do
+    PATH="$dir:${PATH}"
+done
 export PATH
 
 # Set the log file (for scripts running in the background)
@@ -260,14 +263,22 @@ function default-branch {
 function dir-contains {
     haystack="$(cd $1 && pwd)"
     needle=$2
-    
+
     while [ "$haystack" != "/" ] && [ "$haystack" != "" ]; do
         curr="$(basename "$haystack")"
         if [ "$curr" = "$needle" ]; then return true; fi
         haystack="$(dirname "$haystack")"
     done
-    
+
     false
+}
+
+function scd {
+    echo "TODO"
+}
+
+function dimages {
+    docker iamges | fzf | awk '{print $3}'
 }
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -275,10 +286,14 @@ function dir-contains {
 
 FZF_BASE_OPTS='--border --color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229 --color info:150,prompt:110,spinner:150,pointer:167,marker:174'
 export FZF_DEFAULT_OPTS="$_FZF_BASE_OPTS --preview '[[ \$(file --mime {}) =~ binary ]] && xxd {} || (highlight --out-format=xterm256 {} || cat {}) 2>/dev/null'"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_TMUX=1
 export FZF_TMUX_HEIGHT=95%
 
-export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export EDITOR="vim"
 
 
-if [ -r ~/.bashrc ]; then source ~/.bashrc; fi
+if [ -r $HOME/.bashrc ]; then source ~/.bashrc; fi
+if [ -r $HOME/.bash_profile_local ]; then source ~/.bash_profile_local; fi

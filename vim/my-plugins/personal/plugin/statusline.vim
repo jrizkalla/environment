@@ -1,3 +1,8 @@
+
+if exists('g:vscode')
+    finish
+endif
+
 " Color key:
 " User1 is for filename. It is controlled by a helper function
 " User2 is for flags (like readonly)
@@ -30,11 +35,14 @@ endfunction
 " }}}
 
 " gitbranch {{{
-let g:statusline_gitbranch_buffer = ""
-augroup statusline_gitbranch
-    autocmd!
-    autocmd FocusGained * let g:statusline_gitbranch_buffer = ""
-augroup end
+
+if !exists("g:vscode")
+    let g:statusline_gitbranch_buffer = ""
+    augroup statusline_gitbranch
+        autocmd!
+        autocmd FocusGained * let g:statusline_gitbranch_buffer = ""
+    augroup end
+endif
     
 function! Statusline_gitbranch()
     " We don't really need to check the git branch every

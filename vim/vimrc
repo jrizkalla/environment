@@ -1,13 +1,17 @@
 filetype off
 filetype plugin indent on
+
+set runtimepath+=~/.vim
+
 " Load the plugins...
+"
 
 call plug#begin("~/.vim/plugins")
 
-if !exists("g:fast_startup")
+if !exists("g:fast_startup") && !exists("g:vscode")
     let g:codi#interpreters = { 'python' : { 'bin' : 'python3' } }
     Plug 'metakirby5/codi.vim'
-    
+
     Plug 'mattn/emmet-vim'
     "?Plug 'toyamarinyon/vim-swift'
     Plug 'keith/swift.vim'
@@ -19,40 +23,66 @@ if !exists("g:fast_startup")
     if filereadable("/usr/local/opt/fzf/plugin/fzf.vim")
         source /usr/local/opt/fzf/plugin/fzf.vim
     endif
+    if filereadable("/opt/homebrew/opt/fzf/plugin/fzf.vim") " Apple Silicon
+        source /opt/homebrew/opt/fzf/plugin/fzf.vim
+    endif
     Plug 'junegunn/fzf.vim'
     Plug 'Glench/Vim-Jinja2-Syntax'
-    
+
     " Provides tags for source code. Used in status bar
     Plug 'vim-scripts/taglist.vim'
-    
-    
+
+
     Plug 'chrisbra/Recover.vim'
-    
-    " --- YouCompleteMe {{{
-    let g:ycm_seed_identifiers_with_syntax = 1
-    let g:ycm_filetype_whitelist = { 
-                \ "cpp"        : 1,
-                \ "c"          : 1,
-                \ "python"     : 1,
-                \ "css"        : 1,
-                \ "javascript" : 1,
-                \ "scss"       : 1,
-                \ "java"       : 1,
-                \ "objc"       : 1,
-                \ "swift"      : 1,
-                \}
 
-    " Additional triggers for css (empty lines and :)
-    let g:ycm_semantic_triggers = { 
-                \ "css": [ 're!\s*' , '.' ],
-                \ }
 
-    "?let g:ycm_global_ycm_extra_conf = '~/environment/vim/default_ycm_extra_conf.py'
-    "?let g:ycm_extra_conf_globlist = ['~/environment/vim/default_ycm_extra_conf.py']
-    let g:clang_library_path = '/Applications/XcodeInternal.app/Contents/Developer/Toolchains/BridgeOS4.0.xctoolchain/usr/lib/libclang.dylib'
-    "?Plug 'valloric/YouCompleteMe'
-    " }}}
-    
+    if has("nvim")
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        " TODO: move somewhere else
+        nnoremap  K :call <SID>show_documentation()<CR>
+        nnoremap t <Plug>(coc-float-jump)
+        nnoremap gd <Plug>(coc-definition)
+        nnoremap gy <Plug>(coc-type-definition)
+        nnoremap gi <Plug>(coc-implementation)
+        nnoremap gr <Plug>(coc-references)
+
+        function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        elseif (coc#rpc#ready())
+            call CocActionAsync('doHover')
+        else
+            execute '!' . &keywordprg . " " . expand('<cword>')
+        endif
+        endfunction
+    else
+        " --- YouCompleteMe {{{
+        Plug 'valloric/YouCompleteMe'
+        let g:ycm_seed_identifiers_with_syntax = 1
+        let g:ycm_filetype_whitelist = {
+                    \ "cpp"        : 1,
+                    \ "c"          : 1,
+                    \ "python"     : 1,
+                    \ "css"        : 1,
+                    \ "javascript" : 1,
+                    \ "scss"       : 1,
+                    \ "java"       : 1,
+                    \ "objc"       : 1,
+                    \ "swift"      : 1,
+                    \ "typescript" : 1,
+                    \}
+
+        " Additional triggers for css (empty lines and :)
+        let g:ycm_semantic_triggers = {
+                    \ "css": [ 're!\s*' , '.' ],
+                    \ }
+
+        "?let g:ycm_global_ycm_extra_conf = '~/environment/vim/default_ycm_extra_conf.py'
+        "?let g:ycm_extra_conf_globlist = ['~/environment/vim/default_ycm_extra_conf.py']
+        " }}}
+    endif
+
+
     " --- EasyAlign {{{
     let g:easy_align_delimiters = {
                 \  ' ': { 'pattern': ' ',  'left_margin': 0, 'right_margin': 0, 'stick_to_left': 0 },
@@ -71,16 +101,31 @@ if !exists("g:fast_startup")
                 \ }
     Plug 'junegunn/vim-easy-align'
     " }}}
-    
+
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
+
+    "?Plug 'davidhalter/jedi-vim'
+
+    Plug 'skammer/vim-css-color'
+
+    Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'junegunn/vim-peekaboo'
+
+    Plug 'iamcco/coc-angular'
 endif
 
+if !exists('g:vscode')
+    Plug 'tmux-plugins/vim-tmux-focus-events'
+    Plug 'christoomey/vim-tmux-navigator'
+endif
 
-Plug 'tpope/vim-obsession'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'christoomey/vim-tmux-navigator'
 Plug '~/.vim/my-plugins/personal'
+
+Plug 'tpope/vim-surround'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-obsession'
 Plug '~/.vim/my-plugins/oslog'
 
 " Testing. Remove later

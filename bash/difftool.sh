@@ -4,7 +4,9 @@
 # Simple wrapper around git difftool that doesn't spam the output with
 # a million vimdiff commands
 
-git status > /dev/null 
+GIT_DIFF="git diff"
+
+git status > /dev/null
 if [ $? -ne 0 ]; then exit $?; fi
 
 # go to the root or git diff --name-only won't work properly
@@ -12,7 +14,7 @@ cd "$(git rev-parse --show-toplevel)"
 
 FZF_PREVIEW="git diff $@ --color=always -- {-1}"
 
-fls_str="$(git difftool --name-only $@)"
+fls_str="$($GIT_DIFF --name-only $@)"
 if [ $? -ne 0 ]; then exit $?; fi
 
 IFS=$'\n' read -ra fls -d '\0' <<< "$fls_str"
@@ -55,9 +57,16 @@ while [ 1 ]; do
         # empty file. Exit
         exit 0
     fi
-    
-    git difftool "$@" -- "$fl"
-    
+
+    # just in case diff quits immediately. Time it and add a read if it's too short
+    clear
+    START_TIME=$(date +%s)
+    $GIT_DIFF "$@" -- "$fl"
+    END_TIME=$(date +%s)
+    if [ $(($END_TIME - $START_TIME)) == 0 ]; then
+        read
+    fi
+
     # mark the file as viewed by changing it's color
     idx=$(search_arr $fl "${fls_orig[@]}")
     if [ $? -ne 0 ]; then 

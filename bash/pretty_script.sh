@@ -23,7 +23,9 @@
 # string PPROMPT: Prompt printed before + commands
 # string MPROMPT: Prompt printed before - commands
 
-source ~/.bashrc
+if [ -x ~/.bashrc ]; then
+    source ~/.bashrc
+fi
 
 
 # read verbosity level from command line

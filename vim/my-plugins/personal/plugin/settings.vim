@@ -1,11 +1,17 @@
+set ignorecase
+set smartcase
+
+if exists('g:vscode')
+    finish
+endif
+
 set nocompatible " Make vim uncompatible with old vi
 
 set autoread " Automatically read changed files
 
-set ignorecase
-set smartcase
-
 let &colorcolumn="80,".join(range(120,999),",")
+
+set tildeop
 
 
 " ----- Swap Files {{{
@@ -29,7 +35,7 @@ filetype plugin on
 " Automatically load tags file if it exists
 set tags=./tags;/
 " }}}
- 
+
 " ----- Disable sounds on errors {{{
 " Disable sounds on errors
 set noerrorbells
@@ -40,12 +46,25 @@ autocmd! GUIEnter * set vb t_vb=
 " }}}
 
 " ----- Appearance {{{
-colorscheme monokai                 
+
+" Syntax highlight blank lines with spaces {{{
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" }}}
+
+
+" Add support for syntax highlighting markdown fenched languages
+let g:markdown_fenced_languages = ['html', 'python', 'javascript', 'typescript', 'c', 'cpp', 'ruby', 'vim']
+
+autocmd InsertLeave * redraw!
+
+colorscheme monokai
 "colorscheme xcode-midnight
 
 if has("gui_running")
     set guifont=Monaco:h13
-    
+
     " Make the window as big as possible
     set lines=999
     set columns=999
@@ -61,40 +80,43 @@ set cursorcolumn " Highlight the line the cursor is on
 set hlsearch
 set incsearch
 
-:augroup search_highlighting
-:   autocmd!
-:   autocmd InsertEnter * :noh
-:augroup end
+if !has("g:vscode")
+    :augroup search_highlighting
+    :   autocmd!
+    :   autocmd InsertEnter * :noh
+    :augroup end
+endif
 " }}}
 
 " Place at least 10 lines at the bottom or on top of the cursor
 set scrolloff=10
 " }}}
- 
+
 " ----- Indentation {{{
 set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set smarttab
 
 set shiftround  " Make indent a multiple of shiftwidth
 " }}}
- 
+
 " ----- Line numbers {{{
 set relativenumber
 set number
 
 
-if v:version > 703 " hybrid mode does not work with <= Vim 7.3 
-    augroup line_numbering
-        autocmd!
-        autocmd  InsertEnter * :set norelativenumber
-        autocmd  InsertEnter * :set number
-        autocmd  InsertLeave * :set relativenumber
-    augroup end
-endif
+"if v:version > 703 " hybrid mode does not work with <= Vim 7.3 
+"    augroup line_numbering
+"        autocmd!
+"        autocmd  InsertEnter * :set norelativenumber
+"        autocmd  InsertEnter * :set number
+"        autocmd  InsertLeave * :set relativenumber
+"    augroup end
+"endif
 " }}}
- 
+
 " ----- Quiting {{{
 " Quits the current buffer it is a saved file or if it is a buffer without a
 " file
@@ -128,7 +150,7 @@ function! QuitWithoutSaving(quitCommand)
    return 1
 endfunction
 " }}}
- 
+
 " ----- Tab for completion {{{
 "  Breaks with YCM plugin
 " Autocomplete with tab
@@ -157,9 +179,12 @@ call spelling#LoadSpellingAbbrevs()
 " Close all folds
 set foldlevelstart=0
 " A column that indicates whether something is folded or not
-set foldcolumn=1 
+if !has("g:vscode")
+    " not compatible with vscode
+    set foldcolumn=1
+endif
 " }}}
- 
+
 " ----- Commands {{{
 command! Reloadrc runtime! plugin/*.vim
 " For adding spelling errors
@@ -181,8 +206,12 @@ set wildmode=full
 
 " ----- Persistent undo {{{
 if has("persistent_undo")
-    let undoDir = expand("$HOME/.vim/undodir")
-    call system("mkdir " . undoDir)
+    if has("nvim")
+        let undoDir = expand("$HOME/.nvim/undodir")
+    else
+        let undoDir = expand("$HOME/.vim/undodir")
+    endif
+    call system("mkdir -p " . undoDir)
     let &undodir = undoDir
     set undofile
 endif
@@ -191,4 +220,24 @@ endif
 " ----- Netrw settings {{{
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
+" }}}
+
+" ----- Prettier (JS) {{{
+
+function! HasPrettierConfig(file)
+    call system("prettier --find-config-path " . a:file)
+    let err_code=v:shell_error
+    return err_code == 0
+endfunction
+
+function! PrettierFileSaved()
+    if HasPrettierConfig(@%)
+        !prettier --write %
+    endif
+endfunction
+
+"augroup PrettierSave
+"    autocmd BufWritePost *.js,*ts silent! call PrettierFileSaved() | redraw!
+"augroup END
+
 " }}}

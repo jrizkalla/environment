@@ -14,6 +14,7 @@ fi
 type brew >/dev/null 2>&1
 if [ $? -eq 0 ]; then
     - brew install fzf
+    - brew install ripgrep
     - brew install highlight
     - brew install macvim
     - brew install python3
