@@ -12,7 +12,7 @@ if [ $? -ne 0 ]; then exit $?; fi
 # go to the root or git diff --name-only won't work properly
 cd "$(git rev-parse --show-toplevel)"
 
-FZF_PREVIEW="git diff $@ --color=always -- {-1}"
+FZF_PREVIEW="git diff --color $@ -- {}"
 
 fls_str="$($GIT_DIFF --name-only $@)"
 if [ $? -ne 0 ]; then exit $?; fi

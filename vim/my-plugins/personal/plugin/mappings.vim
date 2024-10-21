@@ -5,11 +5,11 @@ let maplocalleader = ","
 " ----- Moving around {{{
 "  jk {{{
 " Map the jk keys
-inoremap jk <esc>:noh<cr>
+"inoremap jk <esc>:noh<cr>
 " and since I tend to keep the shift key pressed while pressing jk...
-inoremap Jk <esc>:noh<cr>
-inoremap jK <esc>:noh<cr>
-inoremap JK <esc>:noh<cr>
+"inoremap Jk <esc>:noh<cr>
+"inoremap jK <esc>:noh<cr>
+"inoremap JK <esc>:noh<cr>
 " }}}
 
 " <++> {{{
@@ -40,6 +40,12 @@ nnoremap + a<++><esc>
 nnoremap ' `
 nnoremap ` '
 " }}}
+
+" Screen line instead of actual lines {{{
+nnoremap k gk
+nnoremap j gj
+" }}}
+
 "  }}}
 
 " ----- Searching {{{
@@ -82,6 +88,14 @@ if exists('g:vscode')
     nnoremap <C-h> <Cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
     nnoremap <C-k> <Cmd>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
     nnoremap <C-j> <Cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
+
+    nnoremap <C-S-l> <Cmd>call VSCodeNotify('workbench.action.moveActiveEditorGroupRight')<CR>
+    nnoremap <C-S-h> <Cmd>call VSCodeNotify('workbench.action.moveActiveEditorGroupLeft')<CR>
+    nnoremap <C-S-k> <Cmd>call VSCodeNotify('workbench.action.moveActiveEditorGroupAbove')<CR>
+    nnoremap <C-S-j> <Cmd>call VSCodeNotify('workbench.action.moveActiveEditorGroupBelow')<CR>
+
+
+
     
     "nnoremap <D-l> <Cmd>call VSCodeNotify('workbench.action.moveEditorToRightGroup')<CR>
     "nnoremap <D-h> <Cmd>call VSCodeNotify('workbench.action.moveEditorToLeftGroup')<CR>

@@ -19,8 +19,10 @@ if [ $? -eq 0 ]; then
     - brew install macvim
     - brew install python3
     - brew install tmux
+    - brew install koekeishiya/formulae/yabai
+    - brew install koekeishiya/formulae/skhd
 else
-    echo "Not installing fzf, macvim, python3, and tmux because brew is missing"
+    echo "Skipping brew install because brew is missing"
 fi
 
 checkpoint lns "Settings up environment in $env"
@@ -31,8 +33,8 @@ checkpoint lns "Settings up environment in $env"
 - ln -f -s \"$env/vim/vimrc\" \"$HOME/.vimrc\"
 - ln -f -s \"$env/vim\" \"$HOME/.vim\"
 - ln -f -s \"$env/tmux\" \"$HOME/.tmux\"
-- ln -f -s \"$env/wm/khdrc\" \"$HOME/.khdrc\"
-- ln -f -s \"$env/wm/chunkwmrc\" \"$HOME/.chunkwmrc\"
+- ln -f -s \"$env/dotfiles/yabairc\" \"$HOME/.yabairc\"
+- ln -f -s \"$env/dotfiles/skhdrc\" \"$HOME/.skhdrc\"
 
 # tmux links
 - ln -f -s \"$env/tmux/tmux.conf.sh\" \"$HOME/.tmux.conf\"
@@ -61,6 +63,7 @@ echo "Settings up links in $env/bin"
 - ln -f -s \"$env/bash/openproj.sh\" \"$env/bin/openproj\"
 - ln -f -s \"$env/bash/init_vim_on_ssh.sh\" \"$env/bin/init_vim_on_ssh\"
 - ln -f -s \"$env/bash/difftool.sh\" \"$env/bin/difftool\"
+- ln -f -s \"$env/bash/previewdockercontainer.sh\" \"$env/bin/previewdockercontainer\"
 
 - ln -f -s \"$env/python/tree.py\" \"$env/bin/tree\"
 - ln -f -s \"$env/python/passwordgen.py\" \"$env/bin/passwordgen\"
@@ -70,6 +73,7 @@ echo "Settings up links in $env/bin"
 - ln -f -s \"$env/python/run_cmd.py\" \"$env/bin/cmd\"
 - ln -f -s \"$env/python/build_script_finder.py\" \"$env/bin/bld\"
 - ln -f -s \"$env/python/server.py\" \"$env/bin/srv\"
+- ln -f -s \"$env/python/bs.py\" \"$env/bin/bs\"
 
 - ln -f -s \"$env/tmux/scripts/tmuxhome.sh\" \"$env/bin/tmuxhome\"
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os;
 import copy;
@@ -325,7 +325,7 @@ if __name__ == '__main__': # Run as a script (not imported)
     # Parse the command line arguments and run the tree
     import sys;
     def print_help(retcode=0, extend=False):
-        print 'Usage: ' + sys.argv[0] + ' -[cpflht] -help';
+        print('Usage: ' + sys.argv[0] + ' -[cpflht] -help')
         if extend:
             sys.stderr.write('''
     Arguments:
@@ -412,12 +412,12 @@ if __name__ == '__main__': # Run as a script (not imported)
                     res = level * pset.prefix + '\033[34;m' + res + '\033[0;m'
                 else:
                     res = level * pset.prefix + res;
-                print res;
+                print(res);
                 for child in file.children:
                     _print_node(child, level + 1);
             else:
                 res = level * pset.prefix + res;
-                print res;
+                print(res);
                  
         _print_node(tree.root, 0);
                 

@@ -35,6 +35,17 @@ alias skim='open -a Skim'
 alias glog="git log --decorate --graph --abbrev-commit"
 alias slog="git log '--format=format:%C(auto)%h -- %C(cyan)%cN%C(auto) %cr%d%n  ↳ %s'"
 
+function checkout {
+    which bs > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        git_cmd="bs"
+    else
+        git_cmd="git"
+    fi
+
+    $git_cmd checkout $(git branch --list --format '%(refname:lstrip=2)' | fzf --query $@)
+}
+
 # Vim
 # Is MacVim installed?
 ls "/Applications/MacVim.app/Contents/MacOS/Vim" > /dev/null 2>&1
@@ -88,11 +99,12 @@ fi
 
 # Setting PATH for Python 3.4
 # The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:${PATH}"
-for dir in $(ls -d ~/Library/Python/*/bin); do
+setopt +o nomatch
+for dir in $(ls -d ~/Library/Python/*/bin 2>/dev/null); do
     PATH="$dir:${PATH}"
 done
 export PATH
+setopt -o nomatch
 
 # Set the log file (for scripts running in the background)
 export LOG_FILE="$HOME/.log_file"
@@ -278,8 +290,64 @@ function scd {
 }
 
 function dimages {
-    docker iamges | fzf | awk '{print $3}'
+    docker images | fzf | awk '{print $3}'
 }
+
+
+function __dcont {
+    docker container ls --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | fzf --preview='previewdockercontainer {}' --preview-window=down,15% $@ | awk '{print $1}'
+}
+
+function dcont {
+    if [ $# -ge 1 ]; then
+        args=(--query $@)
+    else
+        args=()
+    fi
+    __dcont $args
+}
+
+function dlogs {
+    if [ $# -ge 1 ]; then
+        filter_args=(--filter $@)
+        args=(--query $@)
+    else
+        filter_args=()
+        args=()
+    fi
+
+    lines="$(__dcont $filter_args)"
+    if [ $(wc -l <<< "$lines") -eq 1 ]; then
+        container=$lines
+    else
+        container="$(__dcont $args)"
+    fi
+
+    while [ True ]; do
+        docker container logs -f $container
+        sleep 1
+    done
+
+}
+
+function dbash {
+    if [ $# -ge 1 ]; then
+        filter_args=(--filter $@)
+        args=(--query $@)
+    else
+        filter_args=()
+        args=()
+    fi
+
+    lines="$(__dcont $filter_args)"
+    if [ $(wc -l <<< "$lines") -eq 1 ]; then
+        container=$lines
+    else
+        container="$(__dcont $args)"
+    fi
+    docker exec -it "$container" bash
+}
+
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 

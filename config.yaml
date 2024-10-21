@@ -1,0 +1,10 @@
+evironment: "$HOME/environment"
+brew:
+  - fzf
+  - ripgrep
+  - highlight
+  - macvim
+  - python3
+  - tmux
+  - koekeishiya/formulae/yabai
+  - koekeishiya/formulae/skhd

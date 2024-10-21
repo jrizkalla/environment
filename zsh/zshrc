@@ -30,6 +30,7 @@ RPROMPT="$BASE_RPROMPT"
 
 
 # Enable auto completion
+#source "$ENV/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 zmodload zsh/complist
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
@@ -111,7 +112,6 @@ function zle-line-init {
     
     base_prompt="$BASE_RPROMPT"
     
-    # Color the directory green if the parent of the current dir is called 'green'
     # (don't ask why)
     #if [ "$(basename $(dirname $(pwd)))" = "green" ]; then
     if dir-contains "$(pwd)" "green"; then
@@ -170,8 +170,17 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
+# Load Angular CLI autocompletion
+which ng 2>/dev/null 1>&2
+if [ $? -eq 0 ]; then
+	source <(ng completion script)
+fi
 
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+

@@ -76,6 +76,9 @@ set-window-option -g clock-mode-style 12
 
 # Plugins
 
+set -g @plugin "tmux-plugins/tpm"
+set -g @plugin "tmux-plugins/tmux-sensible"
+
 # set -g @plugin "github_username/plugin_name"
 set -g @plugin "tmux-plugins/tmux-yank"
 set -g @plugin "tmux-plugins/tmux-cpu"
