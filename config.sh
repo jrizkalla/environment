@@ -21,6 +21,7 @@ if [ $? -eq 0 ]; then
     - brew install tmux
     - brew install koekeishiya/formulae/yabai
     - brew install koekeishiya/formulae/skhd
+    - brew install FelixKratz/formulae/borders
 else
     echo "Skipping brew install because brew is missing"
 fi
