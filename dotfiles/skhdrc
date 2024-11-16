@@ -1,0 +1,35 @@
+cmd + ctrl - h: ~/environment/bash/yabai_helper.sh cmd_ctrl_h
+cmd + ctrl - l: ~/environment/bash/yabai_helper.sh cmd_ctrl_l
+cmd + ctrl - k: ~/environment/bash/yabai_helper.sh cmd_ctrl_k
+cmd + ctrl - j: ~/environment/bash/yabai_helper.sh cmd_ctrl_j
+
+rcmd + shift + ctrl - h: yabai -m window --space prev
+rcmd + shift + ctrl - l: yabai -m window --space next
+
+cmd + shift + ctrl - h: yabai -m space --focus prev
+cmd + shift + ctrl - l: yabai -m space --focus next
+
+
+cmd + ctrl - return: yabai -m display --focus recent
+
+rcmd - r: yabai -m space --rotate 90
+rcmd - h: yabai -m window --swap west
+rcmd - l: yabai -m window --swap east
+rcmd - k: yabai -m window --swap north
+rcmd - j: yabai -m window --swap south
+
+
+rcmd - down: yabai -m window --resize bottom:0:100
+rcmd - up: yabai -m window --resize bottom:0:-100
+rcmd - left: yabai -m window --resize right:-100:0
+rcmd - right: yabai -m window --resize right:100:0
+
+rcmd - z: ~/environment/bash/yabai_helper.sh rcmd_z
+rcmd - return: yabai -m window --display recent --focus
+rcmd - s: yabai -m window --toggle split
+
+:: edit
+
+rcmd - e ; edit
+
+edit < cmd - e ; default
