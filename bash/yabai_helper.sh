@@ -16,31 +16,63 @@ function unzoom_if_zoomed {
 }
 
 
-function warp_or_resize {
+function swap_or_resize {
     if [ "$(current_window_is_floating)" = "true" ]; then
         yabai -m window --grid "$2"
     else
-        yabai -m window --warp "$1"
+        yabai -m window --swap "$1"
     fi
 }
+
+function user_input {
+    prompt_text="$1"
+
+    osascript -l JavaScript <<END
+var app = Application.currentApplication();
+app.includeStandardAdditions = true;
+
+var response = app.displayDialog("${prompt_text}", {
+    defaultAnswer: "",
+    withIcon: "note",
+    buttons: ["Cancel", "Continue"],
+    defaultButton: "Continue"
+});
+response.textReturned;
+END
+}
+
+function clean_empty_spaces {
+    while true; do
+        first_empty_space="$(yabai -m query --spaces | jq 'map(select(.windows == [])) | first | .index')"
+        if [ "$first_empty_space" = "null" ]; then break; fi
+        echo "Deleting space $first_empty_space"
+
+        yabai -m space --destroy $first_empty_space
+    done
+}
+
 
 cmd=$1
 
 case $cmd in
+rcmd_semi)
+    result="$(user_input 'Where?')"
+    echo $result
+;;
 rcmd_l)
-    warp_or_resize east 1:2:1:0:1:1
+    swap_or_resize east 1:2:1:0:1:1
 ;;
 
 rcmd_h)
-    warp_or_resize west 1:2:0:0:1:1
+    swap_or_resize west 1:2:0:0:1:1
 ;;
 
 rcmd_k)
-    warp_or_resize north 2:1:0:0:1:1
+    swap_or_resize north 2:1:0:0:1:1
 ;;
 
 rcmd_j)
-    warp_or_resize south 2:1:0:1:1:1
+    swap_or_resize south 2:1:0:1:1:1
 ;;
 
 rcmd_z)
@@ -61,6 +93,19 @@ cmd_ctrl_k)
 ;;
 cmd_ctrl_j)
     unzoom_if_zoomed && yabai -m window --focus south
+;;
+
+rcmd_shift_f)
+    type="$(yabai -m query --spaces | jq '.[] | select(."has-focus").type')"
+    if [ "$type" == '"bsp"' ]; then
+        yabai -m space --layout float
+    else
+        yabai -m space --layout bsp
+    fi
+;;
+
+clean_spaces)
+    clean_empty_spaces
 ;;
 
 *)

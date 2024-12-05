@@ -22,6 +22,8 @@ if [ $? -eq 0 ]; then
     - brew install koekeishiya/formulae/yabai
     - brew install koekeishiya/formulae/skhd
     - brew install FelixKratz/formulae/borders
+    - brew install jq
+    - brew install jnv
 else
     echo "Skipping brew install because brew is missing"
 fi
