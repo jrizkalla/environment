@@ -1,9 +1,16 @@
 yabai -m config layout bsp
 yabai -m config mouse_follows_focus on
-yabai -m rule --add app="Messages" manage=off
-yabai -m rule --add app="System Settings" manage=off
-yabai -m rule --add app="Kindle" manage=off
-yabai -m rule --add app="1Password" manage=off
+
+# Unless changed by a rule, every window starts with the layer "below". And when a window is turned into a floating window, it's set to normal.
+# Setting the default layer to normal using a rule will result in a (probably) more intuitive behavior
+
+yabai -m rule --add app="*" sub-layer=normal
+
+yabai -m rule --add app="Messages" manage=off sub-layer=below
+yabai -m rule --add app="System Settings" manage=off sub-layer=below
+yabai -m rule --add app="Kindle" manage=off sub-layer=below
+yabai -m rule --add app="1Password" manage=off sub-layer=below
+yabai -m rule --add app="Webex" manage=off sub-layer=below
 
 yabai -m config top_padding 5
 yabai -m config bottom_padding 5

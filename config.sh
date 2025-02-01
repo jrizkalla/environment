@@ -24,6 +24,7 @@ if [ $? -eq 0 ]; then
     - brew install FelixKratz/formulae/borders
     - brew install jq
     - brew install jnv
+    - brew install thefuck
 else
     echo "Skipping brew install because brew is missing"
 fi
