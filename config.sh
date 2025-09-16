@@ -68,6 +68,7 @@ echo "Settings up links in $env/bin"
 - ln -f -s \"$env/bash/init_vim_on_ssh.sh\" \"$env/bin/init_vim_on_ssh\"
 - ln -f -s \"$env/bash/difftool.sh\" \"$env/bin/difftool\"
 - ln -f -s \"$env/bash/previewdockercontainer.sh\" \"$env/bin/previewdockercontainer\"
+- ln -f -s \"$env/bash/previewoppassword.sh\" \"$env/bin/previewoppassword\"
 
 - ln -f -s \"$env/python/tree.py\" \"$env/bin/tree\"
 - ln -f -s \"$env/python/passwordgen.py\" \"$env/bin/passwordgen\"

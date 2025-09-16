@@ -33,19 +33,23 @@ alias goback='echo "cd $BRANCH_FROM"; cd "$BRANCH_FROM"'
 alias autolatex='latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
 alias skim='open -a Skim'
 alias glog="git log --decorate --graph --abbrev-commit"
-alias slog="git log '--format=format:%C(auto)%h -- %C(cyan)%cN%C(auto) %cr%d%n  ↳ %s'"
+alias slog="git log --graph '--format=format:%C(auto)%h -- %C(cyan)%cN%C(auto) %cr%d%n  ↳ %s'"
+alias status="git status"
+alias commit="git commit"
+alias checkout="git checkout"
+alias push="git push"
 
-function checkout {
-    which bs > /dev/null 2>&1
-    if [ $? -eq 0 ]; then
-        git_cmd="bs"
-    else
-        git_cmd="git"
-    fi
-
-    $git_cmd checkout $(git branch --list --format '%(refname:lstrip=2)' | fzf --query $@)
-}
-
+#function checkout {
+#    which bs > /dev/null 2>&1
+#    if [ $? -eq 0 ]; then
+#        git_cmd="bs"
+#    else
+#        git_cmd="git"
+#    fi
+#
+#    $git_cmd checkout $(git branch --list --format '%(refname:lstrip=2)' | fzf --query $@)
+#}
+#
 # Vim
 # Is MacVim installed?
 ls "/Applications/MacVim.app/Contents/MacOS/Vim" > /dev/null 2>&1
@@ -347,6 +351,28 @@ function dbash {
     fi
     docker exec -it "$container" bash
 }
+
+function pass {
+    if [ $# -ge 1 ]; then
+        filter_args=(--filter $@)
+        args=(--query $@)
+    else
+        filter_args=()
+        args=()
+    fi
+
+    awk_command="awk '{print $1}'"
+    lines="$(op item list | fzf --preview='previewoppassword {}' --nth=2 --preview-window=down,30% $filter_args | awk '{print $1}')"
+    if [ $(wc -l <<< "$lines") -eq 1 ]; then
+        item_id=$lines
+    else
+        item_id="$(op item list | fzf --preview='previewoppassword {}' --nth=2 --preview-window=down,30% $args | awk '{print $1}')"
+    fi
+
+    op item get "$item_id" --fields password --reveal
+
+}
+
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

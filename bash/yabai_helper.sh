@@ -95,6 +95,13 @@ cmd_ctrl_j)
     unzoom_if_zoomed && yabai -m window --focus south
 ;;
 
+rcmd_ctrl_h)
+    yabai -m window --space prev && yabai -m space --focus prev
+;;
+rcmd_ctrl_l)
+    yabai -m window --space next && yabai -m space --focus next
+;;
+
 rcmd_shift_f)
     type="$(yabai -m query --spaces | jq '.[] | select(."has-focus").type')"
     if [ "$type" == '"bsp"' ]; then

@@ -8,3 +8,4 @@ brew:
   - tmux
   - koekeishiya/formulae/yabai
   - koekeishiya/formulae/skhd
+  - 1password-cli
